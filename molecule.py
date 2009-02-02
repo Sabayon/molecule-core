@@ -19,12 +19,17 @@
 
 import sys
 sys.path.insert(0,'molecule/')
-import molecule.settings
 import molecule.cmdline
+from molecule.handlers import Runner
 
-molecule_data = molecule.cmdline.parse()
-if not molecule_data:
+molecule_data, molecule_data_order = molecule.cmdline.parse()
+if not molecule_data_order:
     molecule.cmdline.print_help()
     raise SystemExit(1)
 
-print "valid",molecule_data
+for el in molecule_data_order:
+    my = Runner(el, molecule_data.get(el))
+    rc = my.run()
+    my.kill()
+    if rc != 0: raise SystemExit(rc)
+raise SystemExit(0)

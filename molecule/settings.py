@@ -96,13 +96,14 @@ class Configuration(Dictionary):
                 'version': "0.1",
                 'chroot_compressor': "mksquashfs",
                 'iso_builder': "mkisofs",
+                'mirror_syncer': "rsync",
                 'iso_builder_builtin_args': ["-J","-R","-l","-no-emul-boot","-boot-load-size","4","-udf","-boot-info-table"],
             }
             self._settings.clear()
             self._settings.update(settings)
             self._settings.update(mysettings)
 
-        paths_to_check = ["chroot_compressor","iso_builder"]
+        paths_to_check = ["chroot_compressor","iso_builder","mirror_syncer"]
         for key in paths_to_check:
             molecule.utils.valid_exec_check(self.get(key))
 

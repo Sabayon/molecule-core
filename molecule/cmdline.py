@@ -26,26 +26,30 @@ from molecule import Config
 from molecule.settings import SpecParser
 
 def parse():
+
     args_to_remove = ["--nocolor"]
     data = {}
 
     myargs = sys.argv[1:]
 
     if "--help" in myargs:
-        return data
+        return data, []
     if "--nocolor" in myargs:
         molecule.output.nocolor()
 
     for arg in args_to_remove:
         if arg in myargs: myargs.remove(arg)
 
+    data_order = []
     for el in myargs:
         if os.path.isfile(el) and os.access(el,os.R_OK):
             obj = SpecParser(el)
             el_data = obj.parse()
             del obj
-            if el_data: data[el] = el_data
-    return data
+            if el_data:
+                data_order.append(el)
+                data[el] = el_data
+    return data, data_order
 
 def print_help():
     help_data = [

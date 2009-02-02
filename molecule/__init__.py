@@ -18,4 +18,6 @@
 #    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 import molecule.settings
+import molecule.output
 Config = molecule.settings.Configuration()
+Output = molecule.output.Output()

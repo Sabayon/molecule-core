@@ -33,3 +33,6 @@ class EnvironmentError(MoleculeException):
 
 class SpecFileError(MoleculeException):
         """Error inside spec file"""
+
+class NotImplementedError(MoleculeException):
+        """Error inside spec file"""

@@ -400,3 +400,183 @@ def my_raw_input(txt = ''):
         response += y
         flush_stdouterr()
     return response
+
+class Output:
+
+    # @input text: text to write
+    # @input back: write on on the same line?
+    # @input importance:
+    #           values: 0,1,2,3 (latter is a blocker - popup menu on a GUI env)
+    #           used to specify information importance, 0<important<2
+    # @input type:
+    #           values: "info, warning, error"
+    #
+    # @input count:
+    #           if you need to print an incremental count ( 100/250...101/251..)
+    #           just pass count = [first integer,second integer] or even a tuple!
+    # @input header:
+    #           text header (decoration?), that's it
+    #
+    # @input footer:
+    #           text footer (decoration?), that's it
+    #
+    # @input percent:
+    #           if percent is True: count will be treating as a percentual count[0]/count[1]*100
+    #
+    # feel free to reimplement this
+    def updateProgress(self, text, header = "", footer = "", back = False, importance = 0, type = "info", count = [], percent = False):
+
+        flush_stdouterr()
+
+        myfunc = print_info
+        if type == "warning":
+            myfunc = print_warning
+        elif type == "error":
+            myfunc = print_error
+
+        count_str = ""
+        if count:
+            if len(count) > 1:
+                if percent:
+                    count_str = " ("+str(round((float(count[0])/count[1])*100,1))+"%) "
+                else:
+                    count_str = " (%s/%s) " % (red(str(count[0])),blue(str(count[1])),)
+        if importance == 0:
+            myfunc(header+count_str+text+footer, back = back, flush = False)
+        elif importance == 1:
+            myfunc(header+count_str+text+footer, back = back, flush = False)
+        elif importance in (2,3):
+            myfunc(header+count_str+text+footer, back = back, flush = False)
+
+        flush_stdouterr()
+
+    # @input question: question to do
+    #
+    # @input importance:
+    #           values: 0,1,2 (latter is a blocker - popup menu on a GUI env)
+    #           used to specify information importance, 0<important<2
+    #
+    # @input responses:
+    #           list of options whose users can choose between
+    #
+    # feel free to reimplement this
+    def askQuestion(self, question, importance = 0, responses = ["Yes","No"]):
+
+        colours = [green, red, blue, darkgreen, darkred, darkblue, brown, purple]
+        colours += colours[:]
+        if len(responses) > len(colours):
+            import exceptionTools
+            raise exceptionTools.IncorrectParameter("IncorrectParameter: %s = %s" % (_("maximum responses length"),len(colours),))
+        try:
+            print darkgreen(question),
+        except UnicodeEncodeError:
+            print darkgreen(question.encode('utf-8')),
+        flush_stdouterr()
+        try:
+            while True:
+                xtermTitle(_("Entropy got a question for you"))
+                flush_stdouterr()
+                response = my_raw_input("["+"/".join([colours[i](responses[i]) for i in range(len(responses))])+"] ")
+                flush_stdouterr()
+                for key in responses:
+                    # An empty response will match the first value in responses.
+                    if response.upper() == key[:len(response)].upper():
+                        xtermTitleReset()
+                        return key
+                    '''
+                    try:
+                        print "%s '%s'" % (_("I cannot understand"),response,),
+                    except UnicodeEncodeError:
+                        print "%s '%s'" % (_("I cannot understand"),response.encode('utf-8'),),
+                    '''
+                    flush_stdouterr()
+        except (EOFError, KeyboardInterrupt):
+            print "%s." % (_("Interrupted"),)
+            xtermTitleReset()
+            raise SystemExit(100)
+        xtermTitleReset()
+        flush_stdouterr()
+
+    '''
+     @ title: title of the input box
+     @ input_parameters: [
+        ('identifier 1','input text 1',input_verification_callback,False),
+        ('password','Password',input_verification_callback,True),
+        ('item_3',('checkbox','Checkbox option (boolean request) - please choose',),input_verification_callback,True),
+        ('item_4',('combo',('Select your favorite option',['option 1', 'option 2', 'option 3']),),input_verification_callback,True)
+    ]
+     @ cancel_button: show cancel button ?
+     @ output: dictionary as follows:
+       {'identifier 1': result, 'identifier 2': result}
+    '''
+    def inputBox(self, title, input_parameters, cancel_button = True):
+        results = {}
+        if title:
+            try:
+                print title
+            except UnicodeEncodeError:
+                print title.encode('utf-8')
+        flush_stdouterr()
+
+        def option_chooser(option_data):
+            mydict = {}
+            counter = 1
+            option_text, option_list = option_data
+            self.updateProgress(option_text)
+            for item in option_list:
+                mydict[counter] = item
+                txt = "[%s] %s" % (darkgreen(str(counter)), blue(item),)
+                self.updateProgress(txt)
+                counter += 1
+            while 1:
+                myresult = readtext("%s:" % (_('Selected number'),)).decode('utf-8')
+                try:
+                    myresult = int(myresult)
+                except ValueError:
+                    continue
+                selected = mydict.get(myresult)
+                if selected != None:
+                    return myresult, selected
+
+        for identifier, input_text, callback, password in input_parameters:
+            while 1:
+                try:
+                    if isinstance(input_text,tuple):
+                        myresult = False
+                        input_type, data = input_text
+                        if input_type == "checkbox":
+                            answer = self.askQuestion(data)
+                            if answer == "Yes": myresult = True
+                        if input_type == "combo":
+                            myresult = option_chooser(data)
+                    else:
+                        myresult = readtext(input_text+":", password = password).decode('utf-8')
+                except (KeyboardInterrupt,EOFError,):
+                    if not cancel_button: # use with care
+                        continue
+                    return None
+                valid = callback(myresult)
+                if valid:
+                    results[identifier] = myresult
+                    break
+        return results
+
+    # useful for reimplementation
+    # in this wait you can send a signal to a widget (total progress bar?)
+    def cycleDone(self):
+        return
+
+    def setTitle(self, title):
+        xtermTitle(title)
+
+    def setTotalCycles(self, total):
+        return
+
+    def outputInstanceTest(self):
+        return
+
+    def nocolor(self):
+        nocolor()
+
+    def notitles(self):
+        notitles()
