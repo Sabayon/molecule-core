@@ -18,6 +18,7 @@
 #    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 import sys
+sys.path.insert(0,'/usr/lib/molecule/')
 sys.path.insert(0,'molecule/')
 import molecule.cmdline
 from molecule.handlers import Runner

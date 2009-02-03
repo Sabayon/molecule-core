@@ -44,9 +44,9 @@ def is_exec_available(exec_name):
     return False
 
 def exec_cmd(args):
-    p = subprocess.Popen(args)
-    rc = p.wait()
-    return rc
+    # do not use Popen otherwise it will try to replace
+    # wildcards automatically ==> rsync no workie
+    return subprocess.call(' '.join(args), shell = True)
 
 def exec_chroot_cmd(args, chroot):
     pid = os.fork()
@@ -72,7 +72,7 @@ def empty_dir(dest_dir):
 
 # using subprocess.call to not care about wildcards
 def remove_path(path):
-    return subprocess.call(["rm","-rf",path])
+    return subprocess.call('rm -rf "%s"' % (path,), shell = True)
 
 def get_random_number():
     return abs(hash(os.urandom(2)))%99999

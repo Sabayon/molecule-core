@@ -222,6 +222,10 @@ class SpecParser:
                 'cb': always_valid,
                 've': ve_string_splitter,
             },
+            'pre_iso_script': {
+                'cb': valid_exec,
+                've': ve_string_stripper,
+            },
             'destination_iso_directory': {
                 'cb': valid_dir,
                 've': ve_string_stripper,
