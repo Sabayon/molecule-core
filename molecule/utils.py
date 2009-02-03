@@ -42,3 +42,37 @@ def is_exec_available(exec_name):
         if os.path.isfile(path) and os.access(path,os.X_OK):
             return True
     return False
+
+def exec_cmd(args):
+    p = subprocess.Popen(args)
+    rc = p.wait()
+    return rc
+
+def exec_chroot_cmd(args, chroot):
+    pid = os.fork()
+    if pid == 0:
+        os.chroot(chroot)
+        os.chdir("/")
+        p = subprocess.Popen(args)
+        rc = p.wait()
+        os._exit(rc)
+    else:
+        pid, status = os.waitpid(pid,0)
+        return status
+
+def empty_dir(dest_dir):
+    for el in os.listdir(dest_dir):
+        el = os.path.join(dest_dir,el)
+        if os.path.isfile(el) or os.path.islink(el):
+            os.remove(el)
+        elif os.path.isdir(el):
+            shutil.rmtree(el,True)
+            if os.path.isdir(el):
+                os.rmdir(el)
+
+# using subprocess.call to not care about wildcards
+def remove_path(path):
+    return subprocess.call(["rm","-rf",path])
+
+def get_random_number():
+    return abs(hash(os.urandom(2)))%99999

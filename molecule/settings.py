@@ -97,7 +97,10 @@ class Configuration(Dictionary):
                 'chroot_compressor': "mksquashfs",
                 'iso_builder': "mkisofs",
                 'mirror_syncer': "rsync",
+                'chroot_compressor_builtin_args': ["-noappend"],
                 'iso_builder_builtin_args': ["-J","-R","-l","-no-emul-boot","-boot-load-size","4","-udf","-boot-info-table"],
+                'mirror_syncer_builtin_args': ["-a","--delete","--delete-excluded","--numeric-ids"],
+                'chroot_compressor_output_file': "livecd.squashfs",
             }
             self._settings.clear()
             self._settings.update(settings)
@@ -187,6 +190,10 @@ class SpecParser:
                 'cb': valid_path_string,
                 've': ve_string_stripper,
             },
+            'extra_rsync_parameters': {
+                'cb': valid_path_string,
+                've': ve_string_splitter,
+            },
             'merge_destination_chroot': {
                 'cb': valid_dir,
                 've': ve_string_stripper,
@@ -223,11 +230,11 @@ class SpecParser:
                 'cb': valid_ascii,
                 've': ve_string_stripper,
             },
-            'directories_to_remove': {
+            'paths_to_remove': {
                 'cb': valid_path_list,
                 've': ve_string_stripper,
             },
-            'directories_to_empty': {
+            'paths_to_empty': {
                 'cb': valid_path_list,
                 've': ve_string_stripper,
             },
