@@ -115,6 +115,9 @@ class SpecParser:
     def __init__(self, filepath):
 
         def ne_string(x):
+            return x,'raw_unicode_escape'
+
+        def ne_list(x):
             return x
 
         def always_valid(*args):
@@ -130,14 +133,14 @@ class SpecParser:
             return os.path.isdir(x)
 
         def ve_string_stripper(x):
-            return x.strip()
+            return unicode(x,'raw_unicode_escape').strip()
 
         def ve_string_splitter(x):
-            return x.strip().split()
+            return unicode(x,'raw_unicode_escape').strip().split()
 
         def valid_exec(x):
             molecule.utils.is_exec_available(x)
-            return True
+            return x
 
         def valid_ascii(x):
             try:
@@ -154,12 +157,13 @@ class SpecParser:
             return True
 
         def valid_path_list(x):
-            return [x for x in x.split(",") if valid_path_string(x)]
+            return [y.strip() for y in unicode(x,'raw_unicode_escape').split(",") if valid_path_string(y) and y.strip()]
 
         self.vital_parameters = [
             "release_string",
             "source_chroot",
             "destination_iso_directory",
+            "destination_livecd_root",
         ]
         self.parser_data_path = {
             'prechroot': {
@@ -221,6 +225,7 @@ class SpecParser:
             'extra_mkisofs_parameters': {
                 'cb': always_valid,
                 've': ve_string_splitter,
+                'mod': ve_string_splitter,
             },
             'pre_iso_script': {
                 'cb': valid_exec,
@@ -235,12 +240,12 @@ class SpecParser:
                 've': ve_string_stripper,
             },
             'paths_to_remove': {
-                'cb': valid_path_list,
-                've': ve_string_stripper,
+                'cb': ne_list,
+                've': valid_path_list,
             },
             'paths_to_empty': {
-                'cb': valid_path_list,
-                've': ve_string_stripper,
+                'cb': ne_list,
+                've': valid_path_list,
             },
 
         }
@@ -267,7 +272,11 @@ class SpecParser:
     def validate_parse(self, mydata):
         for param in self.vital_parameters:
             if param not in mydata:
-                raise SpecFileError("SpecFileError: '%s' missing or invalid '%s' parameter, it's vital. Your specification file is incomplete!" % (self.filepath,param,))
+                raise SpecFileError(
+                    "SpecFileError: '%s' missing or invalid"
+                    " '%s' parameter, it's vital. Your specification"
+                    " file is incomplete!" % (self.filepath,param,)
+                )
 
     def __generic_parser(self, filepath):
         with open(filepath,"r") as f:

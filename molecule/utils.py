@@ -21,6 +21,7 @@ from __future__ import with_statement
 import os
 import time
 import subprocess
+import shutil
 from molecule.exception import EnvironmentError
 
 def get_year():
@@ -72,7 +73,7 @@ def empty_dir(dest_dir):
 
 # using subprocess.call to not care about wildcards
 def remove_path(path):
-    return subprocess.call('rm -rf "%s"' % (path,), shell = True)
+    return subprocess.call('rm -rf %s' % (path,), shell = True)
 
 def get_random_number():
     return abs(hash(os.urandom(2)))%99999

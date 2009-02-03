@@ -165,7 +165,7 @@ class ChrootHandler(GenericHandlerInterface):
         # now remove paths to empty
         empty_paths = self.metadata.get('paths_to_empty',[])
         for mypath in empty_paths:
-            mypath = os.path.join(self.dest_dir,mypath)
+            mypath = self.dest_dir+mypath
             self.Output.updateProgress("[%s|%s] %s: %s" % (blue("ChrootHandler"),darkred(self.spec_name),_("emptying dir"),mypath,))
             if os.path.isdir(mypath):
                 molecule.utils.empty_dir(mypath)
@@ -173,9 +173,8 @@ class ChrootHandler(GenericHandlerInterface):
         # now remove paths to remove (...)
         remove_paths = self.metadata.get('paths_to_remove',[])
         for mypath in remove_paths:
-            mypath = os.path.join(self.dest_dir,mypath)
+            mypath = self.dest_dir+mypath
             self.Output.updateProgress("[%s|%s] %s: %s" % (blue("ChrootHandler"),darkred(self.spec_name),_("removing dir"),mypath,))
-            if not os.path.lexists(mypath): continue
             rc = molecule.utils.remove_path(mypath)
             if rc != 0:
                 self.Output.updateProgress("[%s|%s] %s: %s: %s" % (blue("ChrootHandler"),darkred(self.spec_name),_("removal failed for"),mypath,rc,))
@@ -194,7 +193,7 @@ class CdrootHandler(GenericHandlerInterface):
 
         self.Output.updateProgress("[%s|%s] %s" % (blue("CdrootHandler"),darkred(self.spec_name),_("preparing environment"),))
         self.source_chroot = os.path.join(self.metadata['destination_chroot'],"chroot",os.path.basename(self.metadata['source_chroot']))
-        self.dest_root = os.path.join(self.Config['destination_livecd_root'],"livecd",os.path.basename(self.metadata['source_chroot']))
+        self.dest_root = os.path.join(self.metadata['destination_livecd_root'],"livecd",os.path.basename(self.metadata['source_chroot']))
         if os.path.isdir(self.dest_root):
             molecule.utils.empty_dir(self.dest_root)
         if not os.path.isdir(self.dest_root):
@@ -214,12 +213,13 @@ class CdrootHandler(GenericHandlerInterface):
 
         self.Output.updateProgress("[%s|%s] %s" % (blue("CdrootHandler"),darkred(self.spec_name),_("compressing chroot"),))
         args = [self.Config['chroot_compressor']]
-        args.extend(self.Config['chroot_compressor_builtin_args'])
-        args.extend(self.metadata.get('extra_mksquashfs_parameters',[]))
         comp_output = self.Config['chroot_compressor_output_file']
         if "chroot_compressor_output_file" in self.metadata:
             comp_output = self.metadata.get('chroot_compressor_output_file')
+        comp_output = os.path.join(self.dest_root,comp_output)
         args.extend([self.source_chroot,comp_output])
+        args.extend(self.Config['chroot_compressor_builtin_args'])
+        args.extend(self.metadata.get('extra_mksquashfs_parameters',[]))
         self.Output.updateProgress("[%s|%s] %s: %s" % (blue("CdrootHandler"),darkred(self.spec_name),_("spawning"),args,))
         rc = molecule.utils.exec_cmd(args)
         if rc != 0:
@@ -228,13 +228,35 @@ class CdrootHandler(GenericHandlerInterface):
         self.Output.updateProgress("[%s|%s] %s" % (blue("CdrootHandler"),darkred(self.spec_name),_("chroot compressed successfully"),))
 
         # merge dir
-        merge_dir = self.Config['merge_livecd_root']
-        self.Output.updateProgress("[%s|%s] %s %s" % (blue("CdrootHandler"),darkred(self.spec_name),_("merging livecd root"),merge_dir,))
-        try:
-            shutil.copytree(merge_dir,self.dest_root)
-        except shutil.error, e:
-            self.Output.updateProgress("[%s|%s] %s: %s" % (blue("CdrootHandler"),darkred(self.spec_name),_("error during livecd root copy"),e,))
-            return 1
+        merge_dir = self.metadata.get('merge_livecd_root')
+        if merge_dir:
+            if os.path.isdir(merge_dir):
+                self.Output.updateProgress("[%s|%s] %s %s" % (
+                    blue("CdrootHandler"),darkred(self.spec_name),
+                    _("merging livecd root"),merge_dir,)
+                )
+                import stat
+                content = os.listdir(merge_dir)
+                for mypath in content:
+                    mysource = os.path.join(merge_dir,mypath)
+                    mydest = os.path.join(self.dest_root,mypath)
+                    copystat = False
+
+                    if os.path.islink(mysource):
+                        tolink = os.readlink(mysource)
+                        os.symlink(tolink,mydest)
+                    elif os.path.isfile(mysource) or os.path.islink(mysource):
+                        copystat = True
+                        shutil.copy2(mysource,mydest)
+                    elif os.path.isdir(mysource):
+                        copystat = True
+                        shutil.copytree(mysource,mydest)
+
+                    if copystat:
+                        user = os.stat(mysource)[stat.ST_UID]
+                        group = os.stat(mysource)[stat.ST_GID]
+                        os.chown(mydest,user,group)
+                        shutil.copystat(mysource,mydest)
 
         return 0
 
@@ -247,19 +269,22 @@ class IsoHandler(GenericHandlerInterface):
         self.Output.updateProgress("[%s|%s] %s" % (blue("IsoHandler"),darkred(self.spec_name),_("executing pre_run"),))
 
         # setup paths
-        self.source_path = os.path.join(self.Config['destination_livecd_root'],"livecd",os.path.basename(self.metadata['source_chroot']))
+        self.source_path = os.path.join(self.metadata['destination_livecd_root'],"livecd",os.path.basename(self.metadata['source_chroot']))
         dest_iso_dir = self.metadata['destination_iso_directory']
         if not os.path.isdir(dest_iso_dir):
             os.makedirs(dest_iso_dir,0755)
         dest_iso_filename = self.metadata.get('destination_iso_image_name')
+        release_string = self.metadata.get('release_string','')
+        release_version = self.metadata.get('release_version','')
+        release_desc = self.metadata.get('release_desc','')
         if not dest_iso_filename:
-            dest_iso_filename = "%s_%s_%s.iso" (
-                self.metadata.get('release_string','').replace(' ','_'),
-                self.metadata.get('release_version','').replace(' ','_'),
-                self.metadata.get('release_desc','').replace(' ','_'),
+            dest_iso_filename = "%s_%s_%s.iso" % (
+                release_string.replace(' ','_'),
+                release_version.replace(' ','_'),
+                release_desc.replace(' ','_'),
             )
         self.dest_iso = os.path.join(dest_iso_dir,dest_iso_filename)
-        self.iso_title = "%s %s %s" % (self.metadata.get('release_string',''), self.metadata.get('release_version',''), self.metadata.get('release_desc',''),)
+        self.iso_title = "%s %s %s" % (release_string, release_version, release_desc,)
         self.source_chroot = self.metadata['source_chroot']
         self.chroot_dir = os.path.join(self.metadata['destination_chroot'],"chroot",os.path.basename(self.source_chroot))
 
@@ -292,7 +317,7 @@ class IsoHandler(GenericHandlerInterface):
         args.extend(self.Config['iso_builder_builtin_args'])
         args.extend(self.metadata.get('extra_mkisofs_parameters',[]))
         if self.iso_title.strip():
-            args.extend(["-V",self.iso_title])
+            args.extend(["-V",'"',self.iso_title,'"'])
         args.extend(['-o',self.dest_iso,self.source_path])
         self.Output.updateProgress("[%s|%s] %s: %s" % (blue("IsoHandler"),darkred(self.spec_name),_("spawning"),args,))
         rc = molecule.utils.exec_cmd(args)
