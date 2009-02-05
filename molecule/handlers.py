@@ -147,7 +147,7 @@ class ChrootHandler(GenericHandlerInterface):
                 dest_exec = tmp_exec[len(self.dest_dir):]
                 if not dest_exec.startswith("/"):
                     dest_exec = "/%s" % (dest_exec,)
-                rc = molecule.utils.exec_chroot_cmd([dest_exec], self.dest_dir)
+                rc = molecule.utils.exec_chroot_cmd([dest_exec], self.dest_dir, self.metadata.get('prechroot',[]))
                 if rc != 0:
                     self.Output.updateProgress("[%s|%s] %s: %s" % (blue("ChrootHandler"),darkred(self.spec_name),_("inner chroot hook failed"),rc,))
                     return rc

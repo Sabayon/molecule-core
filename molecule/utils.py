@@ -49,17 +49,17 @@ def exec_cmd(args):
     # wildcards automatically ==> rsync no workie
     return subprocess.call(' '.join(args), shell = True)
 
-def exec_chroot_cmd(args, chroot):
+def exec_chroot_cmd(args, chroot, pre_chroot = []):
     pid = os.fork()
     if pid == 0:
         os.chroot(chroot)
         os.chdir("/")
-        p = subprocess.Popen(args)
-        rc = p.wait()
+        myargs = pre_chroot+args
+        rc = subprocess.call(myargs)
         os._exit(rc)
     else:
-        pid, status = os.waitpid(pid,0)
-        return status
+        rcpid, rc = os.waitpid(pid,0)
+        return rc
 
 def empty_dir(dest_dir):
     for el in os.listdir(dest_dir):

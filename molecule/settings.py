@@ -168,7 +168,7 @@ class SpecParser:
         self.parser_data_path = {
             'prechroot': {
                 'cb': valid_exec,
-                've': ve_string_stripper,
+                've': ve_string_splitter,
             },
             'release_string': {
                 'cb': ne_string, # validation callback
