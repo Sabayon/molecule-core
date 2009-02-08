@@ -142,6 +142,12 @@ class SpecParser:
             molecule.utils.is_exec_available(x)
             return x
 
+        def valid_exec_first_list_item(x):
+            if not x: return False
+            myx = x[0]
+            molecule.utils.is_exec_available(myx)
+            return True
+
         def valid_ascii(x):
             try:
                 x = str(x)
@@ -167,7 +173,7 @@ class SpecParser:
         ]
         self.parser_data_path = {
             'prechroot': {
-                'cb': valid_exec,
+                'cb': valid_exec_first_list_item,
                 've': ve_string_splitter,
             },
             'release_string': {

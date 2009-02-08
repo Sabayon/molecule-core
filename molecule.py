@@ -20,6 +20,7 @@
 import sys
 sys.path.insert(0,'/usr/lib/molecule/')
 sys.path.insert(0,'molecule/')
+sys.path.insert(0,'.')
 import molecule.cmdline
 from molecule.handlers import Runner
 
