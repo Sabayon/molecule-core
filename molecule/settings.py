@@ -23,88 +23,44 @@ import threading
 from molecule.exception import SpecFileError, EnvironmentError
 import molecule.utils
 
-class Dictionary:
+class Constants(dict):
 
     def __init__(self):
-        self._settings = {}
-        self.L = threading.Lock()
-
-    def __setitem__(self, key, value):
-        with self.L:
-            self._settings[key] = value
-
-    def __getitem__(self, key):
-        with self.L:
-            return self._settings[key]
-
-    def __contains__(self, key):
-        with self.L:
-            return key in self._settings
-
-    def __cmp__(self, other):
-        with self.L:
-            return cmp(self._settings,other)
-
-    def __str__(self):
-        with self.L:
-            return str(self._settings)
-
-    def get(self, key):
-        with self.L:
-            return self._settings.get(key)
-
-    def has_key(self, key):
-        with self.L:
-            return self._settings.has_key(key)
-
-    def clear(self):
-        with self.L:
-            self._settings.clear()
-
-    def keys(self):
-        with self.L:
-            return self._settings.keys()
-
-class Constants(Dictionary):
-
-    def __init__(self):
-        Dictionary.__init__(self)
+        dict.__init__(self)
         self.load()
 
     def load(self):
-        with self.L:
-            ETC_DIR = '/etc'
-            CONFIG_FILE_NAME = 'molecule.conf'
+        ETC_DIR = '/etc'
+        CONFIG_FILE_NAME = 'molecule.conf'
 
-            mysettings = {
-                'config_file': os.path.join(ETC_DIR, CONFIG_FILE_NAME),
-            }
+        mysettings = {
+            'config_file': os.path.join(ETC_DIR, CONFIG_FILE_NAME),
+        }
 
-            self._settings.clear()
-            self._settings.update(mysettings)
+        self.clear()
+        self.update(mysettings)
 
-class Configuration(Dictionary):
+class Configuration(dict):
 
     def __init__(self):
-        Dictionary.__init__(self)
+        dict.__init__(self)
         self.Constants = Constants()
         self.load()
 
     def load(self, mysettings = {}):
-        with self.L:
-            settings = {
-                'version': "0.1",
-                'chroot_compressor': "mksquashfs",
-                'iso_builder': "mkisofs",
-                'mirror_syncer': "rsync",
-                'chroot_compressor_builtin_args': ["-noappend"],
-                'iso_builder_builtin_args': ["-J","-R","-l","-no-emul-boot","-boot-load-size","4","-udf","-boot-info-table"],
-                'mirror_syncer_builtin_args': ["-a","--delete","--delete-excluded","--numeric-ids"],
-                'chroot_compressor_output_file': "livecd.squashfs",
-            }
-            self._settings.clear()
-            self._settings.update(settings)
-            self._settings.update(mysettings)
+        settings = {
+            'version': "0.1",
+            'chroot_compressor': "mksquashfs",
+            'iso_builder': "mkisofs",
+            'mirror_syncer': "rsync",
+            'chroot_compressor_builtin_args': ["-noappend"],
+            'iso_builder_builtin_args': ["-J","-R","-l","-no-emul-boot","-boot-load-size","4","-udf","-boot-info-table"],
+            'mirror_syncer_builtin_args': ["-a","--delete","--delete-excluded","--numeric-ids"],
+            'chroot_compressor_output_file': "livecd.squashfs",
+        }
+        self.clear()
+        self.update(settings)
+        self.update(mysettings)
 
         paths_to_check = ["chroot_compressor","iso_builder","mirror_syncer"]
         for key in paths_to_check:
