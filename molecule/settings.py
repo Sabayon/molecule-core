@@ -217,17 +217,33 @@ class SpecParser:
     def parse(self):
         mydict = {}
         data = self.__generic_parser(self.filepath)
+        # compact lines properly
+        old_key = None
         for line in data:
-            try:
-                key, value = line.split(":",1)
-            except (ValueError, IndexError,):
-                continue
-            key = key.strip()
+            if ":" in line:
+                try:
+                    key, value = line.split(":",1)
+                except ValueError:
+                    continue
+                key = key.strip()
+                old_key = key
+            elif isinstance(old_key,basestring):
+                key = old_key
+                value = line.strip()
+                if not value: continue
             check_dict = self.parser_data_path.get(key)
             if not isinstance(check_dict,dict): continue
             value = check_dict['ve'](value)
             if not check_dict['cb'](value): continue
-            mydict[key] = value
+            if key in mydict:
+                if isinstance(value,basestring):
+                    mydict[key] += " %s" % (value,)
+                elif isinstance(value,list):
+                    mydict[key] += value
+                else:
+                    continue
+            else:
+                mydict[key] = value
         self.validate_parse(mydict)
         return mydict.copy()
 
