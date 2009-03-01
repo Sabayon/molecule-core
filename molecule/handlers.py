@@ -473,7 +473,7 @@ class IsoHandler(GenericHandlerInterface):
         args.extend(self.Config['iso_builder_builtin_args'])
         args.extend(self.metadata.get('extra_mkisofs_parameters',[]))
         if self.iso_title.strip():
-            args.extend(["-V",'"',self.iso_title,'"'])
+            args.extend(["-V",'"',self.iso_title[:32],'"'])
         args.extend(['-o',self.dest_iso,self.source_path])
         self.Output.updateProgress("[%s|%s] %s: %s" % (
                 blue("IsoHandler"),darkred(self.spec_name),
