@@ -197,7 +197,7 @@ class ChrootHandler(GenericHandlerInterface):
         exec_script = self.metadata.get('inner_chroot_script')
         if exec_script:
             while 1:
-                tmp_dir = os.path.join(self.dest_dir,molecule.utils.get_random_number())
+                tmp_dir = os.path.join(self.dest_dir,str(molecule.utils.get_random_number()))
                 if not os.path.lexists(tmp_dir): break
             os.makedirs(tmp_dir)
             tmp_exec = os.path.join(tmp_dir,"inner_exec")
