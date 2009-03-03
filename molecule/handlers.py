@@ -248,6 +248,15 @@ class ChrootHandler(GenericHandlerInterface):
 
         # now remove paths to remove (...)
         remove_paths = self.metadata.get('paths_to_remove',[])
+
+        # setup sandbox
+        sb_dirs = [self.dest_dir]
+        sb_env = {
+            'SANDBOX_WRITE': ':'.join(sb_dirs),
+        }
+        myenv = os.environ.copy()
+        myenv.update(sb_env)
+
         for mypath in remove_paths:
             mypath = self.dest_dir+mypath
             self.Output.updateProgress("[%s|%s] %s: %s" % (
@@ -255,7 +264,7 @@ class ChrootHandler(GenericHandlerInterface):
                     _("removing dir"),mypath,
                 )
             )
-            rc = molecule.utils.remove_path(mypath)
+            rc = molecule.utils.remove_path_sandbox(mypath, sb_env)
             if rc != 0:
                 self.Output.updateProgress("[%s|%s] %s: %s: %s" % (
                         blue("ChrootHandler"),darkred(self.spec_name),

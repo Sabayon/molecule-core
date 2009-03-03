@@ -19,6 +19,7 @@
 
 from __future__ import with_statement
 import os
+import sys
 import time
 import subprocess
 import shutil
@@ -74,6 +75,13 @@ def empty_dir(dest_dir):
 # using subprocess.call to not care about wildcards
 def remove_path(path):
     return subprocess.call('rm -rf %s' % (path,), shell = True)
+
+def remove_path_sandbox(path, sandbox_env):
+    p = subprocess.Popen(["sandbox", "rm", "-rf", path],
+        stdout = sys.stdout, stderr = sys.stderr,
+        env = sandbox_env
+    )
+    return p.wait()
 
 def get_random_number():
     return abs(hash(os.urandom(2)))%99999
