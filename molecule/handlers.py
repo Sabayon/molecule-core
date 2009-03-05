@@ -147,7 +147,8 @@ class ChrootHandler(GenericHandlerInterface):
 
         # write release file
         release_file = self.metadata.get('release_file')
-        if release_file:
+        if isinstance(release_file,basestring) and release_file:
+            if release_file[0] == os.sep: release_file = release_file[len(os.sep):]
             release_file = os.path.join(self.dest_dir,release_file)
             if os.path.lexists(release_file) and not os.path.isfile(release_file):
                 self.Output.updateProgress("[%s|%s] %s: %s" % (
