@@ -209,6 +209,11 @@ class ChrootHandler(GenericHandlerInterface):
                 if not dest_exec.startswith("/"):
                     dest_exec = "/%s" % (dest_exec,)
                 rc = molecule.utils.exec_chroot_cmd([dest_exec], self.dest_dir, self.metadata.get('prechroot',[]))
+                try:
+                    shutil.rmtree(tmp_dir,True)
+                    os.rmdir(tmp_dir)
+                except OSError:
+                    pass
                 if rc != 0:
                     self.Output.updateProgress("[%s|%s] %s: %s" % (
                             blue("ChrootHandler"),darkred(self.spec_name),
