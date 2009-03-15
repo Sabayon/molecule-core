@@ -85,3 +85,14 @@ def remove_path_sandbox(path, sandbox_env):
 
 def get_random_number():
     return abs(hash(os.urandom(2)))%99999
+
+def md5sum(filepath):
+    import hashlib
+    m = hashlib.md5()
+    readfile = open(filepath)
+    block = readfile.read(1024)
+    while block:
+        m.update(block)
+        block = readfile.read(1024)
+    readfile.close()
+    return m.hexdigest()

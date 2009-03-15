@@ -509,6 +509,17 @@ class IsoHandler(GenericHandlerInterface):
                 _("built ISO image"),self.dest_iso,
             )
         )
+        if os.path.isfile(self.dest_iso) and os.access(self.dest_iso,os.R_OK):
+            self.Output.updateProgress("[%s|%s] %s: %s" % (
+                    blue("IsoHandler"),darkred(self.spec_name),
+                    _("generating md5 for"),self.dest_iso,
+                )
+            )
+            digest = molecule.utils.md5sum(self.dest_iso)
+            md5file = self.dest_iso+".md5"
+            with open(md5file,"w") as f:
+                f.write("%s  %s\n" % (os.path.basename(self.dest_iso),digest,))
+                f.flush()
         return 0
 
 
