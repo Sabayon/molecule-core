@@ -21,11 +21,12 @@ from __future__ import with_statement
 import os
 import shutil
 from molecule.i18n import _
-from molecule.output import red, brown, blue, green, purple, darkgreen, darkred, bold, darkblue, readtext
-from molecule.exception import EnvironmentError, NotImplementedError
+from molecule.output import red, brown, blue, green, purple, darkgreen, \
+    darkred, bold, darkblue, readtext
 import molecule.utils
 
-# This is an interface that has to be reimplemented in order to make it doing something useful
+# This is an interface that has to be reimplemented in order to make
+# it doing something useful
 class GenericHandlerInterface:
 
     def __init__(self, spec_path, metadata):
@@ -197,23 +198,27 @@ class ChrootHandler(GenericHandlerInterface):
         # run inner chroot script
         exec_script = self.metadata.get('inner_chroot_script')
         if exec_script:
-            while 1:
-                tmp_dir = os.path.join(self.dest_dir,str(molecule.utils.get_random_number()))
-                if not os.path.lexists(tmp_dir): break
-            os.makedirs(tmp_dir)
-            tmp_exec = os.path.join(tmp_dir,"inner_exec")
             if os.path.isfile(exec_script) and os.access(exec_script,os.R_OK):
+
+                while 1:
+                    tmp_dir = os.path.join(self.dest_dir,
+                        str(molecule.utils.get_random_number()))
+                    if not os.path.lexists(tmp_dir):
+                        break
+
+                os.makedirs(tmp_dir)
+                tmp_exec = os.path.join(tmp_dir,"inner_exec")
                 shutil.copy2(exec_script,tmp_exec)
                 os.chmod(tmp_exec,0755)
                 dest_exec = tmp_exec[len(self.dest_dir):]
                 if not dest_exec.startswith("/"):
                     dest_exec = "/%s" % (dest_exec,)
-                rc = molecule.utils.exec_chroot_cmd([dest_exec], self.dest_dir, self.metadata.get('prechroot',[]))
-                try:
-                    shutil.rmtree(tmp_dir,True)
-                    os.rmdir(tmp_dir)
-                except OSError:
-                    pass
+
+                rc = molecule.utils.exec_chroot_cmd([dest_exec], self.dest_dir,
+                    self.metadata.get('prechroot',[]))
+                os.remove(tmp_exec)
+                os.rmdir(tmp_dir)
+
                 if rc != 0:
                     self.Output.updateProgress("[%s|%s] %s: %s" % (
                             blue("ChrootHandler"),darkred(self.spec_name),
