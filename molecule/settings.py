@@ -20,7 +20,7 @@
 from __future__ import with_statement
 import os
 import threading
-from molecule.exception import SpecFileError, EnvironmentError
+from molecule.exception import SpecFileError
 import molecule.utils
 
 class Constants(dict):

@@ -28,11 +28,5 @@ class MoleculeException(Exception):
         else:
             return repr(self.value)
 
-class EnvironmentError(MoleculeException):
-        """Environment error, self explanatory"""
-
 class SpecFileError(MoleculeException):
-        """Error inside spec file"""
-
-class NotImplementedError(MoleculeException):
         """Error inside spec file"""

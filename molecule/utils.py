@@ -23,7 +23,6 @@ import sys
 import time
 import subprocess
 import shutil
-from molecule.exception import EnvironmentError
 
 def get_year():
     return time.strftime("%Y")
