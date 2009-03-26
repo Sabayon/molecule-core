@@ -76,9 +76,9 @@ def remove_path(path):
     return subprocess.call('rm -rf %s' % (path,), shell = True)
 
 def remove_path_sandbox(path, sandbox_env):
-    p = subprocess.Popen(["sandbox", "rm", "-rf", path],
+    p = subprocess.Popen(' '.join(["sandbox", "rm", "-rf", path]),
         stdout = sys.stdout, stderr = sys.stderr,
-        env = sandbox_env
+        env = sandbox_env, shell = True
     )
     return p.wait()
 
