@@ -57,7 +57,7 @@ class Configuration(dict):
             'iso_builder_builtin_args': ["-J","-R","-l","-no-emul-boot",
                 "-boot-load-size","4","-udf","-boot-info-table"],
             'mirror_syncer_builtin_args': ["-a","--delete","--delete-excluded",
-                "--numeric-ids","--recursive","-X","-A","-H"],
+                "--numeric-ids","--recursive","-A","-H"],
             'chroot_compressor_output_file': "livecd.squashfs",
         }
         self.clear()
