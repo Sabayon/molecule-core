@@ -523,7 +523,7 @@ class IsoHandler(GenericHandlerInterface):
             digest = molecule.utils.md5sum(self.dest_iso)
             md5file = self.dest_iso+".md5"
             with open(md5file,"w") as f:
-                f.write("%s  %s\n" % (os.path.basename(self.dest_iso),digest,))
+                f.write("%s  %s\n" % (digest,os.path.basename(self.dest_iso),))
                 f.flush()
         return 0
 
