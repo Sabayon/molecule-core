@@ -20,7 +20,9 @@ from __future__ import with_statement
 import os
 import threading
 from molecule.exception import SpecFileError
-from molecule.specs import SPEC_PLUGS, LivecdSpec, GenericSpec
+from molecule.specs.plugins import SPEC_PLUGS
+from molecule.specs.plugins.builtin import LivecdSpec
+from molecule.specs.skel import GenericSpec
 import molecule.utils
 
 class Constants(dict):
@@ -81,7 +83,7 @@ class SpecParser:
         self.filepath = filepath[:]
         execution_strategy = self.parse_execution_strategy()
         if execution_strategy is None:
-            execution_strategy = DEFAULT_PARSER.execution_strategy()
+            execution_strategy = SpecParser.DEFAULT_PARSER.execution_strategy()
 
         plugin = SPEC_PLUGS.get(execution_strategy)
         if plugin is None:
@@ -147,6 +149,7 @@ class SpecParser:
                     continue
             else:
                 mydict[key] = value
+        mydict['__plugin__'] = self.__plugin
         self.validate_parse(mydict)
         return mydict.copy()
 
