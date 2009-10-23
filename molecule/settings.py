@@ -1,5 +1,4 @@
-#!/usr/bin/python -O
-# -*- coding: iso-8859-1 -*-
+# -*- coding: utf-8 -*-
 #    Molecule Disc Image builder for Sabayon Linux
 #    Copyright (C) 2009 Fabio Erculiani
 #
@@ -21,6 +20,7 @@ from __future__ import with_statement
 import os
 import threading
 from molecule.exception import SpecFileError
+from molecule.specs import SPEC_PLUGS, LivecdSpec, GenericSpec
 import molecule.utils
 
 class Constants(dict):
@@ -49,7 +49,7 @@ class Configuration(dict):
 
     def load(self, mysettings = {}):
         settings = {
-            'version': "0.1",
+            'version': "0.3",
             'chroot_compressor': "mksquashfs",
             'iso_builder': "mkisofs",
             'mirror_syncer': "rsync",
@@ -68,153 +68,53 @@ class Configuration(dict):
         for key in paths_to_check:
             molecule.utils.valid_exec_check(self.get(key))
 
+
+
 class SpecParser:
+
+    # FIXME: kept for backward .spec files compatibility where
+    # execution_strategy argument is not set
+    DEFAULT_PARSER = LivecdSpec
 
     def __init__(self, filepath):
 
-        def ne_string(x):
-            return x,'raw_unicode_escape'
-
-        def ne_list(x):
-            return x
-
-        def always_valid(*args):
-            return True
-
-        def valid_path(x):
-            return os.path.lexists(x)
-
-        def valid_file(x):
-            return os.path.isfile(x)
-
-        def valid_dir(x):
-            return os.path.isdir(x)
-
-        def ve_string_stripper(x):
-            return unicode(x,'raw_unicode_escape').strip()
-
-        def ve_string_splitter(x):
-            return unicode(x,'raw_unicode_escape').strip().split()
-
-        def valid_exec(x):
-            molecule.utils.is_exec_available(x)
-            return x
-
-        def valid_exec_first_list_item(x):
-            if not x: return False
-            myx = x[0]
-            molecule.utils.is_exec_available(myx)
-            return True
-
-        def valid_ascii(x):
-            try:
-                x = str(x)
-                return x
-            except (UnicodeDecodeError,UnicodeEncodeError,):
-                return ''
-
-        def valid_path_string(x):
-            try:
-                os.path.split(x)
-            except OSError:
-                return False
-            return True
-
-        def valid_path_list(x):
-            return [y.strip() for y in unicode(x,'raw_unicode_escape').split(",") if valid_path_string(y) and y.strip()]
-
-        self.vital_parameters = [
-            "release_string",
-            "source_chroot",
-            "destination_iso_directory",
-            "destination_livecd_root",
-        ]
-        self.parser_data_path = {
-            'prechroot': {
-                'cb': valid_exec_first_list_item,
-                've': ve_string_splitter,
-            },
-            'release_string': {
-                'cb': ne_string, # validation callback
-                've': ve_string_stripper, # value extractor
-            },
-            'release_version': {
-                'cb': ne_string,
-                've': ve_string_stripper,
-            },
-            'release_desc': {
-                'cb': ne_string,
-                've': ve_string_stripper,
-            },
-            'release_file': {
-                'cb': ne_string,
-                've': ve_string_stripper,
-            },
-            'source_chroot': {
-                'cb': valid_dir,
-                've': ve_string_stripper,
-            },
-            'destination_chroot': {
-                'cb': valid_path_string,
-                've': ve_string_stripper,
-            },
-            'extra_rsync_parameters': {
-                'cb': valid_path_string,
-                've': ve_string_splitter,
-            },
-            'merge_destination_chroot': {
-                'cb': valid_dir,
-                've': ve_string_stripper,
-            },
-            'outer_chroot_script': {
-                'cb': valid_exec,
-                've': ve_string_stripper,
-            },
-            'inner_chroot_script': {
-                'cb': valid_path_string,
-                've': ve_string_stripper,
-            },
-            'destination_livecd_root': {
-                'cb': valid_path_string,
-                've': ve_string_stripper,
-            },
-            'merge_livecd_root': {
-                'cb': valid_dir,
-                've': ve_string_stripper,
-            },
-            'extra_mksquashfs_parameters': {
-                'cb': always_valid,
-                've': ve_string_splitter,
-            },
-            'extra_mkisofs_parameters': {
-                'cb': always_valid,
-                've': ve_string_splitter,
-                'mod': ve_string_splitter,
-            },
-            'pre_iso_script': {
-                'cb': valid_exec,
-                've': ve_string_stripper,
-            },
-            'destination_iso_directory': {
-                'cb': valid_dir,
-                've': ve_string_stripper,
-            },
-            'destination_iso_image_name': {
-                'cb': valid_ascii,
-                've': ve_string_stripper,
-            },
-            'paths_to_remove': {
-                'cb': ne_list,
-                've': valid_path_list,
-            },
-            'paths_to_empty': {
-                'cb': ne_list,
-                've': valid_path_list,
-            },
-
-        }
-
         self.filepath = filepath[:]
+        execution_strategy = self.parse_execution_strategy()
+        if execution_strategy is None:
+            execution_strategy = DEFAULT_PARSER.execution_strategy()
+
+        plugin = SPEC_PLUGS.get(execution_strategy)
+        if plugin is None:
+            raise SpecFileError("Execution strategy provided in %s spec file"
+                " not supported, strategy: %s" % (
+                    self.filepath, execution_strategy,))
+
+        self.__plugin = plugin()
+        self.vital_parameters = self.__plugin.vital_parameters()
+        self.parser_data_path = self.__plugin.parser_data_path()
+
+
+    def parse_execution_strategy(self):
+        data = self.__generic_parser(self.filepath)
+        exc_str = GenericSpec.EXECUTION_STRATEGY_KEY
+        for line in data:
+            if not line.startswith(exc_str):
+                continue
+            key, value = self.parse_line_statement(line)
+            if key is None:
+                continue
+            if key != exc_str:
+                # wtf?
+                continue
+            return value
+
+    def parse_line_statement(self, line_stmt):
+        try:
+            key, value = line_stmt.split(":", 1)
+        except ValueError:
+            return None, None
+        key, value = key.strip(), value.strip()
+        return key, value
 
     def parse(self):
         mydict = {}
@@ -223,24 +123,25 @@ class SpecParser:
         old_key = None
         for line in data:
             if ":" in line:
-                try:
-                    key, value = line.split(":",1)
-                except ValueError:
+                key, value = self.parse_line_statement(line)
+                if key is None:
                     continue
-                key = key.strip()
                 old_key = key
-            elif isinstance(old_key,basestring):
+            elif isinstance(old_key, basestring):
                 key = old_key
                 value = line.strip()
-                if not value: continue
+                if not value:
+                    continue
             check_dict = self.parser_data_path.get(key)
-            if not isinstance(check_dict,dict): continue
+            if not isinstance(check_dict, dict):
+                continue
             value = check_dict['ve'](value)
-            if not check_dict['cb'](value): continue
+            if not check_dict['cb'](value):
+                continue
             if key in mydict:
-                if isinstance(value,basestring):
+                if isinstance(value, basestring):
                     mydict[key] += " %s" % (value,)
-                elif isinstance(value,list):
+                elif isinstance(value, list):
                     mydict[key] += value
                 else:
                     continue
@@ -264,8 +165,10 @@ class SpecParser:
             content = f.readlines()
             f.close()
             # filter comments and white lines
-            content = [x.strip().rsplit("#",1)[0].strip() for x in content if not x.startswith("#") and x.strip()]
+            content = [x.strip().rsplit("#", 1)[0].strip() for x in content if \
+                not x.startswith("#") and x.strip()]
             for line in content:
-                if line in data: continue
+                if line in data:
+                    continue
                 data.append(line)
             return data
