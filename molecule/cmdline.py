@@ -1,5 +1,5 @@
 #!/usr/bin/python -O
-# -*- coding: iso-8859-1 -*-
+# -*- coding: utf-8 -*-
 #    Molecule Disc Image builder for Sabayon Linux
 #    Copyright (C) 2009 Fabio Erculiani
 #
@@ -54,7 +54,9 @@ def parse():
 def print_help():
     help_data = [
         None,
-        (0," ~ Molecule %s ~ " % (Config.get('version'),) ,1,'Disc Image builder for Sabayon Linux - (C) %s' % (molecule.utils.get_year(),) ),
+        (0," ~ Molecule %s ~ " % (Config.get('version'),) ,1,
+            'Disc Image builder for Sabayon Linux - (C) %s' % (
+                molecule.utils.get_year(),) ),
         None,
         (0,_('Basic Options'),0,None),
         None,
@@ -62,7 +64,8 @@ def print_help():
         (1,'--nocolor',1,_('disable colorized output')),
         None,
         (0,_('Application Options'),0,None),
-        (1,'<spec file path 1> <spec file path 2> ...',1,_('execute against specified specification files')),
+        (1,'<spec file path 1> <spec file path 2> ...',1,
+            _('execute against specified specification files')),
         None,
     ]
     molecule.output.print_menu(help_data)
