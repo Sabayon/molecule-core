@@ -1,5 +1,5 @@
 #!/usr/bin/python -O
-# -*- coding: iso-8859-1 -*-
+# -*- coding: utf-8 -*-
 #    Molecule Disc Image builder for Sabayon Linux
 #    Copyright (C) 2009 Fabio Erculiani
 #
@@ -33,5 +33,6 @@ for el in molecule_data_order:
     my = Runner(el, molecule_data.get(el))
     rc = my.run()
     my.kill()
-    if rc != 0: raise SystemExit(rc)
+    if rc != 0:
+        raise SystemExit(rc)
 raise SystemExit(0)
