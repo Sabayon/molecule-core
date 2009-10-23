@@ -16,7 +16,7 @@
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-import os
+
 import molecule.utils
 
 class GenericSpecFunctions:
@@ -60,7 +60,7 @@ class GenericSpecFunctions:
         try:
             x = str(x)
             return x
-        except (UnicodeDecodeError,UnicodeEncodeError,):
+        except (UnicodeDecodeError, UnicodeEncodeError,):
             return ''
 
     def valid_path_string(self, x):
@@ -212,7 +212,54 @@ class LivecdSpec(GenericSpec):
         }
 
 
+class RemasterSpec(GenericSpec):
 
+    @staticmethod
+    def execution_strategy():
+        return "iso_remaster"
+
+    def vital_parameters(self):
+        return [
+            "source_iso",
+            "destination_iso_directory",
+        ]
+
+    def parser_data_path(self):
+        return {
+            'prechroot': {
+                'cb': self.valid_exec_first_list_item,
+                've': self.ve_string_splitter,
+            },
+            'source_iso': {
+                'cb': self.valid_path_string,
+                've': self.ve_string_stripper,
+            },
+            'outer_chroot_script': {
+                'cb': self.valid_exec,
+                've': self.ve_string_stripper,
+            },
+            'inner_chroot_script': {
+                'cb': self.valid_path_string,
+                've': self.ve_string_stripper,
+            },
+            'extra_mkisofs_parameters': {
+                'cb': self.always_valid,
+                've': self.ve_string_splitter,
+                'mod': self.ve_string_splitter,
+            },
+            'pre_iso_script': {
+                'cb': self.valid_exec,
+                've': self.ve_string_stripper,
+            },
+            'destination_iso_directory': {
+                'cb': self.valid_dir,
+                've': self.ve_string_stripper,
+            },
+            'destination_iso_image_name': {
+                'cb': self.valid_ascii,
+                've': self.ve_string_stripper,
+            },
+        }
 
 # FIXME: this will need to be pluggable (and plugin factory is required)
 SPEC_PLUGS = dict((x.execution_strategy(), x,) for x in \
