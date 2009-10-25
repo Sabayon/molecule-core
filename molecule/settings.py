@@ -16,9 +16,7 @@
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-from __future__ import with_statement
 import os
-import threading
 from molecule.exception import SpecFileError
 from molecule.specs.plugins import SPEC_PLUGS
 from molecule.specs.plugins.builtin import LivecdSpec
@@ -49,24 +47,33 @@ class Configuration(dict):
         self.Constants = Constants()
         self.load()
 
-    def load(self, mysettings = {}):
+    def load(self, mysettings = None):
+        if mysettings is None:
+            mysettings = {}
         settings = {
             'version': "0.3",
             'chroot_compressor': "mksquashfs",
             'iso_builder': "mkisofs",
             'mirror_syncer': "rsync",
             'chroot_compressor_builtin_args': ["-noappend"],
-            'iso_builder_builtin_args': ["-J","-R","-l","-no-emul-boot",
-                "-boot-load-size","4","-udf","-boot-info-table"],
-            'mirror_syncer_builtin_args': ["-a","--delete","--delete-excluded",
-                "--delete-before","--numeric-ids","--recursive","-d","-A","-H"],
+            'iso_builder_builtin_args': ["-J", "-R", "-l", "-no-emul-boot",
+                "-boot-load-size", "4", "-udf", "-boot-info-table"],
+            'mirror_syncer_builtin_args': ["-a", "--delete", "--delete-excluded",
+                "--delete-before", "--numeric-ids", "--recursive", "-d", "-A", "-H"],
             'chroot_compressor_output_file': "livecd.squashfs",
+            'iso_mounter': ["mount", "-o", "loop", "-t", "iso9660"],
+            'iso_umounter': ["umount"],
+            'squash_mounter': ["mount", "-o", "loop", "-t", "squashfs"],
+            'squash_umounter': ["umount"],
+            'pkgs_adder': ["equo", "install"],
+            'pkgs_remover': ["equo", "remove"],
+            'pkgs_updater': ["equo", "update"],
         }
         self.clear()
         self.update(settings)
         self.update(mysettings)
 
-        paths_to_check = ["chroot_compressor","iso_builder","mirror_syncer"]
+        paths_to_check = ["chroot_compressor", "iso_builder", "mirror_syncer"]
         for key in paths_to_check:
             molecule.utils.valid_exec_check(self.get(key))
 

@@ -1,5 +1,5 @@
 #!/usr/bin/python -O
-# -*- coding: iso-8859-1 -*-
+# -*- coding: utf-8 -*-
 #    Molecule Disc Image builder for Sabayon Linux
 #    Copyright (C) 2009 Fabio Erculiani
 #
@@ -95,3 +95,18 @@ def md5sum(filepath):
         block = readfile.read(1024)
     readfile.close()
     return m.hexdigest()
+
+def copy_dir(src_dir, dest_dir):
+    args = ["cp", "-Rap", src_dir, dest_dir]
+    return exec_cmd(args)
+
+def print_traceback(f = None):
+    """
+    Function called when an exception occurs with the aim to give
+    user a clue of what went wrong.
+
+    @keyword f: write to f (file) object instead of stdout
+    @type f: valid file handle
+    """
+    import traceback
+    traceback.print_exc(file = f)

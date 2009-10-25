@@ -33,7 +33,7 @@ class Runner(GenericExecutionStep):
     def post_run(self):
         return 0
 
-    def kill(self):
+    def kill(self, success = True):
         return 0
 
     def run(self):
@@ -56,19 +56,29 @@ class Runner(GenericExecutionStep):
 
             rc = 0
             while 1:
-                # pre-run
-                rc = my.pre_run()
-                if rc: break
-                # run
-                rc = my.run()
-                if rc: break
-                # post-run
-                rc = my.post_run()
-                if rc: break
-                break
 
-            my.kill()
-            if rc: return rc
+                try:
+                    # pre-run
+                    rc = my.pre_run()
+                    if rc:
+                        break
+                    # run
+                    rc = my.run()
+                    if rc:
+                        break
+                    # post-run
+                    rc = my.post_run()
+                    if rc:
+                        break
+
+                    break
+                except:
+                    my.kill(success = False)
+                    raise
+
+            my.kill(success = rc == 0)
+            if rc:
+                return rc
 
         self.post_run()
         self.Output.updateProgress( "[%s|%s] %s" % (
