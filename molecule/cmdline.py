@@ -38,7 +38,8 @@ def parse():
         molecule.output.nocolor()
 
     for arg in args_to_remove:
-        if arg in myargs: myargs.remove(arg)
+        if arg in myargs:
+            myargs.remove(arg)
 
     data_order = []
     for el in myargs:

@@ -27,12 +27,6 @@ class Runner(GenericExecutionStep):
         GenericExecutionStep.__init__(self, spec_path, metadata)
         self.execution_order = metadata['__plugin__'].get_execution_steps()
 
-    def pre_run(self):
-        return 0
-
-    def post_run(self):
-        return 0
-
     def kill(self, success = True):
         return 0
 
@@ -58,6 +52,11 @@ class Runner(GenericExecutionStep):
             while 1:
 
                 try:
+
+                    # setup hook
+                    rc = my.setup()
+                    if rc:
+                        break
                     # pre-run
                     rc = my.pre_run()
                     if rc:

@@ -94,6 +94,12 @@ class GenericExecutionStep:
         self.metadata = metadata
         self.spec_name = os.path.basename(self.spec_path)
 
+    def setup(self):
+        """
+        Execution step setup hook.
+        """
+        pass
+
     def pre_run(self):
         """
         Pre-run execution hook.
