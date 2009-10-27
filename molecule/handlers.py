@@ -32,7 +32,6 @@ class Runner(GenericExecutionStep):
 
     def run(self):
 
-        self.pre_run()
         count = 0
         maxcount = len(self.execution_order)
         self.Output.updateProgress( "[%s|%s] %s" % (
@@ -79,7 +78,6 @@ class Runner(GenericExecutionStep):
             if rc:
                 return rc
 
-        self.post_run()
         self.Output.updateProgress( "[%s|%s] %s" % (
                 darkgreen("Runner"),brown(self.spec_name),
                 _("All done"),
