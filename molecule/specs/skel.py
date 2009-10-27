@@ -69,6 +69,10 @@ class GenericSpecFunctions:
             return False
         return True
 
+    def valid_comma_sep_list(self, x):
+        return [y.strip() for y in \
+            unicode(x,'raw_unicode_escape').split(",") if y.strip()]
+
     def valid_path_list(self, x):
         return [y.strip() for y in \
             unicode(x,'raw_unicode_escape').split(",") if \
