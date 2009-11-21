@@ -31,7 +31,11 @@ if not molecule_data_order:
 
 for el in molecule_data_order:
     my = Runner(el, molecule_data.get(el))
-    rc = my.run()
+    try:
+        rc = my.run()
+    except KeyboardInterrupt:
+        my.kill()
+        raise SystemExit(1)
     my.kill()
     if rc != 0:
         raise SystemExit(rc)
