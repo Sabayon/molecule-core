@@ -59,7 +59,7 @@ class Configuration(dict):
             'iso_builder_builtin_args': ["-J", "-R", "-l", "-no-emul-boot",
                 "-boot-load-size", "4", "-udf", "-boot-info-table"],
             'mirror_syncer_builtin_args': ["-a", "--delete", "--delete-excluded",
-                "--delete-before", "--numeric-ids", "--recursive", "-d", "-A", "-H"],
+                "--delete-during", "--numeric-ids", "--recursive", "-d", "-A", "-H"],
             'chroot_compressor_output_file': "livecd.squashfs",
             'iso_mounter': ["mount", "-o", "loop", "-t", "iso9660"],
             'iso_umounter': ["umount"],
