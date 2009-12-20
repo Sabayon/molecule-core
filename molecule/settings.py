@@ -51,11 +51,11 @@ class Configuration(dict):
         if mysettings is None:
             mysettings = {}
         settings = {
-            'version': "0.4.1",
+            'version': "0.4.1.2",
             'chroot_compressor': "mksquashfs",
             'iso_builder': "mkisofs",
             'mirror_syncer': "rsync",
-            'chroot_compressor_builtin_args': ["-noappend"],
+            'chroot_compressor_builtin_args': ["-noappend", "-no-progress"],
             'iso_builder_builtin_args': ["-J", "-R", "-l", "-no-emul-boot",
                 "-boot-load-size", "4", "-udf", "-boot-info-table"],
             'mirror_syncer_builtin_args': ["-a", "--delete", "--delete-excluded",
