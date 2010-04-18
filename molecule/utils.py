@@ -24,6 +24,8 @@ import time
 import subprocess
 import shutil
 
+RUNNING_PIDS = set()
+
 def get_year():
     return time.strftime("%Y")
 
@@ -58,7 +60,9 @@ def exec_chroot_cmd(args, chroot, pre_chroot = []):
         rc = subprocess.call(myargs)
         os._exit(rc)
     else:
+        RUNNING_PIDS.add(pid)
         rcpid, rc = os.waitpid(pid,0)
+        RUNNING_PIDS.discard(pid)
         return rc
 
 def empty_dir(dest_dir):

@@ -17,12 +17,19 @@
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
+import os
+import signal
 import sys
 sys.path.insert(0,'/usr/lib/molecule/')
 sys.path.insert(0,'molecule/')
 sys.path.insert(0,'.')
 import molecule.cmdline
 from molecule.handlers import Runner
+from molecule.utils import RUNNING_PIDS
+
+def kill_pids():
+    for pid in RUNNING_PIDS:
+        os.kill(pid, signal.SIGTERM)
 
 molecule_data, molecule_data_order = molecule.cmdline.parse()
 if not molecule_data_order:
@@ -35,8 +42,10 @@ for el in molecule_data_order:
         rc = my.run()
     except KeyboardInterrupt:
         my.kill()
+        kill_pids()
         raise SystemExit(1)
     my.kill()
+    kill_pids()
     if rc != 0:
         raise SystemExit(rc)
 raise SystemExit(0)
