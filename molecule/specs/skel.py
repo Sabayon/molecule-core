@@ -69,6 +69,16 @@ class GenericSpecFunctions:
             return False
         return True
 
+    def valid_path_string_first_list_item(self, x):
+        if not x:
+            return False
+        myx = x[0]
+        try:
+            os.path.split(myx)
+        except OSError:
+            return False
+        return True
+
     def valid_comma_sep_list(self, x):
         return [y.strip() for y in \
             unicode(x,'raw_unicode_escape').split(",") if y.strip()]
