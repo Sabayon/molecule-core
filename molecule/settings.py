@@ -51,7 +51,7 @@ class Configuration(dict):
         if mysettings is None:
             mysettings = {}
         settings = {
-            'version': "0.4.1.2",
+            'version': "0.5.1",
             'chroot_compressor': "mksquashfs",
             'iso_builder': "mkisofs",
             'mirror_syncer': "rsync",
