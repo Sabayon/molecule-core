@@ -234,6 +234,19 @@ def create_color_func(color_key):
 for c in compat_functions_colors:
     setattr(sys.modules[__name__], c, create_color_func(c))
 
+def is_stdout_a_tty():
+    """
+    Return whether current stdout is a TTY.
+
+    @return: tty? => True
+    @rtype: bool
+    """
+    fn = sys.stdout.fileno()
+    return os.isatty(fn)
+
+if not is_stdout_a_tty():
+    nocolor()
+
 def print_menu(data):
 
     def orig_myfunc(x):
