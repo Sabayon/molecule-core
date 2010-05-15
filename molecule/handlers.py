@@ -34,14 +34,14 @@ class Runner(GenericExecutionStep):
 
         count = 0
         maxcount = len(self.execution_order)
-        self.Output.updateProgress( "[%s|%s] %s" % (
+        self._output.output( "[%s|%s] %s" % (
             darkgreen("Runner"),brown(self.spec_name),
             _("preparing execution"),), count = (count,maxcount,)
         )
         for myclass in self.execution_order:
 
             count += 1
-            self.Output.updateProgress( "[%s|%s] %s %s" % (
+            self._output.output( "[%s|%s] %s %s" % (
                 darkgreen("Runner"),brown(self.spec_name),_("executing"),
                 str(myclass),), count = (count,maxcount,)
             )
@@ -78,7 +78,7 @@ class Runner(GenericExecutionStep):
             if rc:
                 return rc
 
-        self.Output.updateProgress( "[%s|%s] %s" % (
+        self._output.output( "[%s|%s] %s" % (
                 darkgreen("Runner"),brown(self.spec_name),
                 _("All done"),
             )

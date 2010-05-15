@@ -162,78 +162,6 @@ codes["INFORM"] = codes["darkgreen"]
 codes["UNMERGE_WARN"] = codes["red"]
 codes["MERGE_LIST_PROGRESS"] = codes["yellow"]
 
-def xtermTitle(mystr, raw=False):
-    if dotitles and "TERM" in os.environ and sys.stderr.isatty():
-        myt=os.environ["TERM"]
-        legal_terms = ["xterm","Eterm","aterm","rxvt","screen","kterm","rxvt-unicode","gnome"]
-        if myt in legal_terms:
-            if not raw:
-                mystr = "\x1b]0;%s\x07" % mystr
-            try:
-                sys.stderr.write(mystr)
-            except UnicodeEncodeError:
-                sys.stderr.write(mystr.encode('utf-8'))
-            sys.stderr.flush()
-
-default_xterm_title = None
-
-def xtermTitleReset():
-        global default_xterm_title
-        if default_xterm_title is None:
-                prompt_command = os.getenv('PROMPT_COMMAND')
-                if prompt_command == "":
-                        default_xterm_title = ""
-                elif prompt_command is not None:
-                        import commands
-                        default_xterm_title = commands.getoutput(prompt_command)
-                else:
-                        pwd = os.getenv('PWD','')
-                        home = os.getenv('HOME', '')
-                        if home != '' and pwd.startswith(home):
-                                pwd = '~' + pwd[len(home):]
-                        default_xterm_title = '\x1b]0;%s@%s:%s\x07' % (
-                                os.getenv('LOGNAME', ''), os.getenv('HOSTNAME', '').split('.', 1)[0], pwd)
-        xtermTitle(default_xterm_title, raw=True)
-
-def notitles():
-    "turn off title setting"
-    global dotitles
-    dotitles=0
-
-def nocolor():
-    "turn off colorization"
-    os.environ['MOL_NO_COLOR'] = "1"
-    global havecolor
-    havecolor=0
-
-nc = os.getenv("MOL_NO_COLOR")
-if nc:
-    nocolor()
-
-def resetColor():
-    return codes["reset"]
-
-def colorize(color_key, text):
-    global havecolor
-    if havecolor:
-        return codes[color_key] + text + codes["reset"]
-    else:
-        return text
-
-compat_functions_colors = ["bold","white","teal","turquoise","darkteal",
-        "fuscia","fuchsia","purple","blue","darkblue","green","darkgreen","yellow",
-        "brown","darkyellow","red","darkred"]
-
-def create_color_func(color_key):
-    def derived_func(*args):
-        newargs = list(args)
-        newargs.insert(0, color_key)
-        return colorize(*newargs)
-    return derived_func
-
-for c in compat_functions_colors:
-    setattr(sys.modules[__name__], c, create_color_func(c))
-
 def is_stdout_a_tty():
     """
     Return whether current stdout is a TTY.
@@ -247,131 +175,474 @@ def is_stdout_a_tty():
 if not is_stdout_a_tty():
     nocolor()
 
-def print_menu(data):
+def xterm_title(mystr, raw = False):
+    """
+    Set new xterm title.
+
+    @param mystr: new xterm title
+    @type mystr: string
+    @keyword raw: write title in raw mode
+    @type raw: bool
+    """
+    if dotitles and "TERM" in os.environ and sys.stderr.isatty():
+        myt = os.environ["TERM"]
+        legal_terms = ("xterm", "Eterm", "aterm", "rxvt", "screen",
+            "kterm", "rxvt-unicode", "gnome")
+        if myt in legal_terms:
+            if not raw:
+                mystr = "\x1b]0;%s\x07" % mystr
+            try:
+                sys.stderr.write(mystr)
+            except UnicodeEncodeError:
+                sys.stderr.write(mystr.encode('utf-8'))
+            sys.stderr.flush()
+
+default_xterm_title = None
+
+def xterm_title_reset():
+    """
+    Reset xterm title to default.
+    """
+    global default_xterm_title
+    if default_xterm_title is None:
+        prompt_command = os.getenv('PROMPT_COMMAND')
+        if not prompt_command:
+            default_xterm_title = ""
+        elif prompt_command is not None:
+            from entropy.tools import getstatusoutput
+            default_xterm_title = getstatusoutput(prompt_command)[1]
+        else:
+            pwd = os.getenv('PWD', '')
+            home = os.getenv('HOME', '')
+            if home != '' and pwd.startswith(home):
+                pwd = '~' + pwd[len(home):]
+            default_xterm_title = '\x1b]0;%s@%s:%s\x07' % (
+                os.getenv('LOGNAME', ''),
+                os.getenv('HOSTNAME', '').split('.', 1)[0],
+                pwd)
+    xterm_title(default_xterm_title)
+
+def notitles():
+    """
+    Turn off title setting. In this way, xterm title won't be touched.
+    """
+    global dotitles
+    dotitles=0
+
+def nocolor():
+    """
+    Turn off colorization process-wide.
+    """
+    os.environ['ETP_NO_COLOR'] = "1"
+    global havecolor
+    havecolor=0
+
+def getcolor():
+    """
+    Return color status
+    """
+    return havecolor
+
+nc = os.getenv("ETP_NO_COLOR")
+if nc:
+    nocolor()
+
+def _reset_color():
+    """
+    Reset terminal color currently set.
+    """
+    return codes["reset"]
+
+def colorize(color_key, text):
+    global havecolor
+    if havecolor:
+        return codes[color_key] + text + codes["reset"]
+    return text
+
+def decolorize(text):
+    my_esc_seq = "\x1b"
+    new_text = ''
+    append = True
+    for char in text:
+        if char == my_esc_seq:
+            append = False
+            continue
+        elif char == "m" and not append:
+            append = True
+            continue
+        if append:
+            new_text += char
+    return new_text
+
+def bold(text):
+    """
+    Make text bold using bash/terminal codes.
+
+    @param text: text to colorize
+    @type text: string
+    @return: colorized text
+    @rtype: string
+    """
+    return colorize("bold", text)
+
+def white(text):
+    """
+    Make text white using bash/terminal codes.
+
+    @param text: text to colorize
+    @type text: string
+    @return: colorized text
+    @rtype: string
+    """
+    return colorize("white", text)
+
+def teal(text):
+    """
+    Make text teal using bash/terminal codes.
+
+    @param text: text to colorize
+    @type text: string
+    @return: colorized text
+    @rtype: string
+    """
+    return colorize("teal", text)
+
+def turquoise(text):
+    """
+    Make text turquoise using bash/terminal codes.
+
+    @param text: text to colorize
+    @type text: string
+    @return: colorized text
+    @rtype: string
+    """
+    return colorize("turquoise", text)
+
+def darkteal(text):
+    """
+    Make text darkteal using bash/terminal codes.
+
+    @param text: text to colorize
+    @type text: string
+    @return: colorized text
+    @rtype: string
+    """
+    return colorize("darkteal", text)
+
+def purple(text):
+    """
+    Make text purple using bash/terminal codes.
+
+    @param text: text to colorize
+    @type text: string
+    @return: colorized text
+    @rtype: string
+    """
+    return colorize("purple", text)
+
+def blue(text):
+    """
+    Make text blue using bash/terminal codes.
+
+    @param text: text to colorize
+    @type text: string
+    @return: colorized text
+    @rtype: string
+    """
+    return colorize("blue", text)
+
+def darkblue(text):
+    """
+    Make text darkblue using bash/terminal codes.
+
+    @param text: text to colorize
+    @type text: string
+    @return: colorized text
+    @rtype: string
+    """
+    return colorize("darkblue", text)
+
+def green(text):
+    """
+    Make text green using bash/terminal codes.
+
+    @param text: text to colorize
+    @type text: string
+    @return: colorized text
+    @rtype: string
+    """
+    return colorize("green", text)
+
+def darkgreen(text):
+    """
+    Make text darkgreen using bash/terminal codes.
+
+    @param text: text to colorize
+    @type text: string
+    @return: colorized text
+    @rtype: string
+    """
+    return colorize("darkgreen", text)
+
+def yellow(text):
+    """
+    Make text yellow using bash/terminal codes.
+
+    @param text: text to colorize
+    @type text: string
+    @return: colorized text
+    @rtype: string
+    """
+    return colorize("yellow", text)
+
+def brown(text):
+    """
+    Make text brown using bash/terminal codes.
+
+    @param text: text to colorize
+    @type text: string
+    @return: colorized text
+    @rtype: string
+    """
+    return colorize("brown", text)
+
+def darkyellow(text):
+    """
+    Make text darkyellow using bash/terminal codes.
+
+    @param text: text to colorize
+    @type text: string
+    @return: colorized text
+    @rtype: string
+    """
+    return colorize("darkyellow", text)
+
+def red(text):
+    """
+    Make text red using bash/terminal codes.
+
+    @param text: text to colorize
+    @type text: string
+    @return: colorized text
+    @rtype: string
+    """
+    return colorize("red", text)
+
+def darkred(text):
+    """
+    Make text darkred using bash/terminal codes.
+
+    @param text: text to colorize
+    @type text: string
+    @return: colorized text
+    @rtype: string
+    """
+    return colorize("darkred", text)
+
+def print_menu(data, args = None):
+    """
+    Function used by Entropy text client (will be moved from here) to
+    print the menu output given a properly formatted list.
+    This method is not intended for general used and will be moved away from
+    here.
+    """
+    if args == None:
+        args = []
 
     def orig_myfunc(x):
         return x
     def orig_myfunc_desc(x):
         return x
 
-    for item in data:
+    try:
+        i = args.index("--help")
+        del args[i]
+        command = args.pop(0)
+    except ValueError:
+        command = None
+    except IndexError:
+        command = None
+    section_found = False
+    search_depth = 1
 
+
+    for item in data:
         myfunc = orig_myfunc
         myfunc_desc = orig_myfunc_desc
 
         if not item:
-            writechar("\n")
+            if command is None:
+                writechar("\n")
         else:
-            n_ident = item[0]
+            n_indent = item[0]
             name = item[1]
             n_d_ident = item[2]
             desc = item[3]
+            if command is not None:
+                name_strip = name.split()[0].strip()
+                if name_strip == command and n_indent == search_depth:
+                    try:
+                        command = args.pop(0)
+                        search_depth = n_indent + 1
+                    except IndexError:
+                        command = "##unused_from_now_on"
+                        section_found = True
+                        indent_level = n_indent
+                elif section_found:
+                    if n_indent <= indent_level:
+                        return
+                else:
+                    continue
 
-            if n_ident == 0:
+            if n_indent == 0:
                 writechar("  ")
             # setup identation
-            while n_ident > 0:
-                n_ident -= 1
+            ind_th = 0
+            if command is not None: # so that partial --help looks nicer
+                ind_th = 1
+            while n_indent > ind_th:
+                n_indent -= 1
                 writechar("\t")
-            n_ident = item[0]
+            n_indent = item[0]
 
             # write name
-            if n_ident == 0:
+            if n_indent == 0:
                 myfunc = darkgreen
-            elif n_ident == 1:
+            elif n_indent == 1:
                 myfunc = blue
                 myfunc_desc = darkgreen
-            elif n_ident == 2:
+            elif n_indent == 2:
                 if not name.startswith("--"):
                     myfunc = red
                 myfunc_desc = brown
-            elif n_ident == 3:
+            elif n_indent == 3:
                 myfunc = darkblue
                 myfunc_desc = purple
-            try:
-                print myfunc(name),
-            except UnicodeEncodeError:
-                print myfunc(name.encode('utf-8')),
+            func_out = myfunc(name)
+            print_generic(func_out, end = "")
 
             # write desc
             if desc:
                 while n_d_ident > 0:
                     n_d_ident -= 1
                     writechar("\t")
-                try:
-                    print myfunc_desc(desc),
-                except UnicodeEncodeError:
-                    print myfunc_desc(desc.encode('utf-8')),
+                desc = myfunc_desc(desc)
+                print_generic(desc, end = "")
             writechar("\n")
 
 def reset_cursor():
+    """
+    Print to stdout the terminal code to push back cursor at the beginning
+    of the line.
+    """
     if havecolor:
         sys.stdout.write(stuff['ESC'] + '[2K')
-    flush_stdouterr()
+    _flush_stdouterr()
 
-def flush_stdouterr():
-    sys.stdout.flush()
-    sys.stderr.flush()
+def _flush_stdouterr():
+    try:
+        sys.stdout.flush()
+        sys.stderr.flush()
+    except IOError:
+        return
 
-def print_error(msg, back = False, flush = True):
-    if not back: setcols()
-    reset_cursor()
-    writechar("\r")
-    if back:
-        try:
-            print darkred(">>"),msg,
-        except UnicodeEncodeError:
-            print darkred(">>"),msg.encode('utf-8'),
-    else:
-        try:
-            print darkred(">>"),msg
-        except UnicodeEncodeError:
-            print darkred(">>"),msg.encode('utf-8')
-    if flush:
-        flush_stdouterr()
+def _stdout_write(msg):
+    if not isinstance(msg, basestring):
+        msg = repr(msg)
+    try:
+        sys.stdout.write(msg)
+    except UnicodeEncodeError:
+        msg = msg.encode('utf-8')
+        if sys.hexversion >= 0x3000000:
+            sys.stdout.buffer.write(msg)
+        else:
+            sys.stdout.write(msg)
 
-def print_info(msg, back = False, flush = True):
+def _print_prio(msg, color_func, back = False, flush = True, end = '\n'):
     if not back:
         setcols()
     reset_cursor()
-    writechar("\r")
+    is_tty = is_stdout_a_tty()
+    if is_tty:
+        writechar("\r")
     if back:
-        try:
-            print darkgreen(">>"),msg,
-        except UnicodeEncodeError:
-            print darkgreen(">>"),msg.encode('utf-8'),
+        msg = color_func(">>") + " " + msg
     else:
-        try:
-            print darkgreen(">>"),msg
-        except UnicodeEncodeError:
-            print darkgreen(">>"),msg.encode('utf-8')
-    if flush:
-        flush_stdouterr()
+        msg = color_func(">>") + " " + msg + end
 
-def print_warning(msg, back = False, flush = True):
-    if not back: setcols()
-    reset_cursor()
-    writechar("\r")
-    if back:
-        try:
-            print red(">>"),msg,
-        except UnicodeEncodeError:
-            print red(">>"),msg.encode('utf-8'),
-    else:
-        try:
-            print red(">>"),msg
-        except UnicodeEncodeError:
-            print red(">>"),msg.encode('utf-8')
+    _stdout_write(msg)
+    if back and (not is_tty):
+        # in this way files are properly written
+        writechar("\n")
     if flush:
-        flush_stdouterr()
+        _flush_stdouterr()
 
-def print_generic(msg): # here we'll wrap any nice formatting
-    writechar("\r")
-    try:
-        print msg
-    except UnicodeEncodeError:
-        print msg.encode('utf-8')
-    flush_stdouterr()
+def print_error(msg, back = False, flush = True, end = '\n'):
+    """
+    Service function used by Entropy text client (will be moved from here)
+    to write error messages to stdout (not stderr, atm).
+    NOTE: don't use this directly but rather subclass TextInterface class.
+
+    @param msg: text message to print
+    @type msg: string
+    @keyword back: move text cursor back to the beginning of the line
+    @type back: bool
+    @keyword flush: flush stdout and stderr
+    @type flush: bool
+    @return: None
+    @rtype: None
+    """
+    return _print_prio(msg, darkred, back = back, flush = flush, end = end)
+
+def print_info(msg, back = False, flush = True, end = '\n'):
+    """
+    Service function used by Entropy text client (will be moved from here)
+    to write info messages to stdout (not stderr, atm).
+    NOTE: don't use this directly but rather subclass TextInterface class.
+
+    @param msg: text message to print
+    @type msg: string
+    @keyword back: move text cursor back to the beginning of the line
+    @type back: bool
+    @keyword flush: flush stdout and stderr
+    @type flush: bool
+    @return: None
+    @rtype: None
+    """
+    return _print_prio(msg, darkgreen, back = back, flush = flush, end = end)
+
+def print_warning(msg, back = False, flush = True, end = '\n'):
+    """
+    Service function used by Entropy text client (will be moved from here)
+    to write warning messages to stdout (not stderr, atm).
+    NOTE: don't use this directly but rather subclass TextInterface class.
+
+    @param msg: text message to print
+    @type msg: string
+    @keyword back: move text cursor back to the beginning of the line
+    @type back: bool
+    @keyword flush: flush stdout and stderr
+    @type flush: bool
+    @return: None
+    @rtype: None
+    """
+    return _print_prio(msg, brown, back = back, flush = flush, end = end)
+
+def print_generic(*args, **kwargs):
+    """
+    Service function used by Entropy text client (will be moved from here)
+    to write generic messages to stdout (not stderr, atm).
+    NOTE: don't use this directly but rather subclass TextInterface class.
+    """
+    # disabled, because it causes quite a mess when writing to files
+    # writechar("\r")
+    for msg in args:
+        _stdout_write(msg)
+        sys.stdout.write(" ")
+
+    end = kwargs.get('end', '\n')
+    _stdout_write(end)
+    _flush_stdouterr()
 
 def writechar(char):
     try:
@@ -383,7 +654,17 @@ def writechar(char):
         raise
 
 def readtext(request, password = False):
-    xtermTitle(_("Molecule needs your attention"))
+    """
+    Read text from stdin and return it (will be moved from here).
+
+    @param request: textual request to print
+    @type request: string
+    @keyword password: if you are requesting a password, set this to True
+    @type password: bool
+    @return: text read back from stdin
+    @rtype: string
+    """
+    xterm_title(_("Molecule needs your attention"))
     if password:
         from getpass import getpass
         try:
@@ -392,54 +673,45 @@ def readtext(request, password = False):
             text = getpass(request.encode('utf-8')+" ")
     else:
         try:
-            print request,"",
+            sys.stdout.write(request)
         except UnicodeEncodeError:
-            print request.encode('utf-8'),"",
-        flush_stdouterr()
-        text = my_raw_input()
+            sys.stdout.write(request.encode('utf-8'))
+        _flush_stdouterr()
+        text = _my_raw_input()
     return text
 
-def my_raw_input(txt = ''):
+def _my_raw_input(txt = ''):
     if txt:
         try:
-            print darkgreen(txt),
+            sys.stdout.write(darkgreen(txt))
         except UnicodeEncodeError:
-            print darkgreen(txt.encode('utf-8')),
-    flush_stdouterr()
+            sys.stdout.write(darkgreen(txt.encode('utf-8')))
+    _flush_stdouterr()
     response = ''
-    while 1:
+    while True:
         y = sys.stdin.read(1)
-        if y in ('\n','\r',): break
+        if y in ('\n', '\r',):
+            break
         response += y
-        flush_stdouterr()
+        _flush_stdouterr()
     return response
 
 class Output:
 
-    # @input text: text to write
-    # @input back: write on on the same line?
-    # @input importance:
-    #           values: 0,1,2,3 (latter is a blocker - popup menu on a GUI env)
-    #           used to specify information importance, 0<important<2
-    # @input type:
-    #           values: "info, warning, error"
-    #
-    # @input count:
-    #           if you need to print an incremental count ( 100/250...101/251..)
-    #           just pass count = [first integer,second integer] or even a tuple!
-    # @input header:
-    #           text header (decoration?), that's it
-    #
-    # @input footer:
-    #           text footer (decoration?), that's it
-    #
-    # @input percent:
-    #           if percent is True: count will be treating as a percentual count[0]/count[1]*100
-    #
-    # feel free to reimplement this
-    def updateProgress(self, text, header = "", footer = "", back = False, importance = 0, type = "info", count = [], percent = False):
+    """
+    TextInterface is a base class for handling the communication between
+    user and Entropy-based applications.
 
-        flush_stdouterr()
+    This class works for text-based applications, it must be inherited
+    from subclasses and its methods reimplemented to make Entropy working
+    on situations where a terminal is not used as UI (Graphical applications,
+    web-based interfaces, remote interfaces, etc).
+
+    """
+
+    def output(self, text, header = "", footer = "", back = False, importance = 0, type = "info", count = None, percent = False):
+
+        _flush_stdouterr()
 
         myfunc = print_info
         if type == "warning":
@@ -451,98 +723,124 @@ class Output:
         if count:
             if len(count) > 1:
                 if percent:
-                    count_str = " ("+str(round((float(count[0])/count[1])*100,1))+"%) "
+                    percent_str = str(round((float(count[0])/count[1])*100, 1))
+                    count_str = " ("+percent_str+"%) "
                 else:
-                    count_str = " (%s/%s) " % (red(str(count[0])),blue(str(count[1])),)
-        if importance == 0:
-            myfunc(header+count_str+text+footer, back = back, flush = False)
-        elif importance == 1:
-            myfunc(header+count_str+text+footer, back = back, flush = False)
-        elif importance in (2,3):
-            myfunc(header+count_str+text+footer, back = back, flush = False)
+                    count_str = " (%s/%s) " % (red(str(count[0])),
+                        blue(str(count[1])),)
 
-        flush_stdouterr()
+        myfunc(header+count_str+text+footer, back = back, flush = False)
+        _flush_stdouterr()
 
-    # @input question: question to do
-    #
-    # @input importance:
-    #           values: 0,1,2 (latter is a blocker - popup menu on a GUI env)
-    #           used to specify information importance, 0<important<2
-    #
-    # @input responses:
-    #           list of options whose users can choose between
-    #
-    # feel free to reimplement this
-    def askQuestion(self, question, importance = 0, responses = ["Yes","No"]):
+    def ask_question(self, question, importance = 0, responses = None):
+        """
+        Questions asking function. It asks the user to answer the question given
+        by choosing between a preset list of answers given by the "reposonses"
+        argument.
 
-        colours = [green, red, blue, darkgreen, darkred, darkblue, brown, purple]
-        colours += colours[:]
-        if len(responses) > len(colours):
-            import exceptionTools
-            raise exceptionTools.IncorrectParameter("IncorrectParameter: %s = %s" % (_("maximum responses length"),len(colours),))
+        @param question: question text
+        @type question: string
+        @keyword importance: question importance (no default valid values)
+        @type importance: int
+        @keyword responses: list of valid answers which user has to choose from
+        @type responses: tuple or list
+        @return: None
+        @rtype: None
+        """
+
+        if responses is None:
+            responses = (_("Yes"), _("No"),)
+
+        colours = [green, red, blue, darkgreen, darkred, darkblue,
+            brown, purple]
+        colours_len = len(colours)
+
         try:
-            print darkgreen(question),
+            sys.stdout.write(question + " ")
         except UnicodeEncodeError:
-            print darkgreen(question.encode('utf-8')),
-        flush_stdouterr()
+            sys.stdout.write(question.encode('utf-8') + " ")
+        _flush_stdouterr()
+
         try:
             while True:
-                xtermTitle(_("Entropy got a question for you"))
-                flush_stdouterr()
-                response = my_raw_input("["+"/".join([colours[i](responses[i]) for i in range(len(responses))])+"] ")
-                flush_stdouterr()
-                for key in responses:
-                    # An empty response will match the first value in responses.
-                    if response.upper() == key[:len(response)].upper():
-                        xtermTitleReset()
-                        return key
-                    '''
-                    try:
-                        print "%s '%s'" % (_("I cannot understand"),response,),
-                    except UnicodeEncodeError:
-                        print "%s '%s'" % (_("I cannot understand"),response.encode('utf-8'),),
-                    '''
-                    flush_stdouterr()
-        except (EOFError, KeyboardInterrupt):
-            print "%s." % (_("Interrupted"),)
-            xtermTitleReset()
-            raise SystemExit(100)
-        xtermTitleReset()
-        flush_stdouterr()
 
-    '''
-     @ title: title of the input box
-     @ input_parameters: [
-        ('identifier 1','input text 1',input_verification_callback,False),
-        ('password','Password',input_verification_callback,True),
-        ('item_3',('checkbox','Checkbox option (boolean request) - please choose',),input_verification_callback,True),
-        ('item_4',('combo',('Select your favorite option',['option 1', 'option 2', 'option 3']),),input_verification_callback,True)
-    ]
-     @ cancel_button: show cancel button ?
-     @ output: dictionary as follows:
-       {'identifier 1': result, 'identifier 2': result}
-    '''
+                xterm_title(_("Molecule got a question for you"))
+                _flush_stdouterr()
+                answer_items = [colours[x % colours_len](responses[x]) \
+                    for x in range(len(responses))]
+                response = _my_raw_input("["+"/".join(answer_items)+"] ")
+                _flush_stdouterr()
+
+                for key in responses:
+                    if response.upper() == key[:len(response)].upper():
+                        xterm_title_reset()
+                        return key
+                    _flush_stdouterr()
+
+        except (EOFError, KeyboardInterrupt):
+            msg = "%s.\n" % (_("Interrupted"),)
+            try:
+                sys.stdout.write(msg)
+            except UnicodeEncodeError:
+                sys.stdout.write(msg.encode("utf-8"))
+            xterm_title_reset()
+            raise KeyboardInterrupt()
+
+        xterm_title_reset()
+        _flush_stdouterr()
+
     def inputBox(self, title, input_parameters, cancel_button = True):
+        """
+        Generic input box (form) creator and data collector.
+
+        @param title: input box title
+        @type title: string
+        @param input_parameters: list of properly formatted tuple items.
+        @type input_parameters: list
+        @keyword cancel_button: make possible to "cancel" the input request.
+        @type cancel_button: bool
+        @return: dict containing input box answers
+        @rtype: dict
+
+        input_parameters supported items:
+
+        [input id], [input text title], [input verification callback], [
+            no text echo?]
+        ('identifier 1', 'input text 1', input_verification_callback, False)
+
+        ('item_3', ('checkbox', 'Checkbox option (boolean request) - please choose',),
+            input_verification_callback, True)
+
+        ('item_4', ('combo', ('Select your favorite option', ['option 1', 'option 2', 'option 3']),),
+            input_verification_callback, True)
+
+        ('item_4',('list',('Setup your list',['default list item 1', 'default list item 2']),),
+            input_verification_callback, True)
+
+        """
         results = {}
         if title:
             try:
-                print title
+                sys.stdout.write(title + "\n")
             except UnicodeEncodeError:
-                print title.encode('utf-8')
-        flush_stdouterr()
+                sys.stdout.write(title.encode('utf-8') + "\n")
+        _flush_stdouterr()
 
         def option_chooser(option_data):
             mydict = {}
             counter = 1
             option_text, option_list = option_data
-            self.updateProgress(option_text)
+            self.output(option_text)
             for item in option_list:
                 mydict[counter] = item
                 txt = "[%s] %s" % (darkgreen(str(counter)), blue(item),)
-                self.updateProgress(txt)
+                self.output(txt)
                 counter += 1
-            while 1:
-                myresult = readtext("%s:" % (_('Selected number'),)).decode('utf-8')
+            while True:
+                try:
+                    myresult = readtext("%s: " % (_('Selected number'),)).decode('utf-8')
+                except UnicodeDecodeError:
+                    continue
                 try:
                     myresult = int(myresult)
                 except ValueError:
@@ -551,45 +849,166 @@ class Output:
                 if selected != None:
                     return myresult, selected
 
-        for identifier, input_text, callback, password in input_parameters:
-            while 1:
+        def list_editor(option_data, can_cancel, callback):
+
+            def selaction():
+                self.output('')
+                self.output(darkred(_("Please select an option")))
+                if can_cancel:
+                    self.output("  ("+blue("-1")+") "+darkred(_("Discard all")))
+                self.output("  ("+blue("0")+")  "+darkgreen(_("Confirm")))
+                self.output("  ("+blue("1")+")  "+brown(_("Add item")))
+                self.output("  ("+blue("2")+")  "+brown(_("Edit item")))
+                self.output("  ("+blue("3")+")  "+darkblue(_("Remove item")))
+                self.output("  ("+blue("4")+")  "+darkgreen(_("Show current list")))
+                # wait user interaction
+                self.output('')
                 try:
-                    if isinstance(input_text,tuple):
+                    action = readtext(darkgreen(_("Your choice (type a number and press enter):"))+" ")
+                except UnicodeDecodeError:
+                    return ''
+                return action
+
+            mydict = {}
+            counter = 1
+            valid_actions = [0, 1, 2, 3, 4]
+            if can_cancel:
+                valid_actions.insert(0, -1)
+            option_text, option_list = option_data
+            txt = "%s:" % (blue(option_text),)
+            self.output(txt)
+
+            for item in option_list:
+                mydict[counter] = item
+                txt = "[%s] %s" % (darkgreen(str(counter)), blue(item),)
+                self.output(txt)
+                counter += 1
+
+            def show_current_list():
+                for key in sorted(mydict):
+                    txt = "[%s] %s" % (darkgreen(str(key)), blue(mydict[key]),)
+                    self.output(txt)
+
+            while True:
+                try:
+                    sel_action = selaction()
+                    if not sel_action:
+                        show_current_list()
+                    action = int(sel_action)
+                except (ValueError, TypeError,):
+                    self.output(_("You don't have typed a number."), type = "warning")
+                    continue
+                if action not in valid_actions:
+                    self.output(_("Invalid action."), type = "warning")
+                    continue
+                if action == -1:
+                    raise KeyboardInterrupt()
+                elif action == 0:
+                    break
+                elif action == 1: # add item
+                    while True:
+                        try:
+                            try:
+                                s_el = readtext(darkred(_("String to add (-1 to go back):"))+" ")
+                            except UnicodeDecodeError:
+                                raise ValueError()
+                            if s_el == "-1":
+                                break
+                            if not callback(s_el):
+                                raise ValueError()
+                            mydict[counter] = s_el
+                            counter += 1
+                        except (ValueError,):
+                            self.output(_("Invalid string."), type = "warning")
+                            continue
+                        break
+                    show_current_list()
+                    continue
+                elif action == 2: # edit item
+                    while True:
+                        try:
+                            edit_msg = _("Element number to edit (-1 to go back):")
+                            try:
+                                s_el = int(readtext(darkred(edit_msg)+" "))
+                            except UnicodeDecodeError:
+                                raise ValueError()
+                            if s_el == -1:
+                                break
+                            if s_el not in mydict:
+                                raise ValueError()
+                            try:
+                                new_s_val = readtext("[%s: %s] %s " % (
+                                    _("old"), mydict[s_el], _("new value:"),)
+                                )
+                            except UnicodeDecodeError:
+                                new_s_val = ''
+                            if not callback(new_s_val):
+                                raise ValueError()
+                            mydict[s_el] = new_s_val[:]
+                        except (ValueError, TypeError,):
+                            self.output(_("Invalid element."), type = "warning")
+                            continue
+                        break
+                    show_current_list()
+                    continue
+                elif action == 3: # remove item
+                    while True:
+                        try:
+                            try:
+                                s_el = int(readtext(darkred(_("Element number to remove (-1 to go back):"))+" "))
+                            except UnicodeDecodeError:
+                                raise ValueError()
+                            if s_el == -1:
+                                break
+                            if s_el not in mydict:
+                                raise ValueError()
+                            del mydict[s_el]
+                        except (ValueError, TypeError,):
+                            self.output(_("Invalid element."), type = "warning")
+                            continue
+                        break
+                    show_current_list()
+                    continue
+                elif action == 4: # show current list
+                    show_current_list()
+                    continue
+                break
+
+            mylist = [mydict[x] for x in sorted(mydict)]
+            return mylist
+
+        for identifier, input_text, callback, password in input_parameters:
+            while True:
+                use_cb = True
+                try:
+                    if isinstance(input_text, tuple):
                         myresult = False
                         input_type, data = input_text
                         if input_type == "checkbox":
-                            answer = self.askQuestion(data)
-                            if answer == "Yes": myresult = True
-                        if input_type == "combo":
+                            answer = self.ask_question(data)
+                            if answer == _("Yes"):
+                                myresult = True
+                        elif input_type == "combo":
                             myresult = option_chooser(data)
+                        elif input_type == "list":
+                            use_cb = False
+                            myresult = list_editor(data, cancel_button, callback)
                     else:
-                        myresult = readtext(input_text+":", password = password).decode('utf-8')
-                except (KeyboardInterrupt,EOFError,):
+                        while True:
+                            try:
+                                myresult = readtext(input_text+": ", password = password).decode('utf-8')
+                            except UnicodeDecodeError:
+                                continue
+                            break
+                except (KeyboardInterrupt, EOFError,):
                     if not cancel_button: # use with care
                         continue
                     return None
-                valid = callback(myresult)
+                valid = True
+                if use_cb:
+                    valid = callback(myresult)
                 if valid:
                     results[identifier] = myresult
                     break
         return results
 
-    # useful for reimplementation
-    # in this wait you can send a signal to a widget (total progress bar?)
-    def cycleDone(self):
-        return
-
-    def setTitle(self, title):
-        xtermTitle(title)
-
-    def setTotalCycles(self, total):
-        return
-
-    def outputInstanceTest(self):
-        return
-
-    def nocolor(self):
-        nocolor()
-
-    def notitles(self):
-        notitles()

@@ -22,8 +22,7 @@ import sys
 import molecule.utils
 import molecule.output
 from molecule.i18n import _
-from molecule import Config
-from molecule.settings import SpecParser
+from molecule.settings import SpecParser, Configuration
 
 def parse():
 
@@ -53,9 +52,10 @@ def parse():
     return data, data_order
 
 def print_help():
+    config = Configuration()
     help_data = [
         None,
-        (0," ~ Molecule %s ~ " % (Config.get('version'),) ,1,
+        (0," ~ Molecule %s ~ " % (config.get('version'),) ,1,
             'Disc Image builder for Sabayon Linux - (C) %s' % (
                 molecule.utils.get_year(),) ),
         None,

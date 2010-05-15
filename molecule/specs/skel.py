@@ -97,9 +97,10 @@ class GenericExecutionStep:
     """
 
     def __init__(self, spec_path, metadata):
-        from molecule import Output, Config
-        self.Output = Output
-        self.Config = Config
+        import molecule.settings
+        import molecule.output
+        self._output = molecule.output.Output()
+        self._config = molecule.settings.Configuration()
         self.spec_path = spec_path
         self.metadata = metadata
         self.spec_name = os.path.basename(self.spec_path)
