@@ -235,16 +235,14 @@ def nocolor():
     havecolor=0
 if not is_stdout_a_tty():
     nocolor()
+elif os.getenv("ETP_NO_COLOR"):
+    nocolor()
 
 def getcolor():
     """
     Return color status
     """
     return havecolor
-
-nc = os.getenv("ETP_NO_COLOR")
-if nc:
-    nocolor()
 
 def _reset_color():
     """
