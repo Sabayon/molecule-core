@@ -172,9 +172,6 @@ def is_stdout_a_tty():
     fn = sys.stdout.fileno()
     return os.isatty(fn)
 
-if not is_stdout_a_tty():
-    nocolor()
-
 def xterm_title(mystr, raw = False):
     """
     Set new xterm title.
@@ -236,6 +233,8 @@ def nocolor():
     os.environ['ETP_NO_COLOR'] = "1"
     global havecolor
     havecolor=0
+if not is_stdout_a_tty():
+    nocolor()
 
 def getcolor():
     """
