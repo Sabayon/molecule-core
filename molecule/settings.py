@@ -18,8 +18,6 @@
 
 import os
 from molecule.exception import SpecFileError
-from molecule.specs.plugins import SPEC_PLUGS
-from molecule.specs.plugins.builtin import LivecdSpec
 from molecule.specs.skel import GenericSpec
 from molecule.version import VERSION
 import molecule.utils
@@ -82,18 +80,24 @@ class Configuration(dict):
 
 class SpecParser:
 
-    # FIXME: kept for backward .spec files compatibility where
-    # execution_strategy argument is not set
-    DEFAULT_PARSER = LivecdSpec
-
     def __init__(self, filepath):
 
         self.filepath = filepath[:]
+
+        # FIXME: kept for backward .spec files compatibility where
+        # execution_strategy argument is not set
+        # TODO: remove and make execution_strategy mandatory in .spec file
+        from molecule.specs.plugins.builtin_plugin import LivecdSpec
+
         execution_strategy = self.parse_execution_strategy()
         if execution_strategy is None:
-            execution_strategy = SpecParser.DEFAULT_PARSER.execution_strategy()
+            execution_strategy = LivecdSpec.execution_strategy()
 
-        plugin = SPEC_PLUGS.get(execution_strategy)
+        from molecule.specs.factory import PluginFactory
+        spec_plugins = PluginFactory.get_spec_plugins()
+        print spec_plugins
+
+        plugin = spec_plugins.get(execution_strategy)
         if plugin is None:
             raise SpecFileError("Execution strategy provided in %s spec file"
                 " not supported, strategy: %s" % (
@@ -132,6 +136,7 @@ class SpecParser:
         # compact lines properly
         old_key = None
         for line in data:
+            key = None
             if ":" in line:
                 key, value = self.parse_line_statement(line)
                 if key is None:

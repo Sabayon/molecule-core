@@ -142,9 +142,12 @@ class GenericExecutionStep:
         raise NotImplementedError()
 
 
-class GenericSpec(GenericSpecFunctions):
+class GenericSpec(object, GenericSpecFunctions):
 
     EXECUTION_STRATEGY_KEY = "execution_strategy"
+
+    # Molecule Plugin factory support
+    BASE_PLUGIN_API_VERSION = 0
 
     @staticmethod
     def execution_strategy():
