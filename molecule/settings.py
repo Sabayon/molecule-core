@@ -21,6 +21,7 @@ from molecule.exception import SpecFileError
 from molecule.specs.plugins import SPEC_PLUGS
 from molecule.specs.plugins.builtin import LivecdSpec
 from molecule.specs.skel import GenericSpec
+from molecule.version import VERSION
 import molecule.utils
 
 class Constants(dict):
@@ -51,7 +52,7 @@ class Configuration(dict):
         if mysettings is None:
             mysettings = {}
         settings = {
-            'version': "0.5.4",
+            'version': VERSION,
             'chroot_compressor': "mksquashfs",
             'iso_builder': "mkisofs",
             'mirror_syncer': "rsync",

@@ -1,4 +1,2 @@
 - add i18n support
 - add real plugin factory
-- move version string to file
-- add build system
