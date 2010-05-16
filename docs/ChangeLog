@@ -1,0 +1,665 @@
+commit e292ac6de5db0de5323a6f278c8b445454abe98d
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun May 16 17:33:04 2010 +0200
+
+    [molecule] implement real Molecule Plugin Factory and use it
+
+commit 3d2d489cbb5037cb88e5136620e32fab43beb747
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun May 16 15:41:41 2010 +0200
+
+    [todo] update TODO
+
+commit ac7d4376c2a347a223f10a35568595387c7433c0
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun May 16 15:41:32 2010 +0200
+
+    [git] update .gitignore
+
+commit ccb592ba067c567d19595770072094cf2feaf826
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun May 16 15:40:50 2010 +0200
+
+    [Makefile] add po/ dir to build system
+
+commit 8d40197b03fb33b7a4c52c04dba8c574f2202b23
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun May 16 15:39:53 2010 +0200
+
+    [po] add i18n support
+
+commit 531442ec21791fa92af31cf8e60623e8b94c7f32
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun May 16 15:28:08 2010 +0200
+
+    [molecule] add version tagging script, fix version handling
+
+commit 4f0c9c0ffdf77acd85bfa1646a286742c476bad8
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun May 16 14:46:16 2010 +0200
+
+    [molecule] add Makefiles
+
+commit def0668050d73c0d8f25a461c6814a38be6c1eb3
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun May 16 13:38:58 2010 +0200
+
+    [todo] update TODO
+
+commit 47830e63e69d4de02f9b899211e2dce6b5d30941
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun May 16 13:38:28 2010 +0200
+
+    [todo] update TODO
+
+commit ef7aebd129688eb8c12e1f6039e71903c21a871c
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sat May 15 22:18:37 2010 +0200
+
+    [molecule.output] trivial code update
+
+commit dccc8ff2e1ec27d5cb08e825bc3606580f2d3307
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sat May 15 22:15:44 2010 +0200
+
+    [molecule.output] fix redirection of stdout to file
+
+commit 356bb0a6dca7fee1391753dd151809e8c283608b
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sat May 15 22:11:13 2010 +0200
+
+    [molecule.output] port new code from Entropy (entropy.output)
+
+commit 189a84b960142bdbdf607378acbc031cc562fc08
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun May 9 22:33:59 2010 +0200
+
+    [molecule.specs.remaster] fix support for destination_iso_image_name, thanks to Joost Ruis for reporting
+
+commit 41f4f77abe380482990b89db2ec35f5854b5473f
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun May 9 22:27:19 2010 +0200
+
+    [examples] add more example scripts
+
+commit 4158e52ba36f6771f19131f067219bdca0f7927c
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun May 9 16:50:37 2010 +0200
+
+    [molecule.settings] version bump
+
+commit 996cdfe3c19d6c4147fd4e2bfcf9d0fdbcd6f0b2
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun May 9 16:49:49 2010 +0200
+
+    [molecule.specs.plugins.remaster] fix wrong arguments in _exec_inner_script call
+
+commit 29d45a193430bc8afbda65d0cf10f692144f5f70
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Apr 29 16:41:06 2010 +0200
+
+    [molecule.output] disable colorized output if stdout is not a tty
+
+commit b405c152b97f8da014ff7495ae0496d66dfabe8b
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Apr 25 16:15:09 2010 +0200
+
+    [molecule] update version
+
+commit 574464aa0a7b5c5348c94988f5153549a561ada8
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Apr 25 16:13:09 2010 +0200
+
+    [molecule.specs.skel] export general purpose variables to env
+    
+    When GenericExecutionStep instance is created, some general purpose
+    .spec file variable values are exported to environment:
+    - RELEASE_STRING
+    - RELEASE_VERSION
+    - RELEASE_DESC
+
+commit bf9314455c61e5bd9d627f6bfc5cd0209ebfe676
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Apr 22 22:13:04 2010 +0200
+
+    [molecule] remove python 2.5 __future__ import
+
+commit 9df4990c6334ccefb8c5285196c8b5857c7b1b81
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Apr 22 22:12:42 2010 +0200
+
+    [molecule.specs.builtin] fix _run_error_script()
+
+commit 7cc4968a5e5363c7e2129e497a0f0e8390d3ac10
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Mon Apr 19 11:02:20 2010 +0200
+
+    [molecule.settings] bump version inside settings
+
+commit 657a6ed262f1e9611e5459b6f33aaf09c10e377b
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Apr 18 18:49:46 2010 +0200
+
+    [molecule] kill all running children pids on exit
+
+commit 92b09e57f9a927407ff2a0ea268064384de8ad61
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Apr 18 18:42:39 2010 +0200
+
+    [molecule.specs.plugins.builtin] add support for inner_source_chroot_script
+    
+    inner_source_chroot_script hook can be used to permanently modify
+    source chroots when using the standard execution strategy (chroot -> iso)
+
+commit 719d68de05a9342063fad0921b46f8c50e0bf0de
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Apr 18 18:24:31 2010 +0200
+
+    [molecule] implement arguments support for *_chroot_script_* statement.
+    
+    This commit improves the support to script hooks, making possible to pass
+    arguments to them via .spec statements (outer_chroot_script, outer_chroot_script_after,
+    inner_chroot_script, inner_chroot_script_after, pre_iso_script)
+
+commit cadeced8818b04d430170aa1407b487879e7fa61
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Apr 18 13:44:34 2010 +0200
+
+    [specs] update .spec example files
+
+commit 77f1f401f1ff9a9796f648ff53b96ffbf6432992
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Apr 8 17:05:29 2010 +0200
+
+    [todo] add TODO
+
+commit 7ad653b316499dfde748238cc742df3ab5d110e1
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Mon Feb 15 11:28:04 2010 +0100
+
+    [molecule] fix extra_rsync_parameters option handling
+
+commit 40eedd53ae3323d444c402978fd0424b52b81728
+Author: Fabio Erculiani <fabio.erculiani@itsme.it>
+Date:   Mon Dec 21 21:55:48 2009 +0100
+
+    [molecule.specs] add error_script .spec file directive support
+
+commit 46d3987985da92b40a295d6ee563886d8a6f223a
+Author: Fabio Erculiani <fabio.erculiani@itsme.it>
+Date:   Sun Dec 20 22:37:52 2009 +0100
+
+    [settings] run mksquashfs with -no-progress, to improve usage over ssh and slower networks
+
+commit b1a46ec8526576dc64c1e21a2103e3b6fc4e3181
+Author: Fabio Erculiani <fabio.erculiani@itsme.it>
+Date:   Fri Dec 18 10:25:30 2009 +0100
+
+    [molecule.specs.remaster] fix custom_packages_add_cmd and custom_packages_remove_cmd support, thanks to Brian Tomlinson for reporting
+
+commit 126d021f69662181241a394aaf2b7e56cd7661f0
+Author: Fabio Erculiani <fabio.erculiani@itsme.it>
+Date:   Mon Dec 14 14:53:06 2009 +0100
+
+    [molecule] update molecule version
+
+commit 64105dc6426f310748a4ee32bef65eb6e26ce921
+Author: Fabio Erculiani <fabio.erculiani@itsme.it>
+Date:   Mon Dec 14 10:45:50 2009 +0100
+
+    [molecule.specs.plugin.remaster] add inner_chroot_script_after hook, to be executed after packages installation and removal
+
+commit facce3158f4e3ab5ca0d68876a6e059fbd9fb00a
+Author: Fabio Erculiani <fabio.erculiani@itsme.it>
+Date:   Tue Dec 1 19:39:17 2009 +0100
+
+    [molecule.settings] prefer --delete-during to --delete-before rsync arg
+
+commit 400cf1d049cb9f2f9a0e6d169bce36e60f8a45a7
+Author: Fabio Erculiani <fabio@linux.local>
+Date:   Sat Nov 21 23:44:46 2009 +0100
+
+    [molecule] implement ISO to TAR handler
+
+commit e7393b789ad830cf1215ece89099657221861ffd
+Author: Fabio Erculiani <fabio@linux.local>
+Date:   Sat Nov 21 23:44:05 2009 +0100
+
+    [molecule] do not print traceback when CTRL+C is pressed
+
+commit 282d84b57ead722815e9df489861b192845992ba
+Author: Fabio Erculiani <fabio.erculiani@itsme.it>
+Date:   Wed Oct 28 20:41:14 2009 +0100
+
+    [repo] add .gitignore
+
+commit 8ba46f763590f3adc89993be73eab8131df9fa29
+Author: Fabio Erculiani <fabio.erculiani@itsme.it>
+Date:   Tue Oct 27 21:09:26 2009 +0100
+
+    [molecule] fix mkisofs title argument
+
+commit 3d3ae2c6dc1dbccd88a027c43fbb6bb5e6aed64e
+Author: Fabio Erculiani <fabio.erculiani@itsme.it>
+Date:   Tue Oct 27 16:42:25 2009 +0100
+
+    [molecule] fix runner issue
+
+commit 59f3b9af93d21d7dcf8e9ab4a9d45824709d262f
+Author: Fabio Erculiani <fabio.erculiani@itsme.it>
+Date:   Tue Oct 27 16:33:34 2009 +0100
+
+    [molecule] improve ability to reimplement Handlers, add setup() method, fixup code accordingly
+
+commit c7f7d09ba04e96f2405522ee9f26ca6f0167007b
+Author: Fabio Erculiani <fabio.erculiani@itsme.it>
+Date:   Tue Oct 27 16:10:49 2009 +0100
+
+    [molecule] add support for outer_chroot_script_after (to be executed after inner chroot script)
+
+commit 12a1d83ac9e9164b082279b12749574f2d2edce2
+Author: Fabio Erculiani <fabio.erculiani@itsme.it>
+Date:   Tue Oct 27 10:57:58 2009 +0100
+
+    [molecule] remaster plugin: do not remove/empty paths before hooks, always kill tmp dir
+
+commit e6f8062c2aa20957eef1f14e1f2d303988465a52
+Author: Fabio Erculiani <fabio.erculiani@itsme.it>
+Date:   Tue Oct 27 10:35:45 2009 +0100
+
+    [molecule] remaster plugin: run repo update hook before everything
+
+commit cf77c886fa6727b2ed45015d7472f198c2c794ee
+Author: Fabio Erculiani <fabio.erculiani@itsme.it>
+Date:   Tue Oct 27 10:31:19 2009 +0100
+
+    [molecule] update spec file
+
+commit 14f2ae9dd932ff0190316e6cb5d7a7854dcb495c
+Author: Fabio Erculiani <fabio.erculiani@itsme.it>
+Date:   Tue Oct 27 10:28:45 2009 +0100
+
+    [molecule] remaster plugin: remove 'mod' key from parser data dicts, make possible to split packages_to_add/packages_to_remove using comma
+
+commit 8731a14818454db100f9b1d79c7ce16b0c89f2bb
+Author: Fabio Erculiani <fabio.erculiani@itsme.it>
+Date:   Tue Oct 27 10:22:00 2009 +0100
+
+    [molecule] remaster plugin: add support for paths_to_remove and paths_to_empty
+
+commit 519ea46e3a70ef70328e3b9d85b10060513dcfda
+Author: Fabio Erculiani <fabio.erculiani@itsme.it>
+Date:   Tue Oct 27 10:16:09 2009 +0100
+
+    [molecule] remaster plugin: run chroot hooks before packages handling
+
+commit 705338049cef20ab072f426cd0eeb93d44ef4b5f
+Author: Fabio Erculiani <fabio@linux.local>
+Date:   Tue Oct 27 06:08:29 2009 +0100
+
+    [examples] fix spec example
+
+commit 3942828a87185a5af0297c5212c07a7ec1372e79
+Author: Fabio Erculiani <fabio@linux.local>
+Date:   Tue Oct 27 06:07:46 2009 +0100
+
+    [molecule] add missing module
+
+commit 7581c19dd0ae2fee48f47f15d607ee41ffecfc9f
+Author: Fabio Erculiani <fabio@linux.local>
+Date:   Sun Oct 25 14:15:42 2009 +0100
+
+    [specs] fix typo in example spec file
+
+commit eb700e51331e06ad234d6f36708b9ae5fd6abb52
+Author: Fabio Erculiani <fabio@linux.local>
+Date:   Sun Oct 25 13:57:13 2009 +0100
+
+    [molecule] complete support for easily remastering Sabayon ISO images
+
+commit f55ec1646bb70e2efad0958e03912b2f504bd692
+Author: Fabio Erculiani <fabio@linux-4.local>
+Date:   Fri Oct 23 12:45:07 2009 +0200
+
+    [molecule] move code to plugins, implement fuzzy iso_remaster plugin
+
+commit 768d454e74959ec891fcdddd10284cff7c80e4e8
+Author: Fabio Erculiani <fabio@linux-4.local>
+Date:   Fri Oct 23 12:44:22 2009 +0200
+
+    [molecule.settings] add __plugin__ key in metadata to be able to use SpecParser plugin afterwards (and fix typo)
+
+commit 010d2b82e9801f0df3dafaf9575379a14da8a3ed
+Author: Fabio Erculiani <fabio@linux-4.local>
+Date:   Fri Oct 23 11:59:46 2009 +0200
+
+    [molecule.specs] add missing import
+
+commit 9bcd860c3284abdda64c1f83372332cfa48abde3
+Author: Fabio Erculiani <fabio@linux-4.local>
+Date:   Fri Oct 23 11:57:29 2009 +0200
+
+    [molecule] add iso_remaster execution_strategy spec file plugin
+
+commit 555dbcc8b3c269eb0edc1e26b02c12c387368c4e
+Author: Fabio Erculiani <fabio@linux-4.local>
+Date:   Fri Oct 23 11:43:14 2009 +0200
+
+    [examples] update .spec files, add non-mandatory execution_strategy stmt
+
+commit 9e4112614fac3dddf1ec4a0953bb0c98066440f4
+Author: Fabio Erculiani <fabio@linux-4.local>
+Date:   Fri Oct 23 11:41:45 2009 +0200
+
+    [molecule] make Spec* classes pluggable
+    
+    This will allow the implementation of multiple execution strategies.
+    For example, a simple ISO remaster (with pkgs add/remove) would be easily
+    implemented.
+
+commit b3030850f1d859fa71fc8495fd663e3e1245547c
+Author: Fabio Erculiani <fabio@linux-4.local>
+Date:   Fri Oct 23 11:40:13 2009 +0200
+
+    [molecule] update code style
+
+commit c9f32a96c5b460a5bed30dc32dc52aa74a88574e
+Author: Fabio Erculiani <fabio@linux-4.local>
+Date:   Fri Oct 23 11:39:29 2009 +0200
+
+    [molecule] update code style
+
+commit b9c96a25fae929ba6e4fdc415ed093a123ec14d2
+Author: Fabio Erculiani <fabio.erculiani@itsme.it>
+Date:   Wed Oct 7 22:34:41 2009 +0200
+
+    [examples] fix outer_chroot_script.py example
+
+commit cd57408068cc9d4724ac18e42ab4302b46dc7931
+Author: Fabio Erculiani <fabio.erculiani@itsme.it>
+Date:   Sun Oct 4 21:48:55 2009 +0200
+
+    [examples] update examples dir
+
+commit 3299150e048e8f57fb41fd18447b28327c0e1d78
+Author: Fabio Erculiani <fabio.erculiani@itsme.it>
+Date:   Wed Aug 12 15:48:17 2009 +0200
+
+    [examples] update inner_chroot_script sample file
+
+commit 29ce55842f2b79a89a26fa9f6924c7b99778c09d
+Author: Fabio Erculiani <fabio@mars.(none)>
+Date:   Thu May 21 22:45:23 2009 +0200
+
+    update inner chroot script
+
+commit 68e814f8b46b6f7bbf6fa770d9c1ca43b2326a47
+Author: Fabio Erculiani <fabio@mars.(none)>
+Date:   Thu May 14 12:43:38 2009 +0200
+
+    update examples
+
+commit 7128f99abc69a022b4bc523d79d8691da4be2bca
+Author: Fabio Erculiani <fabio@mars.(none)>
+Date:   Thu Mar 26 16:12:39 2009 +0100
+
+    adding other Sabayon4 spec files
+
+commit 2b658b52596a179d29efd9d14aff5b3b589b15cc
+Author: Fabio Erculiani <fabio@mars.(none)>
+Date:   Thu Mar 26 15:31:04 2009 +0100
+
+    fix molecule.utils.remove_path_sandbox
+    
+    paths did not get expanded when using list arguments, so try using
+    shell = True and pass a string
+
+commit d8d8d16b9abe651714461c73c1fdabfc02d120ff
+Author: Fabio Erculiani <fabio@mars.(none)>
+Date:   Thu Mar 26 15:12:12 2009 +0100
+
+    add other rsync arguments
+    
+    --delete-before and -d should make clear that we don't want stale
+    files in the receiver path and its subdirs
+
+commit 11822234adc03c3e44112bf984ce393a1324dcda
+Author: Fabio Erculiani <fabio@mars.(none)>
+Date:   Thu Mar 26 14:48:54 2009 +0100
+
+    revert rsync -X argument
+    
+    clients can not support extended attributes
+
+commit b2eadf7841dd4f2c4d93eba4c153366ff9b3d5d6
+Author: Fabio Erculiani <fabio@mars.(none)>
+Date:   Thu Mar 26 14:46:49 2009 +0100
+
+    add missing arguments to rsync
+    
+    -X, -A, -H and --recursive could be handy and were missing.
+
+commit 2083ff143fcaed953c2164ef0cfca31a13340f57
+Author: Fabio Erculiani <fabio@mars.(none)>
+Date:   Thu Mar 26 12:53:57 2009 +0100
+
+    fix .md5 creation
+    
+    After mkisofs, md5sum is run and .md5 file is produced. The latter
+    was created incorrectly, first is the checksum, then the filename,
+    not vice versa.
+
+commit bccb1f97d2d995b5037c224a5fcf5db08ef84d34
+Author: root <root@mars.(none)>
+Date:   Wed Mar 25 12:47:33 2009 +0100
+
+    do not reimplement built-in exceptions
+    
+    Remove exceptions shadowing built-in ones from molecule.exceptions
+    and update the code to work with this change
+
+commit db9d6025b38e6e13b07bd280f8b29f95e412ee72
+Author: root <root@mars.(none)>
+Date:   Wed Mar 25 12:45:18 2009 +0100
+
+    remove unused imports and fix inner chroot script removal
+    
+    EnvironmentError and NotImplementedError are built-in exceptions
+    so better stop using them in handlers.py
+    
+    Inner chroot script didn't get removed properly after creation.
+    This should fix it.
+
+commit 5383ea26bdc6ea9b7cc7ee1f383157471432c732
+Merge: 4c07da0 7dd506a
+Author: Fabio Erculiani <fabio@mars.(none)>
+Date:   Tue Mar 24 16:56:28 2009 +0100
+
+    Merge branch 'master' of git+ssh://sabayonlinux.org/home/git/projects/molecule
+
+commit 7dd506ac4e2d668c4d07205f4f80daee8c3991c7
+Author: Fabio Erculiani <fabio@mars.(none)>
+Date:   Tue Mar 24 16:25:23 2009 +0100
+
+    removed EMPTY
+
+commit 09fec45cda8575d6025b92784b9baf34691d40c2
+Author: Fabio Erculiani <fabio@mars.(none)>
+Date:   Tue Mar 24 16:11:01 2009 +0100
+
+    first commit
+
+commit 4c07da0ffdb3c3e6217cba29ba081e0f301aad0c
+Author: lxnay <lxnay@cd1c1023-2f26-0410-ae45-c471fc1f0318>
+Date:   Sun Mar 15 17:13:54 2009 +0000
+
+    Molecule:
+    - generate ISO md5 file automatically
+    
+    
+    git-svn-id: http://svn.sabayonlinux.org/projects/molecule/trunk@3190 cd1c1023-2f26-0410-ae45-c471fc1f0318
+
+commit 624a3acdde40745aa571878f53fee92d600cd5c2
+Author: lxnay <lxnay@cd1c1023-2f26-0410-ae45-c471fc1f0318>
+Date:   Tue Mar 10 15:28:14 2009 +0000
+
+    molecule: add inner chroot script example
+    
+    git-svn-id: http://svn.sabayonlinux.org/projects/molecule/trunk@3138 cd1c1023-2f26-0410-ae45-c471fc1f0318
+
+commit 551fc67c31ecec695cf953336dc8b2090e8ce34b
+Author: lxnay <lxnay@cd1c1023-2f26-0410-ae45-c471fc1f0318>
+Date:   Sun Mar 8 23:21:24 2009 +0000
+
+    Molecule:
+    - when executing a script inside a chroot, remember to remove it once done
+    
+    
+    git-svn-id: http://svn.sabayonlinux.org/projects/molecule/trunk@3134 cd1c1023-2f26-0410-ae45-c471fc1f0318
+
+commit 9560145682c4117cf950a26832459ed6406440aa
+Author: lxnay <lxnay@cd1c1023-2f26-0410-ae45-c471fc1f0318>
+Date:   Thu Mar 5 13:34:46 2009 +0000
+
+    Molecule:
+    - fix release file creation
+    
+    
+    git-svn-id: http://svn.sabayonlinux.org/projects/molecule/trunk@3111 cd1c1023-2f26-0410-ae45-c471fc1f0318
+
+commit fae805e3fdac5b798f370eb87781de263e21e459
+Author: lxnay <lxnay@cd1c1023-2f26-0410-ae45-c471fc1f0318>
+Date:   Tue Mar 3 12:20:43 2009 +0000
+
+    Molecule:
+    - implement sandbox support on ChrootHandler
+    
+    
+    git-svn-id: http://svn.sabayonlinux.org/projects/molecule/trunk@3104 cd1c1023-2f26-0410-ae45-c471fc1f0318
+
+commit 2554dd1743d7254acf85c55e1a22fe7649cffddd
+Author: lxnay <lxnay@cd1c1023-2f26-0410-ae45-c471fc1f0318>
+Date:   Tue Mar 3 10:56:55 2009 +0000
+
+    Molecule:
+    - fix a type error
+    
+    
+    git-svn-id: http://svn.sabayonlinux.org/projects/molecule/trunk@3101 cd1c1023-2f26-0410-ae45-c471fc1f0318
+
+commit a37b46675d067c299faae8601434b791a0f24f15
+Author: lxnay <lxnay@cd1c1023-2f26-0410-ae45-c471fc1f0318>
+Date:   Sun Mar 1 19:53:01 2009 +0000
+
+    Molecule:
+    - mkisofs accepts Volume IDs at most 32 chars long
+    
+    
+    git-svn-id: http://svn.sabayonlinux.org/projects/molecule/trunk@3097 cd1c1023-2f26-0410-ae45-c471fc1f0318
+
+commit 9645cbdc256d6f6815ae2d9f2d647fedc14e1829
+Author: lxnay <lxnay@cd1c1023-2f26-0410-ae45-c471fc1f0318>
+Date:   Sun Mar 1 19:43:27 2009 +0000
+
+    Molecule:
+    - allow to split spec file variables into multiple lines (paths_to_remove for example)
+    
+    
+    git-svn-id: http://svn.sabayonlinux.org/projects/molecule/trunk@3096 cd1c1023-2f26-0410-ae45-c471fc1f0318
+
+commit 8adae5a70e9b544a203cb6d1052c3e16356059f8
+Author: lxnay <lxnay@cd1c1023-2f26-0410-ae45-c471fc1f0318>
+Date:   Mon Feb 16 17:14:57 2009 +0000
+
+    Molecule/Settings:
+    - use dict object directly, no need to duplicate its methods
+    
+    
+    git-svn-id: http://svn.sabayonlinux.org/projects/molecule/trunk@3033 cd1c1023-2f26-0410-ae45-c471fc1f0318
+
+commit bd9a6ba8adfd633c38ca43f76ddc06f60fc0964b
+Author: lxnay <lxnay@cd1c1023-2f26-0410-ae45-c471fc1f0318>
+Date:   Sun Feb 8 14:37:55 2009 +0000
+
+    Molecule: fix prechroot parsing
+    
+    
+    git-svn-id: http://svn.sabayonlinux.org/projects/molecule/trunk@2997 cd1c1023-2f26-0410-ae45-c471fc1f0318
+
+commit 8bb9afc28703d8bc6f8eab0cf90bc9c6053a4634
+Author: lxnay <lxnay@cd1c1023-2f26-0410-ae45-c471fc1f0318>
+Date:   Thu Feb 5 15:56:30 2009 +0000
+
+    molecule: avoid lines longer than 79 cols
+    
+    git-svn-id: http://svn.sabayonlinux.org/projects/molecule/trunk@2995 cd1c1023-2f26-0410-ae45-c471fc1f0318
+
+commit 284a35273886e162197d9d9d4397954d021f2efc
+Author: lxnay <lxnay@cd1c1023-2f26-0410-ae45-c471fc1f0318>
+Date:   Thu Feb 5 13:13:06 2009 +0000
+
+    molecule: adding some stuff to the examples dir
+    
+    git-svn-id: http://svn.sabayonlinux.org/projects/molecule/trunk@2994 cd1c1023-2f26-0410-ae45-c471fc1f0318
+
+commit 5f8bd237d10d29b62555be36976205ff3089cdc1
+Author: lxnay <lxnay@cd1c1023-2f26-0410-ae45-c471fc1f0318>
+Date:   Thu Feb 5 12:13:40 2009 +0000
+
+    Molecule: implement prechroot facility
+    
+    
+    git-svn-id: http://svn.sabayonlinux.org/projects/molecule/trunk@2992 cd1c1023-2f26-0410-ae45-c471fc1f0318
+
+commit 0d469c494a34cf805cac79588d3f16a776c71f03
+Author: lxnay <lxnay@cd1c1023-2f26-0410-ae45-c471fc1f0318>
+Date:   Tue Feb 3 21:18:37 2009 +0000
+
+    Molecule:
+    - massive bugfixing, it's starting to work
+    
+    
+    git-svn-id: http://svn.sabayonlinux.org/projects/molecule/trunk@2990 cd1c1023-2f26-0410-ae45-c471fc1f0318
+
+commit b2a5ab49a484d411bc0bd2b251eef8ed0a05d723
+Author: lxnay <lxnay@cd1c1023-2f26-0410-ae45-c471fc1f0318>
+Date:   Tue Feb 3 15:19:05 2009 +0000
+
+    Molecule:
+    - bugfixing several areas
+    - adding missing spec file options
+    
+    
+    git-svn-id: http://svn.sabayonlinux.org/projects/molecule/trunk@2989 cd1c1023-2f26-0410-ae45-c471fc1f0318
+
+commit 3659c5db7155773d7940cb03ef5a4b6d91dedb6b
+Author: lxnay <lxnay@cd1c1023-2f26-0410-ae45-c471fc1f0318>
+Date:   Tue Feb 3 07:34:12 2009 +0000
+
+    Molecule:
+    - initial code in place
+    
+    
+    git-svn-id: http://svn.sabayonlinux.org/projects/molecule/trunk@2982 cd1c1023-2f26-0410-ae45-c471fc1f0318
+
+commit 1b99b9dbae4f34d9da8a14f8f96685dff716675c
+Author: lxnay <lxnay@cd1c1023-2f26-0410-ae45-c471fc1f0318>
+Date:   Mon Feb 2 14:46:34 2009 +0000
+
+    Molecule:
+    - started to implement handlers
+    
+    
+    git-svn-id: http://svn.sabayonlinux.org/projects/molecule/trunk@2980 cd1c1023-2f26-0410-ae45-c471fc1f0318
+
+commit 1cda81a93d89fd569364557696f7c842ad7ea0e7
+Author: lxnay <lxnay@cd1c1023-2f26-0410-ae45-c471fc1f0318>
+Date:   Sat Jan 31 21:57:47 2009 +0000
+
+    Molecule:
+    - first chunk of code
+    - general infrastructure done
+    - spec file parser done
+    
+    
+    git-svn-id: http://svn.sabayonlinux.org/projects/molecule/trunk@2977 cd1c1023-2f26-0410-ae45-c471fc1f0318
