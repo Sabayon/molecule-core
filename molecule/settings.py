@@ -77,12 +77,110 @@ class Configuration(dict):
             molecule.utils.valid_exec_check(self.get(key))
 
 
+class SpecPreprocessor:
+
+    PREFIX = "%"
+    class PreprocessorError(Exception):
+        """ Error while preprocessing file """
+
+    def __init__(self, spec_path):
+        self.__expanders = {}
+        self.__builtin_expanders = {}
+        self._spec_path = spec_path
+        self._add_builtin_expanders()
+
+    def add_expander(self, statement, expander_callback):
+        """
+        Add Preprocessor expander.
+
+        @param statement: statement to expand
+        @type statement: string
+        @param expand_callback: one argument callback that is used to expand
+            given line (line is raw format). Line is already pre-parsed and
+            contains a valid preprocessor statement that callback can handle.
+            Preprocessor callback should raise SpecPreprocessor.PreprocessorError
+            if line is malformed.
+        @type expander_callback: callable
+        @raise KeyError: if expander is already available
+        @return: a raw string (containing \n and whatever)
+        @rtype: string
+        """
+        return self._add_expander(statement, expander_callback, builtin = False)
+
+    def _add_expander(self, statement, expander_callback, builtin = False):
+        obj = self.__expanders
+        if builtin:
+            obj = self.__builtin_expanders
+        if statement in obj:
+            raise KeyError("expander %s already provided" % (statement,))
+        obj[SpecPreprocessor.PREFIX + statement] = \
+            expander_callback
+
+    def _add_builtin_expanders(self):
+        # import statement
+        self._add_expander("import", self._import_expander, builtin = True)
+
+    def _import_expander(self, line):
+
+        rest_line = line.split(" ", 1)[1].strip()
+        if not rest_line:
+            return line
+
+        if rest_line.startswith(os.path.sep):
+            # absolute path
+            path = rest_line
+        else:
+            path = os.path.join(os.path.dirname(self._spec_path),
+                rest_line)
+        if not (os.path.isfile(path) and os.access(path, os.R_OK)):
+            raise SpecPreprocessor.PreprocessorError(
+                "invalid preprocessor line: %s" % (line,))
+
+        with open(path, "r") as spec_f:
+            lines = ''
+            for line in spec_f.xreadlines():
+                # call recursively
+                split_line = line.split(" ", 1)
+                if split_line:
+                    expander = self.__builtin_expanders.get(split_line[0])
+                    if expander is not None:
+                        line = expander(line)
+                lines += line
+
+        return lines
+
+    def parse(self):
+
+        content = []
+        with open(self._spec_path, "r") as spec_f:
+            for line in spec_f.xreadlines():
+                split_line = line.split(" ", 1)
+                if split_line:
+                    expander = self.__builtin_expanders.get(split_line[0])
+                    if expander is not None:
+                        line = expander(line)
+                content.append(line)
+
+        final_content = []
+        for line in content:
+            split_line = line.split(" ", 1)
+            if split_line:
+                expander = self.__expanders.get(split_line[0])
+                if expander is not None:
+                    line = expander(line)
+            final_content.append(line)
+
+        final_content = (''.join(final_content)).split("\n")
+
+        return final_content
+
 
 class SpecParser:
 
     def __init__(self, filepath):
 
         self.filepath = filepath[:]
+        self._preprocessor = SpecPreprocessor(self.filepath)
 
         # FIXME: kept for backward .spec files compatibility where
         # execution_strategy argument is not set
@@ -95,7 +193,6 @@ class SpecParser:
 
         from molecule.specs.factory import PluginFactory
         spec_plugins = PluginFactory.get_spec_plugins()
-        print spec_plugins
 
         plugin = spec_plugins.get(execution_strategy)
         if plugin is None:
@@ -109,7 +206,7 @@ class SpecParser:
 
 
     def parse_execution_strategy(self):
-        data = self.__generic_parser(self.filepath)
+        data = self._generic_parser()
         exc_str = GenericSpec.EXECUTION_STRATEGY_KEY
         for line in data:
             if not line.startswith(exc_str):
@@ -132,7 +229,7 @@ class SpecParser:
 
     def parse(self):
         mydict = {}
-        data = self.__generic_parser(self.filepath)
+        data = self._generic_parser()
         # compact lines properly
         old_key = None
         for line in data:
@@ -175,16 +272,14 @@ class SpecParser:
                     " file is incomplete!" % (self.filepath,param,)
                 )
 
-    def __generic_parser(self, filepath):
-        with open(filepath,"r") as f:
-            data = []
-            content = f.readlines()
-            f.close()
-            # filter comments and white lines
-            content = [x.strip().rsplit("#", 1)[0].strip() for x in content if \
-                not x.startswith("#") and x.strip()]
-            for line in content:
-                if line in data:
-                    continue
-                data.append(line)
-            return data
+    def _generic_parser(self):
+        data = []
+        content = self._preprocessor.parse()
+        # filter comments and white lines
+        content = [x.strip().rsplit("#", 1)[0].strip() for x in content if \
+            not x.startswith("#") and x.strip()]
+        for line in content:
+            if line in data:
+                continue
+            data.append(line)
+        return data
