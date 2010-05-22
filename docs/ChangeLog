@@ -1,3 +1,42 @@
+commit 9505451216515d4b308fa54f6119b6d494d9a769
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sat May 22 12:07:02 2010 +0200
+
+    [Makefile] fix molecule library install path
+
+commit d001d56818610b87834803c36d90c2d2e4a9c009
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sat May 22 12:05:54 2010 +0200
+
+    [molecule] update POTFILES.in and .pot
+
+commit 08659178f2a4483063ec5273c43845b1b56193c4
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu May 20 20:14:13 2010 +0200
+
+    [examples] revert erroneous changes to .spec file
+
+commit 1e7f49b4087847d4497cf1c2b9580b29596245c7
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu May 20 15:42:10 2010 +0200
+
+    [molecule] add preliminary support for template files preprocessor
+    
+    Implement "%import /path" preprocessor statement support inside
+    .spec files
+
+commit 24ac6c0724e18a6d61772d0c05dad32158322f81
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Mon May 17 11:10:38 2010 +0200
+
+    [todo] update TODO
+
+commit 617e23f1e5ac090390b808d0cf07e521fab9dd43
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun May 16 17:41:08 2010 +0200
+
+    Tagging Molecule version 0.9
+
 commit e292ac6de5db0de5323a6f278c8b445454abe98d
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Sun May 16 17:33:04 2010 +0200
