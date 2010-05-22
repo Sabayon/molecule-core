@@ -11,5 +11,5 @@ clean:
 	
 
 install:
-	mkdir -p $(DESTDIR)$(LIBDIR)/molecule
-	cp . $(DESTDIR)$(LIBDIR)/molecule -Ra
+	mkdir -p $(DESTDIR)$(LIBDIR)/molecule/molecule
+	cp . $(DESTDIR)$(LIBDIR)/molecule/molecule -Ra
