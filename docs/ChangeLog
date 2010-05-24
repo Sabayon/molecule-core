@@ -1,3 +1,15 @@
+commit 49dc2f1d3fd8623cf12efd8aaf729c3de39121fc
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Mon May 24 20:26:23 2010 +0200
+
+    [molecule] remaster_plugin: fix directory leaking
+
+commit 057b5f60bda5cd0fd7d5bf1bab97f8bd06586d06
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sat May 22 12:07:33 2010 +0200
+
+    Tagging Molecule version 0.9.5
+
 commit 9505451216515d4b308fa54f6119b6d494d9a769
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Sat May 22 12:07:02 2010 +0200
