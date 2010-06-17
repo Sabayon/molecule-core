@@ -1,3 +1,15 @@
+commit 334b64f8b26263b6cb419cc60ac923150323bc18
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Jun 17 18:51:47 2010 +0200
+
+    [molecule.specs.plugins] builtin_plugin: fix shlex usage
+
+commit eebebdadccec2e2588bd21a9a1788e298c29931b
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Jun 17 18:19:12 2010 +0200
+
+    Tagging Molecule version 0.9.6
+
 commit 674506d0da098c31a0d2c645566c18303bfb691f
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Thu Jun 17 18:18:23 2010 +0200
