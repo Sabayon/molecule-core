@@ -1,3 +1,33 @@
+commit 674506d0da098c31a0d2c645566c18303bfb691f
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Jun 17 18:18:23 2010 +0200
+
+    [molecule.plugins] set ISO_PATH and ISO_CHECKSUM_PATH env vars before calling pre_iso_script
+
+commit 1eb420b5f29d37bfa64a6ded1a467fdd22139fdc
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Jun 17 15:52:12 2010 +0200
+
+    [molecule/examples] add more example files
+
+commit 4aad1c784bfbedc4ec06170492747d6c25627f4d
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sat Jun 5 12:03:48 2010 +0200
+
+    [molecule] add post_iso_script hook support
+
+commit 63515f0f52c5ff1244c584256b89baa5b6f0c816
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Jun 3 20:42:44 2010 +0200
+
+    [molecule] builtin_plugin: use shlex when calling mkisofs
+
+commit 15203d8838b280719042ce8dbf1e966990fce24b
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Mon May 24 20:27:33 2010 +0200
+
+    Tagging Molecule version 0.9.5.1
+
 commit 49dc2f1d3fd8623cf12efd8aaf729c3de39121fc
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Mon May 24 20:26:23 2010 +0200
