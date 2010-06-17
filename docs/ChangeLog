@@ -1,3 +1,25 @@
+commit 0e7d9d67b4b156e320e319e7902da2bec4e4cacf
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Jun 17 18:56:04 2010 +0200
+
+    Revert "[molecule] builtin_plugin: use shlex when calling mkisofs"
+    
+    This reverts commit 63515f0f52c5ff1244c584256b89baa5b6f0c816.
+
+commit d7ca87485fc7d7163c569f16bc4de96fb25b4c98
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Jun 17 18:55:54 2010 +0200
+
+    Revert "[molecule.specs.plugins] builtin_plugin: fix shlex usage"
+    
+    This reverts commit 334b64f8b26263b6cb419cc60ac923150323bc18.
+
+commit 8316b4616e00871f15a29c9e933737f7f6ad5a6e
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Jun 17 18:52:06 2010 +0200
+
+    Tagging Molecule version 0.9.6.1
+
 commit 334b64f8b26263b6cb419cc60ac923150323bc18
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Thu Jun 17 18:51:47 2010 +0200
