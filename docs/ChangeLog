@@ -1,3 +1,21 @@
+commit a496e6cf9abd7963c8040b5509dd312320197275
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Mon Jun 28 07:34:27 2010 +0200
+
+    [Makefile] use $(MAKE) instead of "make"
+
+commit 4e0e8e2f5ff066965a036f530602118c7ff2103c
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Mon Jun 28 07:06:31 2010 +0200
+
+    [scripts] append end of tagging message to tag-version.sh
+
+commit 6e6153b369060da7673d6e5f48a49e1874b83f2d
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Jun 17 18:56:17 2010 +0200
+
+    Tagging Molecule version 0.9.6.2
+
 commit 0e7d9d67b4b156e320e319e7902da2bec4e4cacf
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Thu Jun 17 18:56:04 2010 +0200
