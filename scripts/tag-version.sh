@@ -28,3 +28,5 @@ git tag $new_tag HEAD
 # Push changes upstream
 git push
 git push --tags
+
+echo "Now run /home/bin/tarball-new-molecule on sabayon.org"
