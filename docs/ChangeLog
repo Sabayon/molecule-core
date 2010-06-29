@@ -1,3 +1,21 @@
+commit 59511cc68d714a6f70a75bb5d98a7518534346bf
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Tue Jun 29 10:42:47 2010 +0200
+
+    [molecule] other Python3.x fixes
+
+commit 7e8f080ec569f28880dbb009009f939e82062547
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Tue Jun 29 10:37:28 2010 +0200
+
+    [molecule] improve Python 3.x support
+
+commit 760b1cdc15ddc3292f528ddb8c7d3ec53814f9b9
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Mon Jun 28 07:34:48 2010 +0200
+
+    Tagging Molecule version 0.9.6.3
+
 commit a496e6cf9abd7963c8040b5509dd312320197275
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Mon Jun 28 07:34:27 2010 +0200
