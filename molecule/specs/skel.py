@@ -20,7 +20,7 @@ import os
 from molecule.compat import convert_to_unicode
 import molecule.utils
 
-class GenericSpecFunctions:
+class GenericSpecFunctions(object):
 
     def ne_string(self, x):
         return x, 'raw_unicode_escape'
@@ -144,7 +144,7 @@ class GenericExecutionStep:
         raise NotImplementedError()
 
 
-class GenericSpec(object, GenericSpecFunctions):
+class GenericSpec(GenericSpecFunctions):
 
     EXECUTION_STRATEGY_KEY = "execution_strategy"
 
