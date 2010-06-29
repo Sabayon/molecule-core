@@ -22,6 +22,8 @@ import time
 import subprocess
 import shutil
 
+from molecule.compat import convert_to_rawstring
+
 RUNNING_PIDS = set()
 
 def get_year():
@@ -90,10 +92,10 @@ def get_random_number():
 def md5sum(filepath):
     import hashlib
     m = hashlib.md5()
-    readfile = open(filepath)
+    readfile = open(filepath, "rb")
     block = readfile.read(1024)
     while block:
-        m.update(block)
+        m.update(convert_to_rawstring(block))
         block = readfile.read(1024)
     readfile.close()
     return m.hexdigest()
