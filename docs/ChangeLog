@@ -1,3 +1,21 @@
+commit 8c41c2f5cebe251b103f88409eefd8f5b5cd34f4
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Tue Jun 29 11:29:40 2010 +0200
+
+    [Makefile] do not install Makefile to live-system thanks to ssuominen@gentoo.org for reporting
+
+commit 8fc1b6e1724a363fc10ef2d6c4def2d33e39fef1
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Tue Jun 29 11:11:43 2010 +0200
+
+    [todo] update TODO
+
+commit b0f1fee4a322b503a09ea9053fae9a2e63801398
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Tue Jun 29 11:09:44 2010 +0200
+
+    Tagging Molecule version 0.9.10.2
+
 commit 977b69a4b5fae8f69277660bf0055efe110d5160
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Tue Jun 29 11:09:25 2010 +0200
