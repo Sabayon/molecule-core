@@ -1,5 +1,4 @@
-#!/usr/bin/python -O
-# -*- coding: iso-8859-1 -*-
+# -*- coding: utf-8 -*-
 #    Molecule Disc Image builder for Sabayon Linux
 #    Copyright (C) 2009 Fabio Erculiani
 #

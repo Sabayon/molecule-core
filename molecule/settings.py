@@ -17,6 +17,7 @@
 #    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 import os
+from molecule.compat import get_stringtype
 from molecule.exception import SpecFileError
 from molecule.specs.skel import GenericSpec
 from molecule.version import VERSION
@@ -138,7 +139,7 @@ class SpecPreprocessor:
 
         with open(path, "r") as spec_f:
             lines = ''
-            for line in spec_f.xreadlines():
+            for line in spec_f.readlines():
                 # call recursively
                 split_line = line.split(" ", 1)
                 if split_line:
@@ -153,7 +154,7 @@ class SpecPreprocessor:
 
         content = []
         with open(self._spec_path, "r") as spec_f:
-            for line in spec_f.xreadlines():
+            for line in spec_f.readlines():
                 split_line = line.split(" ", 1)
                 if split_line:
                     expander = self.__builtin_expanders.get(split_line[0])
@@ -239,7 +240,7 @@ class SpecParser:
                 if key is None:
                     continue
                 old_key = key
-            elif isinstance(old_key, basestring):
+            elif isinstance(old_key, get_stringtype()):
                 key = old_key
                 value = line.strip()
                 if not value:
@@ -251,7 +252,7 @@ class SpecParser:
             if not check_dict['cb'](value):
                 continue
             if key in mydict:
-                if isinstance(value, basestring):
+                if isinstance(value, get_stringtype()):
                     mydict[key] += " %s" % (value,)
                 elif isinstance(value, list):
                     mydict[key] += value
@@ -269,7 +270,7 @@ class SpecParser:
                 raise SpecFileError(
                     "SpecFileError: '%s' missing or invalid"
                     " '%s' parameter, it's vital. Your specification"
-                    " file is incomplete!" % (self.filepath,param,)
+                    " file is incomplete!" % (self.filepath, param,)
                 )
 
     def _generic_parser(self):

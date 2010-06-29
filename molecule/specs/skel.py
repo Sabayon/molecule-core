@@ -15,7 +15,9 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
 import os
+from molecule.compat import convert_to_unicode
 import molecule.utils
 
 class GenericSpecFunctions:
@@ -39,10 +41,10 @@ class GenericSpecFunctions:
         return os.path.isdir(x)
 
     def ve_string_stripper(self, x):
-        return unicode(x,'raw_unicode_escape').strip()
+        return convert_to_unicode(x).strip()
 
     def ve_string_splitter(self, x):
-        return unicode(x,'raw_unicode_escape').strip().split()
+        return convert_to_unicode(x).strip().split()
 
     def valid_exec(self, x):
         molecule.utils.is_exec_available(x)
@@ -81,11 +83,11 @@ class GenericSpecFunctions:
 
     def valid_comma_sep_list(self, x):
         return [y.strip() for y in \
-            unicode(x,'raw_unicode_escape').split(",") if y.strip()]
+            convert_to_unicode(x).split(",") if y.strip()]
 
     def valid_path_list(self, x):
         return [y.strip() for y in \
-            unicode(x,'raw_unicode_escape').split(",") if \
+            convert_to_unicode(x).split(",") if \
                 self.valid_path_string(y) and y.strip()]
 
 class GenericExecutionStep:

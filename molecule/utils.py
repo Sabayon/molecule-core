@@ -1,4 +1,3 @@
-#!/usr/bin/python -O
 # -*- coding: utf-8 -*-
 #    Molecule Disc Image builder for Sabayon Linux
 #    Copyright (C) 2009 Fabio Erculiani
@@ -29,7 +28,7 @@ def get_year():
     return time.strftime("%Y")
 
 def valid_exec_check(path):
-    with open("/dev/null","w") as f:
+    with open("/dev/null", "w") as f:
         p = subprocess.Popen([path], stdout = f, stderr = f)
         rc = p.wait()
         if rc == 127:
@@ -40,8 +39,8 @@ def is_exec_available(exec_name):
     if not paths: return False
     paths = paths.split(":")
     for path in paths:
-        path = os.path.join(path,exec_name)
-        if os.path.isfile(path) and os.access(path,os.X_OK):
+        path = os.path.join(path, exec_name)
+        if os.path.isfile(path) and os.access(path, os.X_OK):
             return True
     return False
 
@@ -60,17 +59,17 @@ def exec_chroot_cmd(args, chroot, pre_chroot = []):
         os._exit(rc)
     else:
         RUNNING_PIDS.add(pid)
-        rcpid, rc = os.waitpid(pid,0)
+        rcpid, rc = os.waitpid(pid, 0)
         RUNNING_PIDS.discard(pid)
         return rc
 
 def empty_dir(dest_dir):
     for el in os.listdir(dest_dir):
-        el = os.path.join(dest_dir,el)
+        el = os.path.join(dest_dir, el)
         if os.path.isfile(el) or os.path.islink(el):
             os.remove(el)
         elif os.path.isdir(el):
-            shutil.rmtree(el,True)
+            shutil.rmtree(el, True)
             if os.path.isdir(el):
                 os.rmdir(el)
 

@@ -1,5 +1,4 @@
-#!/usr/bin/python -O
-# -*- coding: iso-8859-1 -*-
+# -*- coding: utf-8 -*-
 #    Molecule Disc Image builder for Sabayon Linux
 #    Copyright (C) 2009 Fabio Erculiani
 #
@@ -17,13 +16,15 @@
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
+from molecule.compat import get_stringtype
+
 class MoleculeException(Exception):
     """General superclass for Entropy exceptions"""
-    def __init__(self,value):
+    def __init__(self, value):
         self.value = value[:]
 
     def __str__(self):
-        if isinstance(self.value, basestring):
+        if isinstance(self.value, get_stringtype()):
             return self.value
         else:
             return repr(self.value)

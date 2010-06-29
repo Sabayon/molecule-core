@@ -1,4 +1,3 @@
-#!/usr/bin/python -O
 # -*- coding: utf-8 -*-
 #    Molecule Disc Image builder for Sabayon Linux
 #    Copyright (C) 2009 Fabio Erculiani
@@ -16,6 +15,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
 from molecule.i18n import _
 from molecule.output import brown, darkgreen
 from molecule.specs.skel import GenericExecutionStep
@@ -35,20 +35,20 @@ class Runner(GenericExecutionStep):
         count = 0
         maxcount = len(self.execution_order)
         self._output.output( "[%s|%s] %s" % (
-            darkgreen("Runner"),brown(self.spec_name),
-            _("preparing execution"),), count = (count,maxcount,)
+            darkgreen("Runner"), brown(self.spec_name),
+            _("preparing execution"),), count = (count, maxcount,)
         )
         for myclass in self.execution_order:
 
             count += 1
             self._output.output( "[%s|%s] %s %s" % (
-                darkgreen("Runner"),brown(self.spec_name),_("executing"),
-                str(myclass),), count = (count,maxcount,)
+                darkgreen("Runner"), brown(self.spec_name), _("executing"),
+                str(myclass),), count = (count, maxcount,)
             )
             my = myclass(self.spec_path, self.metadata)
 
             rc = 0
-            while 1:
+            while True:
 
                 try:
 
@@ -79,7 +79,7 @@ class Runner(GenericExecutionStep):
                 return rc
 
         self._output.output( "[%s|%s] %s" % (
-                darkgreen("Runner"),brown(self.spec_name),
+                darkgreen("Runner"), brown(self.spec_name),
                 _("All done"),
             )
         )

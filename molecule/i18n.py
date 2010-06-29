@@ -1,4 +1,4 @@
-#!/usr/bin/python
+# -*- coding: utf-8 -*-
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
@@ -13,17 +13,15 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
-"""
-License: GPL
-Author: Fabio Erculiani <lxnay@sabayonlinux.org>
-"""
+from molecule.compat import get_gettext_kwargs
+
 _LOCALE = None
 try:
     import gettext
     import os
     gettext.bindtextdomain('molecule', '/usr/share/locale')
     gettext.textdomain('molecule')
-    gettext.install('molecule', unicode = True)
+    gettext.install('molecule', *get_gettext_kwargs())
     _ = _
 
     _LOCALE_FULL = os.getenv('LC_ALL')

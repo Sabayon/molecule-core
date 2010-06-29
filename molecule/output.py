@@ -1,5 +1,4 @@
-#!/usr/bin/python -O
-# -*- coding: iso-8859-1 -*-
+# -*- coding: utf-8 -*-
 #    Molecule Disc Image builder for Sabayon Linux
 #    Copyright (C) 2009 Fabio Erculiani
 #
@@ -21,9 +20,13 @@
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-from molecule.i18n import _
-import sys, os
+import sys
+import os
 import curses
+
+from molecule.compat import get_stringtype
+from molecule.i18n import _
+
 stuff = {}
 stuff['cols'] = 30
 try:
@@ -108,7 +111,7 @@ codes["blink"]     = esc_seq + "05m"
 codes["overline"]  = esc_seq + "06m"  # Who made this up? Seriously.
 
 ansi_color_codes = []
-for x in xrange(30, 38):
+for x in range(30, 38):
         ansi_color_codes.append("%im" % x)
         ansi_color_codes.append("%i;01m" % x)
 
@@ -116,7 +119,7 @@ rgb_ansi_colors = ['0x000000', '0x555555', '0xAA0000', '0xFF5555', '0x00AA00',
         '0x55FF55', '0xAA5500', '0xFFFF55', '0x0000AA', '0x5555FF', '0xAA00AA',
         '0xFF55FF', '0x00AAAA', '0x55FFFF', '0xAAAAAA', '0xFFFFFF']
 
-for x in xrange(len(rgb_ansi_colors)):
+for x in range(len(rgb_ansi_colors)):
         codes[rgb_ansi_colors[x]] = esc_seq + ansi_color_codes[x]
 
 del x
@@ -544,7 +547,7 @@ def _flush_stdouterr():
         return
 
 def _stdout_write(msg):
-    if not isinstance(msg, basestring):
+    if not isinstance(msg, get_stringtype()):
         msg = repr(msg)
     try:
         sys.stdout.write(msg)
@@ -645,7 +648,7 @@ def writechar(char):
     try:
         sys.stdout.write(char)
         sys.stdout.flush()
-    except IOError, e:
+    except IOError as e:
         if e.errno == 32:
             return
         raise

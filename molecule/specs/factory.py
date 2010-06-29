@@ -293,7 +293,10 @@ class PluginFactory:
     def _get_spec():
         if PluginFactory._SPEC_FACTORY is None:
             from molecule.specs.skel import GenericSpec
-            from . import plugins as plugs
+            try:
+                from .. import plugins as plugs
+            except ImportError:
+                from . import plugins as plugs
             PluginFactory._SPEC_FACTORY = PluginFactory(GenericSpec, plugs)
         return PluginFactory._SPEC_FACTORY
 
@@ -302,5 +305,5 @@ class PluginFactory:
         factory = PluginFactory._get_spec()
         plugins = factory.get_available_plugins()
         spec_plugins = dict((y.execution_strategy(), y) for x, y \
-            in plugins.items())
+            in list(plugins.items()))
         return spec_plugins
