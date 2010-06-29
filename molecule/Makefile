@@ -12,4 +12,4 @@ clean:
 
 install:
 	mkdir -p $(DESTDIR)$(LIBDIR)/molecule/molecule
-	cp . $(DESTDIR)$(LIBDIR)/molecule/molecule -Ra
+	cp *.py specs $(DESTDIR)$(LIBDIR)/molecule/molecule -Ra
