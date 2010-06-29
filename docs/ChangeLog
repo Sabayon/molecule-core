@@ -1,3 +1,15 @@
+commit 977b69a4b5fae8f69277660bf0055efe110d5160
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Tue Jun 29 11:09:25 2010 +0200
+
+    [molecule.utils] make md5sum() working with Python3.x
+
+commit c30e2b25d5012ddfd0d0c1ec1e4bb15053f4c63e
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Tue Jun 29 11:03:11 2010 +0200
+
+    Tagging Molecule version 0.9.10.1
+
 commit a13b9b6a8f5983518e14fb10454764bf3fdab464
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Tue Jun 29 10:51:45 2010 +0200
