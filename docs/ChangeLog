@@ -1,3 +1,15 @@
+commit df0b7c362551a5ea9fb196a3c003a864e1de845b
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Mon Jul 12 16:27:14 2010 +0200
+
+    [molecule.settings] fix parser bug causing statement values containing ":" to be truncated
+
+commit 8c371b01dcc1e18d4866079a759cf808447c9f99
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Mon Jul 12 09:52:44 2010 +0200
+
+    Tagging Molecule version 0.9.10.10
+
 commit 3900a1ef183757de4a11445df10d8df83752eabc
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Mon Jul 12 09:51:15 2010 +0200
