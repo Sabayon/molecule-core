@@ -1,3 +1,21 @@
+commit 3900a1ef183757de4a11445df10d8df83752eabc
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Mon Jul 12 09:51:15 2010 +0200
+
+    [molecule.plugins] in remaster_plugin, tar_plugin add support for release_version, release_desc, release_string, release_file metadata
+
+commit 46f659a01902aef733a4996cb6c8d0ac568c3375
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Jul 4 20:44:52 2010 +0200
+
+    [examples] add basic openvz template .spec file examples
+
+commit 17976da25ddde263a4cf47ec96015f2bdddb4adf
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Tue Jun 29 11:30:15 2010 +0200
+
+    Tagging Molecule version 0.9.10.3
+
 commit 8c41c2f5cebe251b103f88409eefd8f5b5cd34f4
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Tue Jun 29 11:29:40 2010 +0200
