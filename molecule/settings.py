@@ -235,16 +235,18 @@ class SpecParser:
         old_key = None
         for line in data:
             key = None
-            if ":" in line:
-                key, value = self.parse_line_statement(line)
-                if key is None:
-                    continue
+            value = None
+            v_key, v_value = self.parse_line_statement(line)
+            check_dict = self.parser_data_path.get(v_key)
+            if check_dict is not None:
+                key, value = v_key, v_value
                 old_key = key
             elif isinstance(old_key, get_stringtype()):
                 key = old_key
                 value = line.strip()
                 if not value:
                     continue
+            # gather again... key is changed
             check_dict = self.parser_data_path.get(key)
             if not isinstance(check_dict, dict):
                 continue
