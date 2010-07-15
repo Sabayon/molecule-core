@@ -1,3 +1,27 @@
+commit 304450d4b98a264405d7667cc45b57bcd48082da
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Jul 15 16:54:33 2010 +0200
+
+    [examples] update molecule .spec example files
+
+commit e3cffbb10e1cc63048dfcdcdd52b23290623b336
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Jul 15 16:50:28 2010 +0200
+
+    [molecule.specs.plugins.tar_plugin] make "tar_name" parameter working, remove unused "merge_livecd_root"
+
+commit 2043c147aa0b691a71200863ac51aaf5272e1af7
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Jul 15 08:50:03 2010 +0200
+
+    [examples] remove unavailable parameters "pre_iso_script", "post_iso_script" from molecule iso_to_tar template
+
+commit 8565d9677b265a168cc8cfedafa6a99f3cdc8a6e
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Mon Jul 12 16:29:58 2010 +0200
+
+    Tagging Molecule version 0.9.10.11
+
 commit df0b7c362551a5ea9fb196a3c003a864e1de845b
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Mon Jul 12 16:27:14 2010 +0200
