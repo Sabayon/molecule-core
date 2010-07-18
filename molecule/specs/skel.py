@@ -106,12 +106,13 @@ class GenericExecutionStep:
         self.spec_path = spec_path
         self.metadata = metadata
         self.spec_name = os.path.basename(self.spec_path)
-        self._export_release_info()
+        self._export_generic_info()
 
-    def _export_release_info(self):
+    def _export_generic_info(self):
         os.environ['RELEASE_STRING'] = self.metadata.get('release_string', '')
         os.environ['RELEASE_VERSION'] = self.metadata.get('release_version', '')
         os.environ['RELEASE_DESC'] = self.metadata.get('release_desc', '')
+        os.environ['PRECHROOT'] = self.metadata.get('prechroot', '')
 
     def setup(self):
         """
