@@ -1,3 +1,51 @@
+commit c484bf43b63a52c2fa57327950ad34350ae6afd2
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Wed Jul 21 01:55:46 2010 +0200
+
+    [molecule.specs.plugins.tar_plugin] generate .md5 for created tar file
+
+commit 9549efa896a8e0d6bc98a558f2315595fc079817
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Wed Jul 21 01:53:01 2010 +0200
+
+    [molecule.specs.plugins.tar_plugin] add inner_chroot_script_after support
+
+commit 6be039132f2fba7acc8d67c70a3ed1516c8ac51d
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Mon Jul 19 00:26:07 2010 +0200
+
+    [molecule] update TODO
+
+commit c761d128cf91046cf131ec594625c695a8089615
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Jul 18 22:56:09 2010 +0200
+
+    [molecule.specs.skel] export prechroot variable to environment
+
+commit f9dc3d0ed96afd30dec4b93df1dc39c09596f4a7
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Fri Jul 16 01:06:23 2010 +0200
+
+    [examples] update openvz .spec files
+
+commit f9aa862a20bf29277dea616b325186331e220276
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Fri Jul 16 01:00:16 2010 +0200
+
+    [examples] update openvz .spec files
+
+commit 7a2019e54571e3602d5b9aa0311849c66157e6f3
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Jul 15 17:04:10 2010 +0200
+
+    [examples] remove old OpenVZ .spec file examples
+
+commit e9a6f805224c0155e8903e85c59d19f80bfb3569
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Jul 15 16:55:20 2010 +0200
+
+    Tagging Molecule version 0.9.10.20
+
 commit 304450d4b98a264405d7667cc45b57bcd48082da
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Thu Jul 15 16:54:33 2010 +0200
