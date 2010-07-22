@@ -112,7 +112,7 @@ class GenericExecutionStep:
         os.environ['RELEASE_STRING'] = self.metadata.get('release_string', '')
         os.environ['RELEASE_VERSION'] = self.metadata.get('release_version', '')
         os.environ['RELEASE_DESC'] = self.metadata.get('release_desc', '')
-        os.environ['PRECHROOT'] = self.metadata.get('prechroot', '')
+        os.environ['PRECHROOT'] = ' '.join(self.metadata.get('prechroot', []))
 
     def setup(self):
         """
