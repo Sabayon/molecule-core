@@ -1,3 +1,15 @@
+commit c50c69aa20a239a51ae1bc0d98824f34dc4cdc31
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Jul 22 13:54:56 2010 +0200
+
+    [molecule.specs.skel] fix regression, 'prechroot' variable is list, not str
+
+commit 582a1e73542cf46762ad24a578929ec2718da312
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Wed Jul 21 01:56:47 2010 +0200
+
+    Tagging Molecule version 0.9.11
+
 commit c484bf43b63a52c2fa57327950ad34350ae6afd2
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Wed Jul 21 01:55:46 2010 +0200
