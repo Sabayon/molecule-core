@@ -51,7 +51,9 @@ def exec_cmd(args):
     # wildcards automatically ==> rsync no workie
     return subprocess.call(' '.join(args), shell = True)
 
-def exec_chroot_cmd(args, chroot, pre_chroot = []):
+def exec_chroot_cmd(args, chroot, pre_chroot = None):
+    if pre_chroot is None:
+        pre_chroot = []
     pid = os.fork()
     if pid == 0:
         os.chroot(chroot)
