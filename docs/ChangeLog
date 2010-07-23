@@ -1,3 +1,27 @@
+commit 7fab6a3956bccac67c9a8ec44167c96b6c953d27
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Fri Jul 23 11:11:56 2010 +0200
+
+    [molecule.specs.plugins.tar_plugin] add "pre_tar_script" and "post_tar_script" parameters support (see example)
+
+commit d5739d7f617eb7481091a1a954966e4a4ac25539
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Fri Jul 23 11:11:37 2010 +0200
+
+    [molecule.specs.builtin_plugin] trivial comment update
+
+commit 2d2dbcff4027125e02d4f90130fc745ab7577357
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Fri Jul 23 11:01:56 2010 +0200
+
+    [molecule/examples] add more documentation to "pre_iso_script", and document "post_iso_script"
+
+commit 0ebe0e4179d9aca25bf8f95e494aa1e91a69f7fc
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Fri Jul 23 10:49:16 2010 +0200
+
+    Tagging Molecule version 0.9.11.2
+
 commit 39bbd73d327bf011bc62ae8e5dd849a818abdaf2
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Fri Jul 23 10:41:03 2010 +0200
