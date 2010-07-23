@@ -1,3 +1,33 @@
+commit 39bbd73d327bf011bc62ae8e5dd849a818abdaf2
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Fri Jul 23 10:41:03 2010 +0200
+
+    [molecule.specs.plugins] BuiltinHandlerMixin._exec_inner_script: rework in-chroot exec files handling
+
+commit 2ce1c71664d4e3f74e02159466580eba8bd0b8f6
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Fri Jul 23 10:40:44 2010 +0200
+
+    [molecule.utils] exec_chroot_cmd: tweak default args
+
+commit 803136263e8e5197a57e4b84dd0f6de3e2b98d17
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Jul 22 14:34:09 2010 +0200
+
+    [molecule.examples.scripts] update more example scripts
+
+commit 082e85f2bee38414a6a161710103e51c432c07ea
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Jul 22 14:18:09 2010 +0200
+
+    [molecule.examples.scripts] update example scripts to work with Entropy >=0.99.48
+
+commit b3f2c8831bb6120209211732473ec1a4d0daa1ca
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Jul 22 13:55:51 2010 +0200
+
+    Tagging Molecule version 0.9.11.1
+
 commit c50c69aa20a239a51ae1bc0d98824f34dc4cdc31
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Thu Jul 22 13:54:56 2010 +0200
