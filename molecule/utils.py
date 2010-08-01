@@ -19,6 +19,7 @@
 import os
 import sys
 import time
+import tempfile
 import subprocess
 import shutil
 
@@ -27,18 +28,33 @@ from molecule.compat import convert_to_rawstring
 RUNNING_PIDS = set()
 
 def get_year():
+    """
+    Return current year string.
+    """
     return time.strftime("%Y")
 
 def valid_exec_check(path):
-    with open("/dev/null", "w") as f:
-        p = subprocess.Popen([path], stdout = f, stderr = f)
+    """
+    Determine whethern give path is valid executable (by running it).
+    """
+    tmp_fd, tmp_path = tempfile.mkstemp()
+    try:
+        p = subprocess.Popen([path], stdout = tmp_fd, stderr = tmp_fd)
         rc = p.wait()
         if rc == 127:
             raise EnvironmentError("EnvironmentError: %s not found" % (path,))
+    finally:
+        os.close(tmp_fd)
+        os.remove(tmp_path)
 
 def is_exec_available(exec_name):
+    """
+    Determine whether given executable name is available in PATH.
+    PATH must be set in environment.
+    """
     paths = os.getenv("PATH")
-    if not paths: return False
+    if not paths:
+        return False
     paths = paths.split(":")
     for path in paths:
         path = os.path.join(path, exec_name)
@@ -52,6 +68,9 @@ def exec_cmd(args):
     return subprocess.call(' '.join(args), shell = True)
 
 def exec_chroot_cmd(args, chroot, pre_chroot = None):
+    """
+    Execute a command inside a chroot.
+    """
     if pre_chroot is None:
         pre_chroot = []
     pid = os.fork()
@@ -68,6 +87,9 @@ def exec_chroot_cmd(args, chroot, pre_chroot = None):
         return rc
 
 def empty_dir(dest_dir):
+    """
+    Remove the content of a directory in a safe way.
+    """
     for el in os.listdir(dest_dir):
         el = os.path.join(dest_dir, el)
         if os.path.isfile(el) or os.path.islink(el):
@@ -79,9 +101,15 @@ def empty_dir(dest_dir):
 
 # using subprocess.call to not care about wildcards
 def remove_path(path):
+    """
+    Remove path, calling "rm -rf path".
+    """
     return subprocess.call('rm -rf %s' % (path,), shell = True)
 
 def remove_path_sandbox(path, sandbox_env):
+    """
+    Remove path, using a sandbox.
+    """
     p = subprocess.Popen(' '.join(["sandbox", "rm", "-rf", path]),
         stdout = sys.stdout, stderr = sys.stderr,
         env = sandbox_env, shell = True
@@ -89,9 +117,15 @@ def remove_path_sandbox(path, sandbox_env):
     return p.wait()
 
 def get_random_number():
+    """
+    Get a random number, it uses os.urandom()
+    """
     return abs(hash(os.urandom(2)))%99999
 
 def md5sum(filepath):
+    """
+    Calcuate md5 hash of given file path.
+    """
     import hashlib
     m = hashlib.md5()
     readfile = open(filepath, "rb")
@@ -103,6 +137,9 @@ def md5sum(filepath):
     return m.hexdigest()
 
 def copy_dir(src_dir, dest_dir):
+    """
+    Copy a directory src (src_dir) to dst (dest_dir) using cp -Rap.
+    """
     args = ["cp", "-Rap", src_dir, dest_dir]
     return exec_cmd(args)
 
