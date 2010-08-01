@@ -28,6 +28,13 @@ class GenericSpecFunctions(object):
     def ne_list(self, x):
         return x
 
+    def valid_integer(self, x):
+        try:
+            int(x)
+        except (TypeError, ValueError,):
+            return False
+        return True
+
     def always_valid(self, *args):
         return True
 
