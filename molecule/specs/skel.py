@@ -153,6 +153,15 @@ class GenericSpec(GenericSpecFunctions):
     BASE_PLUGIN_API_VERSION = 0
 
     @staticmethod
+    def require_super_user():
+        """
+        Determine whether super user access is required in order to execute
+        the given GenericSpec subclass. Default: True. Please override if
+        you allow unprivileged user execution.
+        """
+        return True
+
+    @staticmethod
     def execution_strategy():
         """
         Return a string that describes the supported execution strategy.

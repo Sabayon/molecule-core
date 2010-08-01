@@ -33,6 +33,12 @@ def get_year():
     """
     return time.strftime("%Y")
 
+def is_super_user():
+    """
+    Return True if current process has uid = 0.
+    """
+    return os.getuid() == 0
+
 def valid_exec_check(path):
     """
     Determine whethern give path is valid executable (by running it).
