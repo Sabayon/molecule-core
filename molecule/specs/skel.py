@@ -53,6 +53,9 @@ class GenericSpecFunctions(object):
     def ve_string_splitter(self, x):
         return convert_to_unicode(x).strip().split()
 
+    def ve_integer_converter(self, x):
+        return int(x)
+
     def valid_exec(self, x):
         molecule.utils.is_exec_available(x)
         return x
