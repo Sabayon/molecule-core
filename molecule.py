@@ -53,11 +53,15 @@ for el in molecule_data_order:
     try:
         rc = my.run()
     except KeyboardInterrupt:
+        while True:
+            my.kill()
+            kill_pids()
+            break
+        raise SystemExit(1)
+    while True:
         my.kill()
         kill_pids()
-        raise SystemExit(1)
-    my.kill()
-    kill_pids()
+        break
     if rc != 0:
         raise SystemExit(rc)
 raise SystemExit(0)
