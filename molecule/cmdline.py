@@ -25,6 +25,12 @@ from molecule.settings import SpecParser, Configuration
 
 def parse():
 
+    """
+    Parse .spec files passed in sys.argv and returns a tuple composed by
+    a dict (key=spec file, value=metadata) and a list (spec file order).
+    Can return None if an error occurs.
+    """
+
     args_to_remove = ["--nocolor"]
     data = {}
 
@@ -39,6 +45,16 @@ def parse():
         if arg in myargs:
             myargs.remove(arg)
 
+    def check_super_user(el_data):
+        # check is super user is required
+        su_required = el_data['__plugin__'].require_super_user()
+        if su_required and (not super_user):
+            molecule.output.print_error("%s: %s" % (el,
+                _("required super user access"),))
+            return False
+        return True
+
+    super_user = molecule.utils.is_super_user()
     data_order = []
     for el in myargs:
         if os.path.isfile(el) and os.access(el, os.R_OK):
@@ -46,6 +62,9 @@ def parse():
             el_data = obj.parse()
             del obj
             if el_data:
+                good = check_super_user(el_data)
+                if not good:
+                    return None
                 data_order.append(el)
                 data[el] = el_data
     return data, data_order

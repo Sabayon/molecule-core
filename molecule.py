@@ -25,28 +25,19 @@ sys.path.insert(0,'molecule/')
 sys.path.insert(0,'.')
 import molecule.cmdline
 from molecule.handlers import Runner
-from molecule.utils import RUNNING_PIDS, is_super_user
-from molecule.i18n import _
+from molecule.utils import RUNNING_PIDS
 
 def kill_pids():
     for pid in RUNNING_PIDS:
         os.kill(pid, signal.SIGTERM)
 
-molecule_data, molecule_data_order = molecule.cmdline.parse()
+parse_data = molecule.cmdline.parse()
+if parse_data is None:
+    raise SystemExit(1)
+molecule_data, molecule_data_order = parse_data
 if not molecule_data_order:
     molecule.cmdline.print_help()
     raise SystemExit(1)
-
-super_user = is_super_user()
-for el in molecule_data_order:
-    spec_data = molecule_data.get(el)
-    if spec_data is None:
-        # wtf
-        continue
-    super_user_required = spec_data['__plugin__'].require_super_user()
-    if super_user_required and (not super_user):
-        sys.stderr.write("%s: %s\n" % (el, _("required super user access"),))
-        raise SystemExit(1)
 
 for el in molecule_data_order:
     my = Runner(el, molecule_data.get(el))
