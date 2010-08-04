@@ -36,10 +36,10 @@ def parse():
 
     myargs = sys.argv[1:]
 
-    if "--help" in myargs:
-        return data, []
     if "--nocolor" in myargs:
         molecule.output.nocolor()
+    if "--help" in myargs:
+        return data, []
 
     for arg in args_to_remove:
         if arg in myargs:
