@@ -1,3 +1,5 @@
-- API documentation
+- Unit tests
+- API documentation generation
+- use signal handlers for kill() ?
 - User documentation
-- add --debug switch
+
