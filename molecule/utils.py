@@ -22,10 +22,13 @@ import time
 import tempfile
 import subprocess
 import shutil
+import random
+random.seed()
 
 from molecule.compat import convert_to_rawstring
 
 RUNNING_PIDS = set()
+
 
 def get_year():
     """
@@ -137,7 +140,7 @@ def get_random_number():
     """
     Get a random number, it uses os.urandom()
     """
-    return abs(hash(os.urandom(2)))%99999
+    return random.randint(0, 99999)
 
 def md5sum(filepath):
     """
