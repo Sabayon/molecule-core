@@ -73,6 +73,17 @@ def exec_cmd(args):
     # wildcards automatically ==> rsync no workie
     return subprocess.call(' '.join(args), shell = True)
 
+def exec_cmd_get_status_output(args):
+    """Return (status, output) of executing cmd in a shell."""
+    pipe = os.popen('{ ' + ' '.join(args) + '; } 2>&1', 'r')
+    text = pipe.read()
+    sts = pipe.close()
+    if sts is None:
+        sts = 0
+    if text[-1:] == '\n':
+        text = text[:-1]
+    return sts, text
+
 def exec_chroot_cmd(args, chroot, pre_chroot = None):
     """
     Execute a command inside a chroot.
