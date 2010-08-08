@@ -1,0 +1,408 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-08-08 23:39+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../molecule/cmdline.py:53
+msgid "required super user access"
+msgstr ""
+
+#: ../molecule/cmdline.py:80
+msgid "Basic Options"
+msgstr ""
+
+#: ../molecule/cmdline.py:82
+msgid "this output"
+msgstr ""
+
+#: ../molecule/cmdline.py:83
+msgid "disable colorized output"
+msgstr ""
+
+#: ../molecule/cmdline.py:85
+msgid "Application Options"
+msgstr ""
+
+#: ../molecule/cmdline.py:87
+msgid "execute against specified specification files"
+msgstr ""
+
+#: ../molecule/handlers.py:39
+msgid "preparing execution"
+msgstr ""
+
+#: ../molecule/handlers.py:45
+msgid "executing"
+msgstr ""
+
+#: ../molecule/handlers.py:83
+msgid "All done"
+msgstr ""
+
+#: ../molecule/output.py:667
+msgid "Molecule needs your attention"
+msgstr ""
+
+#: ../molecule/output.py:752 ../molecule/output.py:989
+msgid "Yes"
+msgstr ""
+
+#: ../molecule/output.py:752
+msgid "No"
+msgstr ""
+
+#: ../molecule/output.py:767
+msgid "Molecule got a question for you"
+msgstr ""
+
+#: ../molecule/output.py:781
+msgid "Interrupted"
+msgstr ""
+
+#: ../molecule/output.py:841
+msgid "Selected number"
+msgstr ""
+
+#: ../molecule/output.py:856
+msgid "Please select an option"
+msgstr ""
+
+#: ../molecule/output.py:858
+msgid "Discard all"
+msgstr ""
+
+#: ../molecule/output.py:859
+msgid "Confirm"
+msgstr ""
+
+#: ../molecule/output.py:860
+msgid "Add item"
+msgstr ""
+
+#: ../molecule/output.py:861
+msgid "Edit item"
+msgstr ""
+
+#: ../molecule/output.py:862
+msgid "Remove item"
+msgstr ""
+
+#: ../molecule/output.py:863
+msgid "Show current list"
+msgstr ""
+
+#: ../molecule/output.py:867
+msgid "Your choice (type a number and press enter):"
+msgstr ""
+
+#: ../molecule/output.py:899
+msgid "You don't have typed a number."
+msgstr ""
+
+#: ../molecule/output.py:902
+msgid "Invalid action."
+msgstr ""
+
+#: ../molecule/output.py:912
+msgid "String to add (-1 to go back):"
+msgstr ""
+
+#: ../molecule/output.py:922
+msgid "Invalid string."
+msgstr ""
+
+#: ../molecule/output.py:930
+msgid "Element number to edit (-1 to go back):"
+msgstr ""
+
+#: ../molecule/output.py:941
+msgid "old"
+msgstr ""
+
+#: ../molecule/output.py:941
+msgid "new value:"
+msgstr ""
+
+#: ../molecule/output.py:949 ../molecule/output.py:967
+msgid "Invalid element."
+msgstr ""
+
+#: ../molecule/output.py:958
+msgid "Element number to remove (-1 to go back):"
+msgstr ""
+
+#: ../molecule/specs/plugins/builtin_plugin.py:52
+#: ../molecule/specs/plugins/builtin_plugin.py:165
+#: ../molecule/specs/plugins/builtin_plugin.py:211
+#: ../molecule/specs/plugins/builtin_plugin.py:310
+#: ../molecule/specs/plugins/builtin_plugin.py:428
+#: ../molecule/specs/plugins/builtin_plugin.py:531
+#: ../molecule/specs/plugins/builtin_plugin.py:560
+#: ../molecule/specs/plugins/builtin_plugin.py:601
+#: ../molecule/specs/plugins/image_plugin.py:121
+#: ../molecule/specs/plugins/image_plugin.py:182
+#: ../molecule/specs/plugins/image_plugin.py:220
+#: ../molecule/specs/plugins/image_plugin.py:238
+#: ../molecule/specs/plugins/image_plugin.py:461
+#: ../molecule/specs/plugins/remaster_plugin.py:83
+#: ../molecule/specs/plugins/remaster_plugin.py:112
+#: ../molecule/specs/plugins/tar_plugin.py:75
+#: ../molecule/specs/plugins/tar_plugin.py:146
+msgid "spawning"
+msgstr ""
+
+#: ../molecule/specs/plugins/builtin_plugin.py:83
+msgid "inner chroot hook failed"
+msgstr ""
+
+#: ../molecule/specs/plugins/builtin_plugin.py:107
+#: ../molecule/specs/plugins/builtin_plugin.py:200
+#: ../molecule/specs/plugins/builtin_plugin.py:381
+#: ../molecule/specs/plugins/builtin_plugin.py:516
+#: ../molecule/specs/plugins/image_plugin.py:109
+#: ../molecule/specs/plugins/remaster_plugin.py:71
+#: ../molecule/specs/plugins/tar_plugin.py:61
+msgid "executing pre_run"
+msgstr ""
+
+#: ../molecule/specs/plugins/builtin_plugin.py:119
+msgid "inner_source_chroot_script failed"
+msgstr ""
+
+#: ../molecule/specs/plugins/builtin_plugin.py:127
+msgid "pre_run completed successfully"
+msgstr ""
+
+#: ../molecule/specs/plugins/builtin_plugin.py:136
+#: ../molecule/specs/plugins/builtin_plugin.py:228
+#: ../molecule/specs/plugins/builtin_plugin.py:395
+#: ../molecule/specs/plugins/builtin_plugin.py:548
+#: ../molecule/specs/plugins/remaster_plugin.py:156
+#: ../molecule/specs/plugins/tar_plugin.py:132
+msgid "executing post_run"
+msgstr ""
+
+#: ../molecule/specs/plugins/builtin_plugin.py:146
+#: ../molecule/specs/plugins/builtin_plugin.py:329
+#: ../molecule/specs/plugins/builtin_plugin.py:406
+#: ../molecule/specs/plugins/builtin_plugin.py:580
+#: ../molecule/specs/plugins/remaster_plugin.py:164
+msgid "executing kill"
+msgstr ""
+
+#: ../molecule/specs/plugins/builtin_plugin.py:155
+msgid "mirroring running"
+msgstr ""
+
+#: ../molecule/specs/plugins/builtin_plugin.py:172
+msgid "mirroring failed"
+msgstr ""
+
+#: ../molecule/specs/plugins/builtin_plugin.py:179
+msgid "mirroring completed successfully"
+msgstr ""
+
+#: ../molecule/specs/plugins/builtin_plugin.py:218
+msgid "outer chroot hook failed"
+msgstr ""
+
+#: ../molecule/specs/plugins/builtin_plugin.py:238
+msgid "emptying dir"
+msgstr ""
+
+#: ../molecule/specs/plugins/builtin_plugin.py:259
+msgid "removing dir"
+msgstr ""
+
+#: ../molecule/specs/plugins/builtin_plugin.py:266
+msgid "removal failed for"
+msgstr ""
+
+#: ../molecule/specs/plugins/builtin_plugin.py:280
+msgid "release file creation failed, not a file"
+msgstr ""
+
+#: ../molecule/specs/plugins/builtin_plugin.py:297
+msgid "release file creation failed, system error"
+msgstr ""
+
+#: ../molecule/specs/plugins/builtin_plugin.py:317
+msgid "outer chroot hook (after inner) failed"
+msgstr ""
+
+#: ../molecule/specs/plugins/builtin_plugin.py:338
+#: ../molecule/specs/plugins/remaster_plugin.py:260
+msgid "hooks running"
+msgstr ""
+
+#: ../molecule/specs/plugins/builtin_plugin.py:353
+msgid "hooks completed succesfully"
+msgstr ""
+
+#: ../molecule/specs/plugins/builtin_plugin.py:387
+msgid "preparing environment"
+msgstr ""
+
+#: ../molecule/specs/plugins/builtin_plugin.py:415
+#: ../molecule/specs/plugins/tar_plugin.py:92
+msgid "compressing chroot"
+msgstr ""
+
+#: ../molecule/specs/plugins/builtin_plugin.py:435
+#: ../molecule/specs/plugins/tar_plugin.py:112
+msgid "chroot compression failed"
+msgstr ""
+
+#: ../molecule/specs/plugins/builtin_plugin.py:441
+msgid "chroot compressed successfully"
+msgstr ""
+
+#: ../molecule/specs/plugins/builtin_plugin.py:451
+msgid "merging livecd root"
+msgstr ""
+
+#: ../molecule/specs/plugins/builtin_plugin.py:538
+msgid "pre iso hook failed"
+msgstr ""
+
+#: ../molecule/specs/plugins/builtin_plugin.py:567
+msgid "post iso hook failed"
+msgstr ""
+
+#: ../molecule/specs/plugins/builtin_plugin.py:589
+msgid "building ISO image"
+msgstr ""
+
+#: ../molecule/specs/plugins/builtin_plugin.py:608
+msgid "ISO image build failed"
+msgstr ""
+
+#: ../molecule/specs/plugins/builtin_plugin.py:615
+msgid "built ISO image"
+msgstr ""
+
+#: ../molecule/specs/plugins/builtin_plugin.py:621
+#: ../molecule/specs/plugins/image_plugin.py:441
+#: ../molecule/specs/plugins/tar_plugin.py:118
+msgid "generating md5 for"
+msgstr ""
+
+#: ../molecule/specs/plugins/image_plugin.py:67
+#: ../molecule/specs/plugins/image_plugin.py:77
+#: ../molecule/specs/plugins/image_plugin.py:89
+msgid "setup hook failed"
+msgstr ""
+
+#: ../molecule/specs/plugins/image_plugin.py:67
+msgid "cannot setup loop device"
+msgstr ""
+
+#: ../molecule/specs/plugins/image_plugin.py:77
+msgid "cannot create temporary file"
+msgstr ""
+
+#: ../molecule/specs/plugins/image_plugin.py:89
+msgid "cannot bind loop device"
+msgstr ""
+
+#: ../molecule/specs/plugins/image_plugin.py:128
+msgid "pre image hook failed"
+msgstr ""
+
+#: ../molecule/specs/plugins/image_plugin.py:146
+msgid "generating random base image file"
+msgstr ""
+
+#: ../molecule/specs/plugins/image_plugin.py:153
+msgid "generating zeroed base image file"
+msgstr ""
+
+#: ../molecule/specs/plugins/image_plugin.py:189
+msgid "image file resize failed"
+msgstr ""
+
+#: ../molecule/specs/plugins/image_plugin.py:197
+#: ../molecule/specs/plugins/image_plugin.py:418
+msgid "run hook called"
+msgstr ""
+
+#: ../molecule/specs/plugins/image_plugin.py:209
+msgid "image file generation failed"
+msgstr ""
+
+#: ../molecule/specs/plugins/image_plugin.py:227
+msgid "image formatter hook failed"
+msgstr ""
+
+#: ../molecule/specs/plugins/image_plugin.py:245
+msgid "image mount failed"
+msgstr ""
+
+#: ../molecule/specs/plugins/image_plugin.py:267
+msgid "unable to umount loop device"
+msgstr ""
+
+#: ../molecule/specs/plugins/image_plugin.py:286
+msgid "unable to kill loop device"
+msgstr ""
+
+#: ../molecule/specs/plugins/image_plugin.py:300
+msgid "unable to remove temp. loop device file"
+msgstr ""
+
+#: ../molecule/specs/plugins/image_plugin.py:314
+msgid "unable to close temp fd"
+msgstr ""
+
+#: ../molecule/specs/plugins/image_plugin.py:359
+#: ../molecule/specs/plugins/remaster_plugin.py:184
+#: ../molecule/specs/plugins/remaster_plugin.py:202
+#: ../molecule/specs/plugins/remaster_plugin.py:214
+msgid "unable to remove temp. dir"
+msgstr ""
+
+#: ../molecule/specs/plugins/image_plugin.py:418
+msgid "moving image file to destination"
+msgstr ""
+
+#: ../molecule/specs/plugins/image_plugin.py:435
+msgid "built image"
+msgstr ""
+
+#: ../molecule/specs/plugins/image_plugin.py:468
+msgid "post image hook failed"
+msgstr ""
+
+#: ../molecule/specs/plugins/remaster_plugin.py:90
+msgid "iso mount failed"
+msgstr ""
+
+#: ../molecule/specs/plugins/remaster_plugin.py:119
+msgid "squash mount failed"
+msgstr ""
+
+#: ../molecule/specs/plugins/remaster_plugin.py:131
+msgid "iso unpacker running"
+msgstr ""
+
+#: ../molecule/specs/plugins/tar_plugin.py:82
+msgid "pre tar hook failed"
+msgstr ""
+
+#: ../molecule/specs/plugins/tar_plugin.py:153
+msgid "post tar hook failed"
+msgstr ""
