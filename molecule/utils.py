@@ -142,6 +142,16 @@ def get_random_number():
     """
     return random.randint(0, 99999)
 
+def get_random_str(str_len):
+    """
+    Return a random string of length str_len. It uses os.urandom()
+    @param str_len: byte length
+    @type str_len: int
+    @return: random string
+    @rtype: str
+    """
+    return os.urandom(str_len)
+
 def md5sum(filepath):
     """
     Calcuate md5 hash of given file path.
