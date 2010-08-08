@@ -68,10 +68,10 @@ def is_exec_available(exec_name):
             return True
     return False
 
-def exec_cmd(args):
+def exec_cmd(args, env = None):
     # do not use Popen otherwise it will try to replace
     # wildcards automatically ==> rsync no workie
-    return subprocess.call(' '.join(args), shell = True)
+    return subprocess.call(' '.join(args), shell = True, env = env)
 
 def exec_cmd_get_status_output(args):
     """Return (status, output) of executing cmd in a shell."""
@@ -84,7 +84,7 @@ def exec_cmd_get_status_output(args):
         text = text[:-1]
     return sts, text
 
-def exec_chroot_cmd(args, chroot, pre_chroot = None):
+def exec_chroot_cmd(args, chroot, pre_chroot = None, env = None):
     """
     Execute a command inside a chroot.
     """
@@ -95,7 +95,7 @@ def exec_chroot_cmd(args, chroot, pre_chroot = None):
         os.chroot(chroot)
         os.chdir("/")
         myargs = pre_chroot+args
-        rc = subprocess.call(myargs)
+        rc = subprocess.call(myargs, env = env)
         os._exit(rc)
     else:
         RUNNING_PIDS.add(pid)
