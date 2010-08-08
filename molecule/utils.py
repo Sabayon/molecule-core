@@ -119,6 +119,14 @@ def empty_dir(dest_dir):
             if os.path.isdir(el):
                 os.rmdir(el)
 
+def mkdtemp(suffix=''):
+    """
+    Generate a reliable temporary directory inside /var/tmp starting with
+    "molecule".
+    """
+    return tempfile.mkdtemp(prefix = "molecule", dir = "/var/tmp",
+        suffix = suffix)
+
 # using subprocess.call to not care about wildcards
 def remove_path(path):
     """
