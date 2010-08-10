@@ -1,3 +1,192 @@
+commit 59f241dcaa82c2dc37fcbd9fdb65157d6e4216a6
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Aug 8 23:50:02 2010 +0200
+
+    [molecule.specs.plugins] image_plugin: save one function call by calling os.urandom() directly
+
+commit 0be6cc56d126ad5cb1342020406b2ad15a946ba1
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Aug 8 23:43:17 2010 +0200
+
+    [po] add molecule.pot, it was missing
+
+commit 88a3a9348f34b79cda923c6e1d6caff66d80d191
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Aug 8 23:43:02 2010 +0200
+
+    [todo] update TODO
+
+commit 1a0fdbc2476ab15d64ceec9c785572b7095937dd
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Aug 8 23:42:55 2010 +0200
+
+    [po] update translations
+
+commit 3e918c703c0bda1db2d91ee55d1c21a137402461
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Aug 8 23:41:57 2010 +0200
+
+    [molecule.specs.plugins] introduce iso_to_image plugin.
+    
+    This plugin allows to build filesystem images (user can define the
+    filesystem type) off an ISO image.
+
+commit 91242f37445c577956ac08af6c49cfe821327714
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Aug 8 23:40:00 2010 +0200
+
+    [molecule.specs.plugins.remaster] warn if something in IsoUnpackHandler.kill() fails
+
+commit dfb187fd824449a00666d77e7e553cf655932dde
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Aug 8 18:36:46 2010 +0200
+
+    [molecule.specs.plugins] use molecule.utils.mkdtemp()
+
+commit e78499849bb23f451fa7a55296a9d576449249e4
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Aug 8 18:33:31 2010 +0200
+
+    [molecule.utils] add mkdtemp()
+
+commit baf978dac3620710809a095cd6db7def82d85343
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Aug 8 18:32:50 2010 +0200
+
+    [molecule.specs] make possible to subclass IsoUnpackerHandler easily
+
+commit ea2edc7297e244458b6bfc74f5ed83e6e4c2e074
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Aug 8 17:42:04 2010 +0200
+
+    [molecule.utils] add get_random_str()
+
+commit c75dd2f43df2842ee400b768ff90cd2065140746
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Aug 8 17:41:03 2010 +0200
+
+    [molecule.settings] squashfs and iso images have to be mounted read-only
+
+commit 8a84fb62d4c9ed36624c3940f0311cb52788afdf
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Aug 8 16:11:44 2010 +0200
+
+    [molecule.specs] improve hooks execution reliability, do not taint application environment with hooks specific stuff
+
+commit 0badcb861323f5b67e606cd183bee88aad8b839f
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Aug 8 15:54:43 2010 +0200
+
+    [molecule.utils] improve random numbers generation
+
+commit 601b9cd752eac5a3be96f25a119b98fec6f72698
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Aug 8 15:45:58 2010 +0200
+
+    [molecule.utils] add "env" keyword argument to exec_chroot_cmd and exec_cmd
+
+commit de15e642880f2bd118b65f2aa4e41c06b045660c
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Aug 8 15:45:28 2010 +0200
+
+    [molecule.specs.plugins] properly use molecule.utils.exec_chroot_cmd()
+
+commit c9631810c5f561585a11d9a9cba9753ca52d1e94
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Aug 8 15:39:09 2010 +0200
+
+    [molecule.examples] update spinbase-openvz-template.common, remove env vars not set for error_script
+
+commit ce224a517e5feed68e06a6de0052f9737ad64112
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Aug 8 15:25:36 2010 +0200
+
+    [molecule.settings] use absolute paths for hard-coded executables
+
+commit 1ceb5b7be9257201b12e7cd89d49dee2b2b58429
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Aug 8 15:21:02 2010 +0200
+
+    [molecule.plugins] safely using mkstemp()
+
+commit fa3530c7e896ef8f2dcffe47922793ec7edbeaab
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Aug 8 15:08:36 2010 +0200
+
+    [molecule.utils] add exec_cmd_get_status_output function
+
+commit 87c475aadd25b8c7ffdf658351701a9283fdf25e
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Aug 8 15:08:02 2010 +0200
+
+    [molecule.specs.plugins] always return int from GenericExecutionStep.setup()
+
+commit a345bbf5815c0a57734432295fb8a5b6b18f18ec
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Wed Aug 4 23:53:24 2010 +0200
+
+    [molecule] place --nocolor handling before --help, close bug 1685
+
+commit e67f9e308a9a46d8acf8d788ad1bdf5c1505227f
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Mon Aug 2 10:12:35 2010 +0200
+
+    [molecule.cmdline] move super user checks into molecule.cmdline
+
+commit 70b531fee9a0bb791330e0629ef41ba23706dc40
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Mon Aug 2 10:04:22 2010 +0200
+
+    [molecule] catch KeyboardInterrupt by running kill phase in while loop
+
+commit 570ab977d11ee21c021a6b4f03d2c312720dc7d0
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Aug 1 22:49:47 2010 +0200
+
+    [molecule.specs] GenericSpecFunctions: add ve_integer_converter()
+
+commit b68e6dfd452075ac6ef2f2439f7fdc26711358bd
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Aug 1 22:47:33 2010 +0200
+
+    [molecule] GenericSpecFunctions: add valid_integer()
+
+commit 0495f25a814568637024c6acec2f5bbae1a888ae
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Aug 1 18:21:11 2010 +0200
+
+    [molecule] add support for enforcing super user privileges requirements
+
+commit 83dd67e84b044b577218a491f4231ea1498d2417
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Aug 1 18:10:01 2010 +0200
+
+    [molecule.utils] add some documentation
+
+commit f57c580238692b4b635ac450db8a85847deb3da4
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Aug 1 18:03:50 2010 +0200
+
+    [specs] fix typo in example file
+
+commit 038bdd00f2491687b3f5aa69e922c71e872ac5ce
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Fri Jul 23 11:47:38 2010 +0200
+
+    [molecule.examples.specs] update GNOME/KDE spec files
+
+commit 0106f11b1ec11269b3067ad2a3208a43f2b75502
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Fri Jul 23 11:45:36 2010 +0200
+
+    [molecule.examples.specs] update .spec files
+
+commit 8b01038fbf4ced9d7bd9ab011af9ecbecf4fe18b
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Fri Jul 23 11:13:08 2010 +0200
+
+    Tagging Molecule version 0.9.12
+
 commit 7fab6a3956bccac67c9a8ec44167c96b6c953d27
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Fri Jul 23 11:11:56 2010 +0200
