@@ -1,3 +1,15 @@
+commit 439afef7211de04968dd37b8b9abde6e33825ff2
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Wed Aug 11 11:23:43 2010 +0200
+
+    [molecule.specs.plugins.image_plugin] improve loop device removal logic
+
+commit 68a890dc40710b469073c1f2e4fd83b1b6c840b6
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Tue Aug 10 19:07:43 2010 +0200
+
+    Tagging Molecule version 0.9.20
+
 commit 59f241dcaa82c2dc37fcbd9fdb65157d6e4216a6
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Sun Aug 8 23:50:02 2010 +0200
