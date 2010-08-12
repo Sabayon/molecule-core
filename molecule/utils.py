@@ -17,6 +17,7 @@
 #    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 import os
+import errno
 import sys
 import time
 import tempfile
@@ -52,6 +53,10 @@ def valid_exec_check(path):
         rc = p.wait()
         if rc == 127:
             raise EnvironmentError("EnvironmentError: %s not found" % (path,))
+    except OSError as err:
+        if err.errno != errno.ENOENT:
+            raise
+        raise EnvironmentError("EnvironmentError: %s not found" % (path,))
     finally:
         os.close(tmp_fd)
         os.remove(tmp_path)
@@ -134,12 +139,16 @@ def remove_path(path):
     """
     return subprocess.call('rm -rf %s' % (path,), shell = True)
 
-def remove_path_sandbox(path, sandbox_env):
+def remove_path_sandbox(path, sandbox_env, stdout = None, stderr = None):
     """
     Remove path, using a sandbox.
     """
+    if stdout is None:
+        stdout = sys.stdout
+    if stderr is None:
+        stderr = sys.stderr
     p = subprocess.Popen(' '.join(["sandbox", "rm", "-rf", path]),
-        stdout = sys.stdout, stderr = sys.stderr,
+        stdout = stdout, stderr = stderr,
         env = sandbox_env, shell = True
     )
     return p.wait()
