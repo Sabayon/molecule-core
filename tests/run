@@ -1,0 +1,23 @@
+#!/usr/bin/python2
+# -*- coding: utf-8 -*-
+
+import sys
+
+import unittest
+sys.path.insert(0,'.')
+sys.path.insert(0,'..')
+
+from tests import version, utils
+rc = 0
+
+# Add to the list the module to test
+mods = [version, utils]
+
+tests = []
+for mod in mods:
+    tests.append(unittest.TestLoader().loadTestsFromModule(mod))
+
+result = unittest.TextTestRunner(verbosity = 1).run(unittest.TestSuite(tests))
+if result.errors:
+    rc = 1
+raise SystemExit(rc)
