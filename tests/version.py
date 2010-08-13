@@ -3,6 +3,7 @@ import sys
 sys.path.insert(0,'.')
 sys.path.insert(0,'..')
 import unittest
+
 from molecule.compat import get_stringtype
 
 class VersionTest(unittest.TestCase):

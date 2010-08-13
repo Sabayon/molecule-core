@@ -18,6 +18,8 @@ class SpecsTest(unittest.TestCase):
         sys.stdout.write("%s ran\n" % (self,))
         sys.stdout.flush()
 
+    
+
 if __name__ == '__main__':
     unittest.main()
     raise SystemExit(0)

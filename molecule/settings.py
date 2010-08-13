@@ -146,7 +146,11 @@ class SpecPreprocessor:
                 if split_line:
                     expander = self.__builtin_expanders.get(split_line[0])
                     if expander is not None:
-                        line = expander(line)
+                        try:
+                            line = expander(line)
+                        except RuntimeError as err:
+                            raise SpecPreprocessor.PreprocessorError(
+                                "invalid preprocessor line: %s" % (err,))
                 lines += line
 
         return lines

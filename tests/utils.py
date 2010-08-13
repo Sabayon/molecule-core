@@ -5,6 +5,7 @@ sys.path.insert(0,'.')
 sys.path.insert(0,'..')
 import unittest
 import tempfile
+
 from molecule.compat import get_stringtype
 from molecule.utils import md5sum, copy_dir, get_random_number, \
     remove_path_sandbox, remove_path, mkdtemp, empty_dir, \
