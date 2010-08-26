@@ -1,3 +1,45 @@
+commit 44486776a5c0b31de29c549b0888a4950a0379bb
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Aug 26 21:21:23 2010 +0200
+
+    [molecule.specs.plugins] TarHandler: always cleanup chroot temp directory
+
+commit 1fd8be4963feebfce2535586809e457d61c201e7
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Fri Aug 13 17:53:15 2010 +0200
+
+    [tests] fix typo in parsers module
+
+commit 47ced63721110a78322d14ea26a073e50c372429
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Fri Aug 13 15:24:22 2010 +0200
+
+    [tests] add unit tests for .spec parsers
+
+commit 20e5bb6018421ed6e7d37eaf85a20fc101e86975
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Aug 12 22:40:29 2010 +0200
+
+    [todo] update TODO
+
+commit 060b6230d11db758392a6ecee1b9c81ede982d19
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Aug 12 22:40:16 2010 +0200
+
+    [tests] add initial unit tests
+
+commit 240e79a5c092b2d68b45d34fef44fdeeac737e97
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Aug 12 22:39:41 2010 +0200
+
+    [molecule.utils] improve reliability of valid_exec_check and remove_path_sandbox
+
+commit a394b310c3f4e1615a5ba769b0ae9eb66143ad5a
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Wed Aug 11 11:24:13 2010 +0200
+
+    Tagging Molecule version 0.9.20.1
+
 commit 439afef7211de04968dd37b8b9abde6e33825ff2
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Wed Aug 11 11:23:43 2010 +0200
