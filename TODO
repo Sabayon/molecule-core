@@ -1,4 +1,5 @@
 - Unit tests
+- execution strategy phase order documentation
 - export molecule.settings.Configuration data to config file
 - API documentation generation
 - use signal handlers for kill() ?
