@@ -1,3 +1,21 @@
+commit a7e14b230f311f95548dee1055f581eac224aa0e
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Fri Oct 15 12:27:24 2010 +0200
+
+    [molecule.specs.plugins] also parse execution_strategy, avoid it getting pulled in in other parameters
+
+commit 4f4ac2eff7c2039a84b64560f87bd36c258da433
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Tue Aug 31 18:30:48 2010 +0200
+
+    [todo] update TODO
+
+commit 893977255938525ca784f9dc851886312835cc17
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Aug 26 21:24:46 2010 +0200
+
+    Tagging Molecule version 0.9.20.2
+
 commit 44486776a5c0b31de29c549b0888a4950a0379bb
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Thu Aug 26 21:21:23 2010 +0200
