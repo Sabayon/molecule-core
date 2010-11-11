@@ -32,9 +32,11 @@ class Constants(dict):
     def load(self):
         ETC_DIR = '/etc'
         CONFIG_FILE_NAME = 'molecule.conf'
+        TMP_DIR = os.getenv("MOLECULE_TMPDIR", "/var/tmp")
 
         mysettings = {
             'config_file': os.path.join(ETC_DIR, CONFIG_FILE_NAME),
+            'tmp_dir': TMP_DIR,
         }
 
         self.clear()
@@ -52,6 +54,7 @@ class Configuration(dict):
             mysettings = {}
         settings = {
             'version': VERSION,
+            'tmp_dir': self.Constants['tmp_dir'],
             'chroot_compressor': "/usr/bin/mksquashfs",
             'iso_builder': "/usr/bin/mkisofs",
             'mirror_syncer': "/usr/bin/rsync",

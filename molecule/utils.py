@@ -126,10 +126,12 @@ def empty_dir(dest_dir):
 
 def mkdtemp(suffix=''):
     """
-    Generate a reliable temporary directory inside /var/tmp starting with
-    "molecule".
+    Generate a reliable temporary directory inside MOLECULE_TMPDIR
+    env var (/var/tmp) starting with "molecule".
     """
-    return tempfile.mkdtemp(prefix = "molecule", dir = "/var/tmp",
+    import molecule.settings
+    tmp_dir = molecule.settings.Configuration()['tmp_dir']
+    return tempfile.mkdtemp(prefix = "molecule", dir = tmp_dir,
         suffix = suffix)
 
 # using subprocess.call to not care about wildcards
