@@ -17,7 +17,7 @@
 #    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 import os
-from molecule.compat import get_stringtype
+from molecule.compat import get_stringtype, convert_to_unicode
 from molecule.exception import SpecFileError
 from molecule.specs.skel import GenericSpec
 from molecule.version import VERSION
@@ -73,6 +73,13 @@ class Configuration(dict):
             'pkgs_remover': ["/usr/bin/equo", "remove"],
             'pkgs_updater': ["/usr/bin/equo", "update"],
         }
+        # convert everything to unicode in one pass
+        for k, v in settings.items():
+            if isinstance(v, get_stringtype()):
+                settings[k] = convert_to_unicode(v)
+            elif isinstance(v, (list, tuple)):
+                settings[k] = [convert_to_unicode(x) for x in v]
+
         self.clear()
         self.update(settings)
         self.update(mysettings)
