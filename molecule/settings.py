@@ -52,11 +52,13 @@ class Configuration(dict):
     def load(self, mysettings = None):
         if mysettings is None:
             mysettings = {}
+
+        cdrtools_mkisofs = "/usr/bin/mkisofs"
         settings = {
             'version': VERSION,
             'tmp_dir': self.Constants['tmp_dir'],
             'chroot_compressor': "/usr/bin/mksquashfs",
-            'iso_builder': "/usr/bin/mkisofs",
+            'iso_builder': cdrtools_mkisofs,
             'mirror_syncer': "/usr/bin/rsync",
             'chroot_compressor_builtin_args': ["-noappend", "-no-progress"],
             'iso_builder_builtin_args': ["-J", "-R", "-l", "-no-emul-boot",
@@ -73,6 +75,12 @@ class Configuration(dict):
             'pkgs_remover': ["/usr/bin/equo", "remove"],
             'pkgs_updater': ["/usr/bin/equo", "update"],
         }
+        # support both cdrkit and cdrtools
+        cdrkit_genisoimage = "/usr/bin/genisoimage"
+        if os.access(cdrkit_genisoimage, os.X_OK) and \
+            os.path.exists(cdrkit_genisoimage):
+            settings['iso_builder'] = cdrkit_genisoimage
+
         # convert everything to unicode in one pass
         for k, v in settings.items():
             if isinstance(v, get_stringtype()):
