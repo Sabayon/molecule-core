@@ -1,3 +1,15 @@
+commit 110d86bdc31cd957f037d8a6908217b943cb329e
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sat Dec 18 16:29:31 2010 +0100
+
+    [molecule.settings] add support for cdrkit
+
+commit 3a3dace714600923eb0270e0a4445b12539fd4a7
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sat Dec 18 16:08:25 2010 +0100
+
+    Tagging Molecule version 0.9.20.4
+
 commit 426f2642135be8d436091ee1ce93e4afdb627adb
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Sat Dec 18 16:07:05 2010 +0100
