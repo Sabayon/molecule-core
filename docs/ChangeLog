@@ -1,3 +1,39 @@
+commit 426f2642135be8d436091ee1ce93e4afdb627adb
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sat Dec 18 16:07:05 2010 +0100
+
+    [molecule*] beautify output, make molecule.settings contain only utf strings
+
+commit 965b577c51c925d089c648b85ce65f454a1d16e4
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sat Dec 18 16:06:52 2010 +0100
+
+    [tests] fix tests
+
+commit 9999f2b0f0ee7cc37bb18f8d8739ac22a092989f
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Fri Dec 10 13:56:23 2010 +0100
+
+    [molecule.specs.plugins] handle improper usage of merge_livecd_root and report to user
+
+commit df9e0af193e851288ea02ff4189ce3e6640fee48
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Nov 11 19:18:08 2010 +0100
+
+    [molecule] add support for MOLECULE_TMPDIR environment variable (defaulting to /var/tmp), so that user can override it
+
+commit dec8adcb2437404cac1a9d78ccf3bbcaca379be7
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Oct 31 14:23:57 2010 +0100
+
+    [examples] add information regarding variables configuration behaviour
+
+commit bdcca0a4dcd6c788f01f5e0bf72b98fd80031774
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Fri Oct 15 12:28:19 2010 +0200
+
+    Tagging Molecule version 0.9.20.3
+
 commit a7e14b230f311f95548dee1055f581eac224aa0e
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Fri Oct 15 12:27:24 2010 +0200
