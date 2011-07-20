@@ -192,6 +192,18 @@ def copy_dir(src_dir, dest_dir):
     args = ["cp", "-Rap", src_dir, dest_dir]
     return exec_cmd(args)
 
+def copy_dir_existing_dest(src_dir, dest_dir):
+    """
+    Copy a directory src (src_dir) to dst (dest_dir) using cp -Rap.
+    This variant takes into consideration the fact that destination
+    directory exists.
+    """
+    source_objects = []
+    for obj in os.listdir(src_dir):
+        source_objects.append(os.path.join(src_dir, obj))
+    args = ["cp", "-Rap"] + source_objects + [dest_dir + "/"]
+    return exec_cmd(args)
+
 def print_traceback(f = None):
     """
     Function called when an exception occurs with the aim to give
