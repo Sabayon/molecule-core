@@ -1,3 +1,15 @@
+commit 50f38369e96014a463ab1e3cf84afd941083f945
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Wed Jul 20 23:53:39 2011 +0200
+
+    [molecule] image_plugin: fix chroot copy to mounted image file
+
+commit 5556657a34be3d3794604184fd56de0571c8552a
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sat Dec 18 16:29:52 2010 +0100
+
+    Tagging Molecule version 0.9.20.5
+
 commit 110d86bdc31cd957f037d8a6908217b943cb329e
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Sat Dec 18 16:29:31 2010 +0100
