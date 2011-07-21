@@ -111,11 +111,16 @@ def exec_chroot_cmd(args, chroot, pre_chroot = None, env = None):
         RUNNING_PIDS.discard(pid)
         return rc
 
-def kill_chroot_pids(chroot, sig = signal.SIGTERM):
+def kill_chroot_pids(chroot, sig = signal.SIGTERM, sleep = False):
     """
     Kill stale processes inside chroot or directory
     """
     args = ["/usr/bin/lsof", "-t", chroot]
+    if sleep:
+        # give time to failing stuff to fail definitely and spawn all the
+        # possible, processes. It is really hard to kill them all when there
+        # is bash involved.
+        time.sleep(5.0)
     sts, txt = exec_cmd_get_status_output(args)
     if sts == 0:
         killed_pids = []
@@ -129,6 +134,10 @@ def kill_chroot_pids(chroot, sig = signal.SIGTERM):
                 killed_pids.append(pid)
             except (OSError, IOError):
                 sts = 1
+        if (sts == 0) and killed_pids:
+            time.sleep(2.0)
+            # are we done? nested call if not
+            return kill_chroot_pids(chroot, sig = sig, sleep = False)
         return sts
     else:
         return sts
