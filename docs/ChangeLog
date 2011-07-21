@@ -1,3 +1,33 @@
+commit 91cbe7bd6f9879f40ebc46e2b8df9bb210dd48f1
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Jul 21 13:56:03 2011 +0200
+
+    [molecule.specs] always make sure to kill processes running inside chroots if failing
+
+commit e227c0a6252fc6247f00cfae1e8ac77bd03df1d9
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Jul 21 13:55:07 2011 +0200
+
+    [molecule.utils] enhance kill_chroot_pids(), add ability to sleep and wait for scripts to leave "zombies"
+
+commit f30ffa4fac24fb98f038767aaa288ec6cfecb4a6
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Jul 21 12:59:44 2011 +0200
+
+    [molecule.utils] prefer execvp() over subprocess.call() in forked process
+
+commit e5b1dda68cc58abcd5e851a8a912de33fac596f4
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Jul 21 12:39:20 2011 +0200
+
+    [molecule.utils] add kill_chroot_pids function, requires lsof (new dependency)
+
+commit 9e76f033708b9c0dda15d0c829688aa9d44745b7
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Wed Jul 20 23:54:46 2011 +0200
+
+    Tagging Molecule version 0.9.20.6
+
 commit 50f38369e96014a463ab1e3cf84afd941083f945
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Wed Jul 20 23:53:39 2011 +0200
