@@ -104,8 +104,7 @@ def exec_chroot_cmd(args, chroot, pre_chroot = None, env = None):
         os.chroot(chroot)
         os.chdir("/")
         myargs = pre_chroot+args
-        rc = subprocess.call(myargs, env = env)
-        os._exit(rc)
+        os.execvp(myargs[0], myargs)
     else:
         RUNNING_PIDS.add(pid)
         rcpid, rc = os.waitpid(pid, 0)
