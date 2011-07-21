@@ -22,6 +22,7 @@ import sys
 import time
 import tempfile
 import subprocess
+import signal
 import shutil
 import random
 random.seed()
@@ -110,6 +111,28 @@ def exec_chroot_cmd(args, chroot, pre_chroot = None, env = None):
         rcpid, rc = os.waitpid(pid, 0)
         RUNNING_PIDS.discard(pid)
         return rc
+
+def kill_chroot_pids(chroot, sig = signal.SIGTERM):
+    """
+    Kill stale processes inside chroot or directory
+    """
+    args = ["/usr/bin/lsof", "-t", chroot]
+    sts, txt = exec_cmd_get_status_output(args)
+    if sts == 0:
+        killed_pids = []
+        for pid_str in txt.strip().split():
+            try:
+                pid = int(pid_str)
+            except (ValueError, TypeError):
+                continue
+            try:
+                os.kill(pid, sig)
+                killed_pids.append(pid)
+            except (OSError, IOError):
+                sts = 1
+        return sts
+    else:
+        return sts
 
 def empty_dir(dest_dir):
     """
