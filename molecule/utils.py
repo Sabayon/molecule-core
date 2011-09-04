@@ -24,6 +24,7 @@ import tempfile
 import subprocess
 import signal
 import shutil
+import glob
 import random
 random.seed()
 
@@ -178,9 +179,9 @@ def remove_path_sandbox(path, sandbox_env, stdout = None, stderr = None):
         stdout = sys.stdout
     if stderr is None:
         stderr = sys.stderr
-    p = subprocess.Popen(' '.join(["sandbox", "rm", "-rf", path]),
+    p = subprocess.Popen(["sandbox", "rm", "-rf"] + glob.glob(path),
         stdout = stdout, stderr = stderr,
-        env = sandbox_env, shell = True
+        env = sandbox_env
     )
     return p.wait()
 
