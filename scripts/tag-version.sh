@@ -29,4 +29,4 @@ git tag $new_tag HEAD
 git push
 git push --tags
 
-echo "Now run /home/bin/tarball-new-molecule on sabayon.org"
+echo "Now run /sabayon/bin/tarball-new-molecule on pkg.sabayon.org"
