@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-08 23:39+0200\n"
+"POT-Creation-Date: 2011-09-04 13:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -145,19 +145,19 @@ msgstr ""
 msgid "Element number to remove (-1 to go back):"
 msgstr ""
 
-#: ../molecule/specs/plugins/builtin_plugin.py:52
-#: ../molecule/specs/plugins/builtin_plugin.py:165
-#: ../molecule/specs/plugins/builtin_plugin.py:211
-#: ../molecule/specs/plugins/builtin_plugin.py:310
-#: ../molecule/specs/plugins/builtin_plugin.py:428
-#: ../molecule/specs/plugins/builtin_plugin.py:531
-#: ../molecule/specs/plugins/builtin_plugin.py:560
-#: ../molecule/specs/plugins/builtin_plugin.py:601
+#: ../molecule/specs/plugins/builtin_plugin.py:54
+#: ../molecule/specs/plugins/builtin_plugin.py:176
+#: ../molecule/specs/plugins/builtin_plugin.py:222
+#: ../molecule/specs/plugins/builtin_plugin.py:321
+#: ../molecule/specs/plugins/builtin_plugin.py:439
+#: ../molecule/specs/plugins/builtin_plugin.py:548
+#: ../molecule/specs/plugins/builtin_plugin.py:577
+#: ../molecule/specs/plugins/builtin_plugin.py:618
 #: ../molecule/specs/plugins/image_plugin.py:121
 #: ../molecule/specs/plugins/image_plugin.py:182
 #: ../molecule/specs/plugins/image_plugin.py:220
 #: ../molecule/specs/plugins/image_plugin.py:238
-#: ../molecule/specs/plugins/image_plugin.py:461
+#: ../molecule/specs/plugins/image_plugin.py:509
 #: ../molecule/specs/plugins/remaster_plugin.py:83
 #: ../molecule/specs/plugins/remaster_plugin.py:112
 #: ../molecule/specs/plugins/tar_plugin.py:75
@@ -165,138 +165,143 @@ msgstr ""
 msgid "spawning"
 msgstr ""
 
-#: ../molecule/specs/plugins/builtin_plugin.py:83
+#: ../molecule/specs/plugins/builtin_plugin.py:93
 msgid "inner chroot hook failed"
 msgstr ""
 
-#: ../molecule/specs/plugins/builtin_plugin.py:107
-#: ../molecule/specs/plugins/builtin_plugin.py:200
-#: ../molecule/specs/plugins/builtin_plugin.py:381
-#: ../molecule/specs/plugins/builtin_plugin.py:516
+#: ../molecule/specs/plugins/builtin_plugin.py:117
+#: ../molecule/specs/plugins/builtin_plugin.py:211
+#: ../molecule/specs/plugins/builtin_plugin.py:392
+#: ../molecule/specs/plugins/builtin_plugin.py:533
 #: ../molecule/specs/plugins/image_plugin.py:109
 #: ../molecule/specs/plugins/remaster_plugin.py:71
 #: ../molecule/specs/plugins/tar_plugin.py:61
 msgid "executing pre_run"
 msgstr ""
 
-#: ../molecule/specs/plugins/builtin_plugin.py:119
+#: ../molecule/specs/plugins/builtin_plugin.py:129
 msgid "inner_source_chroot_script failed"
 msgstr ""
 
-#: ../molecule/specs/plugins/builtin_plugin.py:127
+#: ../molecule/specs/plugins/builtin_plugin.py:137
 msgid "pre_run completed successfully"
 msgstr ""
 
-#: ../molecule/specs/plugins/builtin_plugin.py:136
-#: ../molecule/specs/plugins/builtin_plugin.py:228
-#: ../molecule/specs/plugins/builtin_plugin.py:395
-#: ../molecule/specs/plugins/builtin_plugin.py:548
+#: ../molecule/specs/plugins/builtin_plugin.py:146
+#: ../molecule/specs/plugins/builtin_plugin.py:239
+#: ../molecule/specs/plugins/builtin_plugin.py:406
+#: ../molecule/specs/plugins/builtin_plugin.py:565
 #: ../molecule/specs/plugins/remaster_plugin.py:156
 #: ../molecule/specs/plugins/tar_plugin.py:132
 msgid "executing post_run"
 msgstr ""
 
-#: ../molecule/specs/plugins/builtin_plugin.py:146
-#: ../molecule/specs/plugins/builtin_plugin.py:329
-#: ../molecule/specs/plugins/builtin_plugin.py:406
-#: ../molecule/specs/plugins/builtin_plugin.py:580
+#: ../molecule/specs/plugins/builtin_plugin.py:156
+#: ../molecule/specs/plugins/builtin_plugin.py:340
+#: ../molecule/specs/plugins/builtin_plugin.py:417
+#: ../molecule/specs/plugins/builtin_plugin.py:597
+#: ../molecule/specs/plugins/image_plugin.py:411
 #: ../molecule/specs/plugins/remaster_plugin.py:164
 msgid "executing kill"
 msgstr ""
 
-#: ../molecule/specs/plugins/builtin_plugin.py:155
+#: ../molecule/specs/plugins/builtin_plugin.py:165
 msgid "mirroring running"
 msgstr ""
 
-#: ../molecule/specs/plugins/builtin_plugin.py:172
+#: ../molecule/specs/plugins/builtin_plugin.py:183
 msgid "mirroring failed"
 msgstr ""
 
-#: ../molecule/specs/plugins/builtin_plugin.py:179
+#: ../molecule/specs/plugins/builtin_plugin.py:190
 msgid "mirroring completed successfully"
 msgstr ""
 
-#: ../molecule/specs/plugins/builtin_plugin.py:218
+#: ../molecule/specs/plugins/builtin_plugin.py:229
 msgid "outer chroot hook failed"
 msgstr ""
 
-#: ../molecule/specs/plugins/builtin_plugin.py:238
+#: ../molecule/specs/plugins/builtin_plugin.py:249
 msgid "emptying dir"
 msgstr ""
 
-#: ../molecule/specs/plugins/builtin_plugin.py:259
+#: ../molecule/specs/plugins/builtin_plugin.py:270
 msgid "removing dir"
 msgstr ""
 
-#: ../molecule/specs/plugins/builtin_plugin.py:266
+#: ../molecule/specs/plugins/builtin_plugin.py:277
 msgid "removal failed for"
 msgstr ""
 
-#: ../molecule/specs/plugins/builtin_plugin.py:280
+#: ../molecule/specs/plugins/builtin_plugin.py:291
 msgid "release file creation failed, not a file"
 msgstr ""
 
-#: ../molecule/specs/plugins/builtin_plugin.py:297
+#: ../molecule/specs/plugins/builtin_plugin.py:308
 msgid "release file creation failed, system error"
 msgstr ""
 
-#: ../molecule/specs/plugins/builtin_plugin.py:317
+#: ../molecule/specs/plugins/builtin_plugin.py:328
 msgid "outer chroot hook (after inner) failed"
 msgstr ""
 
-#: ../molecule/specs/plugins/builtin_plugin.py:338
-#: ../molecule/specs/plugins/remaster_plugin.py:260
+#: ../molecule/specs/plugins/builtin_plugin.py:349
+#: ../molecule/specs/plugins/remaster_plugin.py:267
 msgid "hooks running"
 msgstr ""
 
-#: ../molecule/specs/plugins/builtin_plugin.py:353
+#: ../molecule/specs/plugins/builtin_plugin.py:364
 msgid "hooks completed succesfully"
 msgstr ""
 
-#: ../molecule/specs/plugins/builtin_plugin.py:387
+#: ../molecule/specs/plugins/builtin_plugin.py:398
 msgid "preparing environment"
 msgstr ""
 
-#: ../molecule/specs/plugins/builtin_plugin.py:415
+#: ../molecule/specs/plugins/builtin_plugin.py:426
 #: ../molecule/specs/plugins/tar_plugin.py:92
 msgid "compressing chroot"
 msgstr ""
 
-#: ../molecule/specs/plugins/builtin_plugin.py:435
+#: ../molecule/specs/plugins/builtin_plugin.py:446
 #: ../molecule/specs/plugins/tar_plugin.py:112
 msgid "chroot compression failed"
 msgstr ""
 
-#: ../molecule/specs/plugins/builtin_plugin.py:441
+#: ../molecule/specs/plugins/builtin_plugin.py:452
 msgid "chroot compressed successfully"
 msgstr ""
 
-#: ../molecule/specs/plugins/builtin_plugin.py:451
+#: ../molecule/specs/plugins/builtin_plugin.py:462
 msgid "merging livecd root"
 msgstr ""
 
-#: ../molecule/specs/plugins/builtin_plugin.py:538
+#: ../molecule/specs/plugins/builtin_plugin.py:490
+msgid "cannot merge livecd root, improper usage or system error"
+msgstr ""
+
+#: ../molecule/specs/plugins/builtin_plugin.py:555
 msgid "pre iso hook failed"
 msgstr ""
 
-#: ../molecule/specs/plugins/builtin_plugin.py:567
+#: ../molecule/specs/plugins/builtin_plugin.py:584
 msgid "post iso hook failed"
 msgstr ""
 
-#: ../molecule/specs/plugins/builtin_plugin.py:589
+#: ../molecule/specs/plugins/builtin_plugin.py:606
 msgid "building ISO image"
 msgstr ""
 
-#: ../molecule/specs/plugins/builtin_plugin.py:608
+#: ../molecule/specs/plugins/builtin_plugin.py:625
 msgid "ISO image build failed"
 msgstr ""
 
-#: ../molecule/specs/plugins/builtin_plugin.py:615
+#: ../molecule/specs/plugins/builtin_plugin.py:632
 msgid "built ISO image"
 msgstr ""
 
-#: ../molecule/specs/plugins/builtin_plugin.py:621
-#: ../molecule/specs/plugins/image_plugin.py:441
+#: ../molecule/specs/plugins/builtin_plugin.py:638
+#: ../molecule/specs/plugins/image_plugin.py:489
 #: ../molecule/specs/plugins/tar_plugin.py:118
 msgid "generating md5 for"
 msgstr ""
@@ -336,7 +341,7 @@ msgid "image file resize failed"
 msgstr ""
 
 #: ../molecule/specs/plugins/image_plugin.py:197
-#: ../molecule/specs/plugins/image_plugin.py:418
+#: ../molecule/specs/plugins/image_plugin.py:465
 msgid "run hook called"
 msgstr ""
 
@@ -352,38 +357,43 @@ msgstr ""
 msgid "image mount failed"
 msgstr ""
 
-#: ../molecule/specs/plugins/image_plugin.py:267
+#: ../molecule/specs/plugins/image_plugin.py:268
 msgid "unable to umount loop device"
 msgstr ""
 
-#: ../molecule/specs/plugins/image_plugin.py:286
+#: ../molecule/specs/plugins/image_plugin.py:288
 msgid "unable to kill loop device"
 msgstr ""
 
-#: ../molecule/specs/plugins/image_plugin.py:300
+#: ../molecule/specs/plugins/image_plugin.py:303
 msgid "unable to remove temp. loop device file"
 msgstr ""
 
-#: ../molecule/specs/plugins/image_plugin.py:314
+#: ../molecule/specs/plugins/image_plugin.py:320
 msgid "unable to close temp fd"
 msgstr ""
 
-#: ../molecule/specs/plugins/image_plugin.py:359
+#: ../molecule/specs/plugins/image_plugin.py:356
+#: ../molecule/specs/plugins/remaster_plugin.py:131
+msgid "iso unpacker running"
+msgstr ""
+
+#: ../molecule/specs/plugins/image_plugin.py:393
 #: ../molecule/specs/plugins/remaster_plugin.py:184
 #: ../molecule/specs/plugins/remaster_plugin.py:202
 #: ../molecule/specs/plugins/remaster_plugin.py:214
 msgid "unable to remove temp. dir"
 msgstr ""
 
-#: ../molecule/specs/plugins/image_plugin.py:418
+#: ../molecule/specs/plugins/image_plugin.py:465
 msgid "moving image file to destination"
 msgstr ""
 
-#: ../molecule/specs/plugins/image_plugin.py:435
+#: ../molecule/specs/plugins/image_plugin.py:483
 msgid "built image"
 msgstr ""
 
-#: ../molecule/specs/plugins/image_plugin.py:468
+#: ../molecule/specs/plugins/image_plugin.py:516
 msgid "post image hook failed"
 msgstr ""
 
@@ -393,10 +403,6 @@ msgstr ""
 
 #: ../molecule/specs/plugins/remaster_plugin.py:119
 msgid "squash mount failed"
-msgstr ""
-
-#: ../molecule/specs/plugins/remaster_plugin.py:131
-msgid "iso unpacker running"
 msgstr ""
 
 #: ../molecule/specs/plugins/tar_plugin.py:82
