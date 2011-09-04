@@ -17,7 +17,9 @@
 #    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 import os
-from molecule.compat import convert_to_unicode
+import shlex
+
+from molecule.compat import convert_to_unicode, convert_to_rawstring
 import molecule.utils
 
 class GenericSpecFunctions(object):
@@ -52,6 +54,10 @@ class GenericSpecFunctions(object):
 
     def ve_string_splitter(self, x):
         return convert_to_unicode(x).strip().split()
+
+    def ve_command_splitter(self, x):
+        return [convert_to_unicode(y) for y in \
+            shlex.split(convert_to_rawstring(x))]
 
     def ve_integer_converter(self, x):
         return int(x)

@@ -78,9 +78,7 @@ def is_exec_available(exec_name):
     return False
 
 def exec_cmd(args, env = None):
-    # do not use Popen otherwise it will try to replace
-    # wildcards automatically ==> rsync no workie
-    return subprocess.call(' '.join(args), shell = True, env = env)
+    return subprocess.call(args, env = env)
 
 def exec_cmd_get_status_output(args):
     """Return (status, output) of executing cmd in a shell."""
