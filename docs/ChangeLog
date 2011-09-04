@@ -1,3 +1,39 @@
+commit 105b3498ba90d79d41729387348d956bc2cacb03
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Sep 4 14:16:03 2011 +0200
+
+    [po] update translations
+
+commit 745732eb1dc512a2d5f939effe50b047a3b692d4
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Sep 4 12:54:40 2011 +0200
+
+    [molecule.utils] remove_path_sandbox: do not use Popen with shell=True but rather use glob.glob()
+
+commit bba60f30c2aad97cfba87ca7c77afc863496b872
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Sep 4 11:52:02 2011 +0200
+
+    [molecule] rewrite molecule.utils.exec_cmd() to not use shell=True
+    
+    The following changes were required code-wide:
+    - use shlex.split() to split commands read from spec files
+    - use glob.glob() where required
+    - write command splitter function and make use of it instead of
+      simple string splitter
+
+commit b54d13e18581a360673e037e9b822952654a898c
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Aug 21 14:32:31 2011 +0200
+
+    [molecule] add .gitattributes file, excluding the test suite from archive for now
+
+commit 71605075ba83aadca91ddbc0137a80273249564c
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Jul 21 13:57:04 2011 +0200
+
+    Tagging Molecule version 0.9.20.7
+
 commit 91cbe7bd6f9879f40ebc46e2b8df9bb210dd48f1
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Thu Jul 21 13:56:03 2011 +0200
