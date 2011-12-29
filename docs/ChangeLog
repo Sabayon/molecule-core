@@ -1,3 +1,15 @@
+commit e6a5c888f8852fb94d09934089b6a20feaa2d525
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Dec 29 17:11:24 2011 +0100
+
+    [plugins/mmc] always export CHROOT_DIR when it makes sense
+
+commit ba10920838b87cea7e42a49362d0ef0df23a9109
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Dec 29 08:37:17 2011 +0100
+
+    Tagging Molecule version 0.9.23
+
 commit d3bfcead18bca5aed9ec6ae1ab6510290b412bd1
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Thu Dec 29 08:36:46 2011 +0100
