@@ -1,3 +1,15 @@
+commit 4de8a7c8e243927a415d1e87f9a5d17e06d803c8
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Dec 29 17:25:23 2011 +0100
+
+    [plugins/mmc] export DESTINATION_IMAGE_DIR and IMAGE_NAME
+
+commit 8286c4f0cbf336bed486e88dcabcce839e148625
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Dec 29 17:11:57 2011 +0100
+
+    Tagging Molecule version 0.9.23.1
+
 commit e6a5c888f8852fb94d09934089b6a20feaa2d525
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Thu Dec 29 17:11:24 2011 +0100
