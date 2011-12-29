@@ -1,3 +1,15 @@
+commit d3bfcead18bca5aed9ec6ae1ab6510290b412bd1
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Dec 29 08:36:46 2011 +0100
+
+    [specs/mmc] add source chroot script hooks support
+
+commit 4473f5a25bd02fcf5c581172c2851fc750b115bc
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Wed Dec 28 17:27:29 2011 +0100
+
+    Tagging Molecule version 0.9.22
+
 commit 42a6674db5402757074e45423757450532327319
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Wed Dec 28 17:26:57 2011 +0100
