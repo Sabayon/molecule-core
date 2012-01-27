@@ -1,3 +1,15 @@
+commit b4eb22938821c5d71b5e8f9e2073d7ea54580609
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Fri Jan 27 23:23:00 2012 +0100
+
+    [molecule] mmc_plugin: add support for packages_to_add and packages_to_remove
+
+commit 95795e7c26b9428f012d1788ab6908c5cadd5421
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Dec 29 17:25:47 2011 +0100
+
+    Tagging Molecule version 0.9.23.2
+
 commit 4de8a7c8e243927a415d1e87f9a5d17e06d803c8
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Thu Dec 29 17:25:23 2011 +0100
