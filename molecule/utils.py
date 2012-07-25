@@ -18,6 +18,7 @@
 
 import os
 import errno
+import fcntl
 import sys
 import time
 import tempfile
@@ -77,6 +78,53 @@ def is_exec_available(exec_name):
         if os.path.isfile(path) and os.access(path, os.X_OK):
             return True
     return False
+
+def eval_shell_argument(argument, env = None):
+    """
+    Evaluate a single shell argument (taken from a full
+    shlex.split()) replacing the environment variables with
+    actual values and executing functions and external commands
+    as well (so pay attention, command injection is actually a
+    wanted side-effect).
+
+    In case of errors, AttributeError() is raised.
+    """
+    read, write = None, None
+    try:
+        shell_exec = os.getenv("SHELL", "/bin/sh")
+        read, write = os.pipe()
+        # set non-blocking
+        fcntl.fcntl(read, fcntl.F_SETFL, os.O_NONBLOCK)
+        exit_st = subprocess.call(
+            [shell_exec, "-c",
+            "printf \"" + argument + "\""],
+        env = env, stdout = write)
+        if exit_st != 0:
+            raise AttributeError(
+                "error while parsing argument: '%s'" % (
+                    argument,))
+        # maximum 1024 chars
+        try:
+            evaluated = os.read(read, 1024)
+        except OSError as err:
+            # errno 11 is due to O_NONBLOCK
+            if err.errno == errno.EAGAIN:
+                raise AttributeError(
+                    "error while parsing argument: '%s'" %(
+                        argument,))
+            raise
+        return evaluated
+    finally:
+        if read is not None:
+            try:
+                os.close(read)
+            except OSError:
+                pass
+        if write is not None:
+            try:
+                os.close(write)
+            except OSError:
+                pass
 
 def exec_cmd(args, env = None):
     return subprocess.call(args, env = env)
