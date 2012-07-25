@@ -160,7 +160,7 @@ class SpecPreprocessor:
             lines = ''
             for line in spec_f.readlines():
                 # call recursively
-                split_line = line.split(" ", 1)
+                split_line = line.lstrip().split(" ", 1)
                 if split_line:
                     expander = self.__builtin_expanders.get(split_line[0])
                     if expander is not None:
@@ -178,7 +178,7 @@ class SpecPreprocessor:
         content = []
         with open(self._spec_path, "r") as spec_f:
             for line in spec_f.readlines():
-                split_line = line.split(" ", 1)
+                split_line = line.lstrip().split(" ", 1)
                 if split_line:
                     expander = self.__builtin_expanders.get(split_line[0])
                     if expander is not None:
