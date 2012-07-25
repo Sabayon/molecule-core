@@ -1,3 +1,27 @@
+commit c76111c149d06d9d3a03709b6547d0326261f42a
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Wed Jul 25 16:30:32 2012 +0200
+
+    [molecule/settings] add support for %env expanders
+
+commit b63e5d2972b420296ec9f7533a091a1cdcf1d9a8
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Wed Jul 25 16:22:53 2012 +0200
+
+    [molecule/utils] add eval_shell_argument function
+
+commit c4149e083ad5d82a8e8ef4e797e052194bb33fb4
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Wed Jul 25 15:22:44 2012 +0200
+
+    [molecule/settings] tolerare leading spaces when looking for expanders
+
+commit d9701cf9fe1370856c839af5574c26cd2a6e0b11
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Fri Jan 27 23:35:46 2012 +0100
+
+    Tagging Molecule version 0.9.23.4
+
 commit fa7de448d93f3cc96502c9f87189f60b7b2c3b79
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Fri Jan 27 23:35:14 2012 +0100
