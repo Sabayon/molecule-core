@@ -17,6 +17,9 @@
 #    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 import os
+import shlex
+import re
+
 from molecule.compat import get_stringtype, convert_to_unicode
 from molecule.exception import SpecFileError
 from molecule.specs.skel import GenericSpec
@@ -139,6 +142,8 @@ class SpecPreprocessor:
     def _add_builtin_expanders(self):
         # import statement
         self._add_expander("import", self._import_expander, builtin = True)
+        # eval statement
+        self._add_expander("env", self._env_expander, builtin = True)
 
     def _import_expander(self, line):
 
@@ -172,6 +177,30 @@ class SpecPreprocessor:
                 lines += line
 
         return lines
+
+    def _env_expander(self, line):
+        """
+        Expand the line evaluating the environment variables
+        set. They are considered "environment variables" those
+        encapsulated between "${" and "}".
+        """
+        # first element is %env
+        split_line = shlex.split(line)[1:]
+        if not split_line:
+            return line
+
+        new_split_line = []
+        for arg in split_line:
+            try:
+                new_arg = molecule.utils.eval_shell_argument(arg)
+            except AttributeError as err:
+                raise SpecPreprocessor.PreprocessorError(
+                    "invalid preprocessor line: '%s', error: %s" % (
+                        line, repr(err),))
+            new_split_line.append(new_arg)
+
+        new_line = " ".join(new_split_line)
+        return new_line
 
     def parse(self):
 
