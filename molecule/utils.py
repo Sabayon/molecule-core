@@ -97,7 +97,7 @@ def eval_shell_argument(argument, env = None):
         fcntl.fcntl(read, fcntl.F_SETFL, os.O_NONBLOCK)
         exit_st = subprocess.call(
             [shell_exec, "-c",
-            "printf \"" + argument + "\""],
+            "printf '%s' \"" + argument + "\""],
         env = env, stdout = write)
         if exit_st != 0:
             raise AttributeError(
