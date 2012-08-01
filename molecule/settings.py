@@ -145,6 +145,19 @@ class SpecPreprocessor:
         # eval statement
         self._add_expander("env", self._env_expander, builtin = True)
 
+    def _builtin_recursive_expand(self, line):
+
+        split_line = line.lstrip().split(" ", 1)
+        if split_line:
+            expander = self.__builtin_expanders.get(split_line[0])
+            if expander is not None:
+                try:
+                    line = expander(line)
+                except RuntimeError as err:
+                    raise SpecPreprocessor.PreprocessorError(
+                        "invalid preprocessor line: %s" % (err,))
+        return line
+
     def _import_expander(self, line):
 
         rest_line = line.split(" ", 1)[1].strip()
@@ -165,16 +178,7 @@ class SpecPreprocessor:
             lines = ''
             for line in spec_f.readlines():
                 # call recursively
-                split_line = line.lstrip().split(" ", 1)
-                if split_line:
-                    expander = self.__builtin_expanders.get(split_line[0])
-                    if expander is not None:
-                        try:
-                            line = expander(line)
-                        except RuntimeError as err:
-                            raise SpecPreprocessor.PreprocessorError(
-                                "invalid preprocessor line: %s" % (err,))
-                lines += line
+                lines += self._builtin_recursive_expand(line)
 
         return lines
 
@@ -197,21 +201,18 @@ class SpecPreprocessor:
                 raise SpecPreprocessor.PreprocessorError(
                     "invalid preprocessor line: '%s', error: %s" % (
                         line, repr(err),))
+            # call recursively
             new_split_line.append(new_arg)
 
         new_line = " ".join(new_split_line)
-        return new_line
+        return self._builtin_recursive_expand(new_line)
 
     def parse(self):
 
         content = []
         with open(self._spec_path, "r") as spec_f:
             for line in spec_f.readlines():
-                split_line = line.lstrip().split(" ", 1)
-                if split_line:
-                    expander = self.__builtin_expanders.get(split_line[0])
-                    if expander is not None:
-                        line = expander(line)
+                line = self._builtin_recursive_expand(line)
                 content.append(line)
 
         final_content = []
