@@ -17,4 +17,4 @@
 #    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 # DO NOT CHANGE THIS FILE AND THIS VARIABLE MANUALLY
-VERSION = "0.9.24.1"
+VERSION = "0.9.24.2"

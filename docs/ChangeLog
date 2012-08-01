@@ -1,3 +1,15 @@
+commit 227ffd5ce7eac09c67f8e700536dcfd339d5e235
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Wed Aug 1 16:03:32 2012 +0200
+
+    [molecule/settings] improve recursive preprocessor statement execution
+
+commit 474c8a8034e4582328483ab34394c5c4609ffb17
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Wed Aug 1 15:45:39 2012 +0200
+
+    Tagging Molecule version 0.9.24.1
+
 commit 8adce76d7d052f9d65322d18ff13929b0d7c083d
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Wed Aug 1 15:45:18 2012 +0200
