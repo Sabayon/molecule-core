@@ -19,7 +19,8 @@
 import os
 import shlex
 
-from molecule.compat import convert_to_unicode, convert_to_rawstring
+from molecule.compat import convert_to_unicode, convert_to_rawstring, \
+    is_python3
 import molecule.utils
 
 class GenericSpecFunctions(object):
@@ -56,8 +57,11 @@ class GenericSpecFunctions(object):
         return convert_to_unicode(x).strip().split()
 
     def ve_command_splitter(self, x):
+        x_str = x
+        if not is_python3():
+            x_str = convert_to_rawstring(x)
         return [convert_to_unicode(y) for y in \
-            shlex.split(convert_to_rawstring(x))]
+            shlex.split(x_str)]
 
     def ve_integer_converter(self, x):
         return int(x)

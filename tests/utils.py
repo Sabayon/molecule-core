@@ -6,7 +6,7 @@ sys.path.insert(0,'..')
 import unittest
 import tempfile
 
-from molecule.compat import get_stringtype
+from molecule.compat import get_stringtype, convert_to_rawstring
 from molecule.utils import md5sum, copy_dir, get_random_number, \
     remove_path_sandbox, remove_path, mkdtemp, empty_dir, \
     exec_cmd_get_status_output, exec_cmd, is_exec_available, \
@@ -28,7 +28,7 @@ class UtilsTest(unittest.TestCase):
     def test_md5sum(self):
 
         tmp_fd, tmp_path = tempfile.mkstemp(dir=os.getcwd())
-        os.write(tmp_fd, "hello")
+        os.write(tmp_fd, convert_to_rawstring("hello"))
         os.close(tmp_fd)
         result = md5sum(tmp_path)
         self.assertEqual(result, "5d41402abc4b2a76b9719d911017c592")

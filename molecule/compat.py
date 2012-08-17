@@ -170,3 +170,9 @@ def isnumber(obj):
         return isinstance(obj, int)
     else:
         return isinstance(obj, (int, long,))
+
+def is_python3():
+    """
+    Return True, if the interpreter is Python 3.x
+    """
+    return sys.hexversion >= 0x3000000
