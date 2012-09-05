@@ -1,3 +1,21 @@
+commit 4034acf6a37d9d1f6aea9e2d76ac7cf8ae47497b
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Wed Sep 5 13:52:50 2012 +0200
+
+    [molecule/builtin] improve rsync usage in execution_strategy="livecd" code
+
+commit 7aafe91f2de6f8babc3798f1d5d378c5f5c56e64
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Fri Aug 17 21:24:16 2012 +0200
+
+    [molecule] restore Python 3.x compatibility
+
+commit fbf51740d9b2e30db88293964845bccaf3cbe52e
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Wed Aug 1 16:04:02 2012 +0200
+
+    Tagging Molecule version 0.9.24.2
+
 commit 227ffd5ce7eac09c67f8e700536dcfd339d5e235
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Wed Aug 1 16:03:32 2012 +0200
