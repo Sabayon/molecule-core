@@ -144,15 +144,12 @@ def exec_chroot_cmd(args, chroot, pre_chroot = None, env = None):
     """
     if pre_chroot is None:
         pre_chroot = []
-    pid = os.fork()
-    if pid == 0:
-        os.chroot(chroot)
-        os.chdir("/")
-        myargs = pre_chroot+args
-        os.execvp(myargs[0], myargs)
-    else:
-        rcpid, rc = os.waitpid(pid, 0)
-        return rc
+    if env is None:
+        env = os.environ.copy()
+    exec_args = pre_chroot + [
+        "chroot", chroot,
+        args]
+    return subprocess.call(exec_args, env=env)
 
 def kill_chroot_pids(chroot, sig = signal.SIGTERM, sleep = False):
     """
