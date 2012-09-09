@@ -31,8 +31,6 @@ random.seed()
 
 from molecule.compat import convert_to_rawstring
 
-RUNNING_PIDS = set()
-
 
 def get_year():
     """
@@ -153,9 +151,7 @@ def exec_chroot_cmd(args, chroot, pre_chroot = None, env = None):
         myargs = pre_chroot+args
         os.execvp(myargs[0], myargs)
     else:
-        RUNNING_PIDS.add(pid)
         rcpid, rc = os.waitpid(pid, 0)
-        RUNNING_PIDS.discard(pid)
         return rc
 
 def kill_chroot_pids(chroot, sig = signal.SIGTERM, sleep = False):

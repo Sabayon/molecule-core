@@ -25,11 +25,6 @@ sys.path.insert(0,'molecule/')
 sys.path.insert(0,'.')
 import molecule.cmdline
 from molecule.handlers import Runner
-from molecule.utils import RUNNING_PIDS
-
-def kill_pids():
-    for pid in RUNNING_PIDS:
-        os.kill(pid, signal.SIGTERM)
 
 parse_data = molecule.cmdline.parse()
 if parse_data is None:
@@ -46,12 +41,10 @@ for el in molecule_data_order:
     except KeyboardInterrupt:
         while True:
             my.kill()
-            kill_pids()
             break
         raise SystemExit(1)
     while True:
         my.kill()
-        kill_pids()
         break
     if rc != 0:
         raise SystemExit(rc)
