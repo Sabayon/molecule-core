@@ -147,8 +147,7 @@ def exec_chroot_cmd(args, chroot, pre_chroot = None, env = None):
     if env is None:
         env = os.environ.copy()
     exec_args = pre_chroot + [
-        "chroot", chroot,
-        args]
+        "chroot", chroot] + args
     return subprocess.call(exec_args, env=env)
 
 def kill_chroot_pids(chroot, sig = signal.SIGTERM, sleep = False):
