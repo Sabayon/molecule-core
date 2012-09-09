@@ -1,3 +1,19 @@
+commit 2853bcc33002474cc9344ef82d1e10eed8cacd88
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Sep 9 18:23:30 2012 +0200
+
+    [molecule.utils] remove RUNNING_PIDS set
+    
+    This ill conceived idea of killing stale chroot child processes does more
+    harm than good and the idea has been inherited long time ago from the Catalyst
+    codebase. Chroot processes are responsible of their cleanup.
+
+commit 910de14935085e601455410394d3f5234553f33c
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Wed Sep 5 13:54:24 2012 +0200
+
+    Tagging Molecule version 0.9.24.3
+
 commit 4034acf6a37d9d1f6aea9e2d76ac7cf8ae47497b
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Wed Sep 5 13:52:50 2012 +0200
