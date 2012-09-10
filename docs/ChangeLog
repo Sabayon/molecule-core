@@ -1,3 +1,21 @@
+commit 1da4d64704cca1841c448db67ec1fe7b36997127
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Sep 9 21:31:59 2012 +0200
+
+    [molecule.utils] fix exec_chroot_cmd program arguments passed to subprocess.call()
+
+commit 70af6bd110cb4266239f01d888d8cff08e96fe2b
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Sep 9 21:09:37 2012 +0200
+
+    [molecule.utils] simplify exec_chroot_cmd by using subprocess.call() directly
+
+commit 3aa8647b77b2c367e031768e527984b43926bcf5
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Sep 9 18:25:21 2012 +0200
+
+    Tagging Molecule version 0.9.24.4
+
 commit 2853bcc33002474cc9344ef82d1e10eed8cacd88
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Sun Sep 9 18:23:30 2012 +0200
