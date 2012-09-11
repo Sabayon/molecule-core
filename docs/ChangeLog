@@ -1,3 +1,15 @@
+commit 4e79284e9ce4d8d23bdfbf7da7b3cc402585a1d3
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Tue Sep 11 15:57:46 2012 +0200
+
+    [specs/remaster] add support for extra_mksquashfs_parameters (was not exposed)
+
+commit 80dac0fe2cf3342751918185d5d3d7f3488b23c0
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Mon Sep 10 14:40:27 2012 +0200
+
+    Tagging Molecule version 0.9.24.5
+
 commit 1da4d64704cca1841c448db67ec1fe7b36997127
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Sun Sep 9 21:31:59 2012 +0200
