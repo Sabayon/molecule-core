@@ -335,7 +335,5 @@ class SpecParser:
         content = [x.strip().rsplit("#", 1)[0].strip() for x in content if \
             not x.startswith("#") and x.strip()]
         for line in content:
-            if line in data:
-                continue
             data.append(line)
         return data
