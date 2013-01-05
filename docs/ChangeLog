@@ -1,3 +1,15 @@
+commit 228cf27234de7e871fee2ba250d8a7e27774f2c0
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sat Jan 5 09:56:26 2013 +0000
+
+    [molecule.settings] do not filter out duplicated lines, this breaks .spec parsing
+
+commit 56eea95c5fdc67687e7bdb359edaf2f770c51e7e
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Tue Sep 11 16:02:08 2012 +0200
+
+    Tagging Molecule version 0.9.24.6
+
 commit 4e79284e9ce4d8d23bdfbf7da7b3cc402585a1d3
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Tue Sep 11 15:57:46 2012 +0200
