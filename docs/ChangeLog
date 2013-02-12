@@ -1,3 +1,15 @@
+commit c9261353d54bbd39305ed836da0c9fbcf0ce08d3
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Tue Feb 12 12:11:26 2013 +0100
+
+    [settings] fix _env_expander, account a "\n" trailing char that got stripped off
+
+commit 867991ba045c5298a38bd6cff0ca68e2abe98da7
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sat Jan 5 09:57:59 2013 +0000
+
+    Tagging Molecule version 0.9.24.7
+
 commit 228cf27234de7e871fee2ba250d8a7e27774f2c0
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Sat Jan 5 09:56:26 2013 +0000
