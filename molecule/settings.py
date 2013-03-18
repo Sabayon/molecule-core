@@ -236,18 +236,10 @@ class SpecParser:
         self.filepath = filepath[:]
         self._preprocessor = SpecPreprocessor(self.filepath)
 
-        # FIXME: kept for backward .spec files compatibility where
-        # execution_strategy argument is not set
-        # TODO: remove and make execution_strategy mandatory in .spec file
-        from molecule.specs.plugins.builtin_plugin import LivecdSpec
-
-        execution_strategy = self.parse_execution_strategy()
-        if execution_strategy is None:
-            execution_strategy = LivecdSpec.execution_strategy()
-
         from molecule.specs.factory import PluginFactory
         spec_plugins = PluginFactory.get_spec_plugins()
 
+        execution_strategy = self.parse_execution_strategy()
         plugin = spec_plugins.get(execution_strategy)
         if plugin is None:
             raise SpecFileError("Execution strategy provided in %s spec file"
