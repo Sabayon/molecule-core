@@ -27,6 +27,9 @@ class PluginFactory:
 
     _PLUGIN_SUFFIX = "_plugin"
     _PYTHON_EXTENSION = ".py"
+    # A colon separated list of modules to load, looking for
+    # Molecule plugins.
+    _PLUGIN_MODULES = os.getenv("MOLECULE_PLUGIN_MODULES")
 
     def __init__(self, base_plugin_class, plugin_package_module,
         default_plugin_name = None, fallback_plugin_name = None,
@@ -182,6 +185,7 @@ class PluginFactory:
         available = {}
         pkg_modname = self.__plugin_package_module.__name__
         mod_dir = os.path.dirname(self.__modfile)
+        modules = []
 
         for modname in os.listdir(mod_dir):
 
@@ -201,6 +205,14 @@ class PluginFactory:
             modname_clean = modname[:-len(PluginFactory._PLUGIN_SUFFIX)]
 
             modpath = "%s.%s" % (pkg_modname, modname,)
+            modules.append(modpath)
+
+
+        plugin_modules = self._PLUGIN_MODULES
+        if plugin_modules:
+            modules.extend(plugin_modules.split(":"))
+
+        for modpath in modules:
 
             try:
                 __import__(modpath)
