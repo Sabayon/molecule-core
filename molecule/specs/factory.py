@@ -227,7 +227,7 @@ class PluginFactory:
                 if not valid:
                     continue
 
-                available[modname_clean] = obj
+                available[modpath] = obj
 
         return available
 
