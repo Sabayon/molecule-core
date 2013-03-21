@@ -56,31 +56,10 @@ class Configuration(dict):
         if mysettings is None:
             mysettings = {}
 
-        # TODO: move these to molecule-plugins
-        cdrtools_mkisofs = "/usr/bin/mkisofs"
         settings = {
             'version': VERSION,
             'tmp_dir': self.Constants['tmp_dir'],
-            'chroot_compressor': "/usr/bin/mksquashfs",
-            'iso_builder': cdrtools_mkisofs,
-            'mirror_syncer': "/usr/bin/rsync",
-            'chroot_compressor_builtin_args': ["-noappend", "-no-progress"],
-            'iso_builder_builtin_args': ["-J", "-R", "-l", "-no-emul-boot",
-                "-boot-load-size", "4", "-udf", "-boot-info-table"],
-            'mirror_syncer_builtin_args': ["-a", "--delete",
-                "--delete-excluded", "--delete-during", "--numeric-ids",
-                "--recursive", "-d", "-A", "-H"],
-            'chroot_compressor_output_file': "livecd.squashfs",
-            'iso_mounter': ["/bin/mount", "-o", "loop,ro", "-t", "iso9660"],
-            'iso_umounter': ["/bin/umount"],
-            'squash_mounter': ["/bin/mount", "-o", "loop,ro", "-t", "squashfs"],
-            'squash_umounter': ["/bin/umount"],
         }
-        # support both cdrkit and cdrtools
-        cdrkit_genisoimage = "/usr/bin/genisoimage"
-        if os.access(cdrkit_genisoimage, os.X_OK) and \
-            os.path.exists(cdrkit_genisoimage):
-            settings['iso_builder'] = cdrkit_genisoimage
 
         # convert everything to unicode in one pass
         for k, v in settings.items():
@@ -92,10 +71,6 @@ class Configuration(dict):
         self.clear()
         self.update(settings)
         self.update(mysettings)
-
-        paths_to_check = ["chroot_compressor", "iso_builder", "mirror_syncer"]
-        for key in paths_to_check:
-            molecule.utils.valid_exec_check(self.get(key))
 
 
 class SpecPreprocessor:
