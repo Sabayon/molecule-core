@@ -18,7 +18,7 @@ git log > docs/ChangeLog
 git add docs/ChangeLog
 sed -i "s/^VERSION = \".*\"/VERSION = \"$new_tag\"/" molecule/version.py
 git add molecule/version.py
-git commit -m "Tagging Molecule version $new_tag" docs/ChangeLog \
+git commit -m "Tagging Molecule Core version $new_tag" docs/ChangeLog \
     molecule/version.py
 
 # tag version
@@ -29,4 +29,4 @@ git tag $new_tag HEAD
 git push
 git push --tags
 
-echo "Now run /sabayon/bin/tarball-new-molecule on pkg.sabayon.org"
+echo "Now run /sabayon/bin/tarball-new-molecule-core on pkg.sabayon.org"
