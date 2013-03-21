@@ -1,4 +1,4 @@
-SUBDIRS = examples molecule po
+SUBDIRS = molecule po
 PREFIX = /usr
 BINDIR = $(PREFIX)/bin
 DESTDIR = 
