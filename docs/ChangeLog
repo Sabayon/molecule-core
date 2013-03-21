@@ -1,3 +1,15 @@
+commit e7004302ca31edcdcc138f78498d8d52b68e384c
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Mar 21 13:13:36 2013 +0000
+
+    [molecule.specs.plugins] add missing __init__.py
+
+commit 0cc9feee90ee29288df7cf19e49348a3aa8cdbe4
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Mar 21 12:36:42 2013 +0000
+
+    Tagging Molecule Core version 1.0
+
 commit 237919c11ad4a9a9be15c6a5ffbb3ac9a65fa257
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Thu Mar 21 12:25:51 2013 +0000
