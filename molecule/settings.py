@@ -56,6 +56,7 @@ class Configuration(dict):
         if mysettings is None:
             mysettings = {}
 
+        # TODO: move these to molecule-plugins
         cdrtools_mkisofs = "/usr/bin/mkisofs"
         settings = {
             'version': VERSION,
@@ -74,9 +75,6 @@ class Configuration(dict):
             'iso_umounter': ["/bin/umount"],
             'squash_mounter': ["/bin/mount", "-o", "loop,ro", "-t", "squashfs"],
             'squash_umounter': ["/bin/umount"],
-            'pkgs_adder': ["/usr/bin/equo", "install"],
-            'pkgs_remover': ["/usr/bin/equo", "remove"],
-            'pkgs_updater': ["/usr/bin/equo", "update"],
         }
         # support both cdrkit and cdrtools
         cdrkit_genisoimage = "/usr/bin/genisoimage"
