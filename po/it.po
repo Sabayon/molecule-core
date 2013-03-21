@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Molecule 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-08 23:39+0200\n"
+"POT-Creation-Date: 2013-03-21 12:08+0000\n"
 "PO-Revision-Date: 2010-05-16 15:39+0100\n"
 "Last-Translator: Fabio Erculiani <lxnay@sabayonlinux.org>\n"
 "Language-Team: Sabayon <lxnay@sabayon.org>\n"
@@ -18,6 +18,18 @@ msgstr ""
 "X-Poedit-Language: Italian\n"
 "X-Poedit-Country: ITALY\n"
 "X-Poedit-SourceCharset: utf-8\n"
+
+#: ../molecule/handlers.py:39
+msgid "preparing execution"
+msgstr ""
+
+#: ../molecule/handlers.py:45
+msgid "executing"
+msgstr "esecuzione"
+
+#: ../molecule/handlers.py:83
+msgid "All done"
+msgstr "Tutto fatto"
 
 #: ../molecule/cmdline.py:53
 msgid "required super user access"
@@ -42,18 +54,6 @@ msgstr "Opzioni applicazione"
 #: ../molecule/cmdline.py:87
 msgid "execute against specified specification files"
 msgstr "esegui utilizzando file di specifica forniti"
-
-#: ../molecule/handlers.py:39
-msgid "preparing execution"
-msgstr ""
-
-#: ../molecule/handlers.py:45
-msgid "executing"
-msgstr "esecuzione"
-
-#: ../molecule/handlers.py:83
-msgid "All done"
-msgstr "Tutto fatto"
 
 #: ../molecule/output.py:667
 msgid "Molecule needs your attention"
@@ -147,276 +147,86 @@ msgstr "Elemento non valido."
 msgid "Element number to remove (-1 to go back):"
 msgstr ""
 
-#: ../molecule/specs/plugins/builtin_plugin.py:52
-#: ../molecule/specs/plugins/builtin_plugin.py:165
-#: ../molecule/specs/plugins/builtin_plugin.py:211
-#: ../molecule/specs/plugins/builtin_plugin.py:310
-#: ../molecule/specs/plugins/builtin_plugin.py:428
-#: ../molecule/specs/plugins/builtin_plugin.py:531
-#: ../molecule/specs/plugins/builtin_plugin.py:560
-#: ../molecule/specs/plugins/builtin_plugin.py:601
-#: ../molecule/specs/plugins/image_plugin.py:121
-#: ../molecule/specs/plugins/image_plugin.py:182
-#: ../molecule/specs/plugins/image_plugin.py:220
-#: ../molecule/specs/plugins/image_plugin.py:238
-#: ../molecule/specs/plugins/image_plugin.py:461
-#: ../molecule/specs/plugins/remaster_plugin.py:83
-#: ../molecule/specs/plugins/remaster_plugin.py:112
-#: ../molecule/specs/plugins/tar_plugin.py:75
-#: ../molecule/specs/plugins/tar_plugin.py:146
-msgid "spawning"
-msgstr "esecuzione"
+#~ msgid "spawning"
+#~ msgstr "esecuzione"
 
-#: ../molecule/specs/plugins/builtin_plugin.py:83
-msgid "inner chroot hook failed"
-msgstr ""
+#~ msgid "executing kill"
+#~ msgstr "esecuzione uccisione"
 
-#: ../molecule/specs/plugins/builtin_plugin.py:107
-#: ../molecule/specs/plugins/builtin_plugin.py:200
-#: ../molecule/specs/plugins/builtin_plugin.py:381
-#: ../molecule/specs/plugins/builtin_plugin.py:516
-#: ../molecule/specs/plugins/image_plugin.py:109
-#: ../molecule/specs/plugins/remaster_plugin.py:71
-#: ../molecule/specs/plugins/tar_plugin.py:61
-msgid "executing pre_run"
-msgstr ""
+#~ msgid "mirroring running"
+#~ msgstr "esecuzione mirroring"
 
-#: ../molecule/specs/plugins/builtin_plugin.py:119
-msgid "inner_source_chroot_script failed"
-msgstr ""
+#~ msgid "mirroring completed successfully"
+#~ msgstr "mirroring completato con successo"
 
-#: ../molecule/specs/plugins/builtin_plugin.py:127
-msgid "pre_run completed successfully"
-msgstr ""
+#~ msgid "chroot compressed successfully"
+#~ msgstr "chroot compresso con successo"
 
-#: ../molecule/specs/plugins/builtin_plugin.py:136
-#: ../molecule/specs/plugins/builtin_plugin.py:228
-#: ../molecule/specs/plugins/builtin_plugin.py:395
-#: ../molecule/specs/plugins/builtin_plugin.py:548
-#: ../molecule/specs/plugins/remaster_plugin.py:156
-#: ../molecule/specs/plugins/tar_plugin.py:132
-msgid "executing post_run"
-msgstr ""
-
-#: ../molecule/specs/plugins/builtin_plugin.py:146
-#: ../molecule/specs/plugins/builtin_plugin.py:329
-#: ../molecule/specs/plugins/builtin_plugin.py:406
-#: ../molecule/specs/plugins/builtin_plugin.py:580
-#: ../molecule/specs/plugins/remaster_plugin.py:164
-msgid "executing kill"
-msgstr "esecuzione uccisione"
-
-#: ../molecule/specs/plugins/builtin_plugin.py:155
-msgid "mirroring running"
-msgstr "esecuzione mirroring"
-
-#: ../molecule/specs/plugins/builtin_plugin.py:172
-msgid "mirroring failed"
-msgstr ""
-
-#: ../molecule/specs/plugins/builtin_plugin.py:179
-msgid "mirroring completed successfully"
-msgstr "mirroring completato con successo"
-
-#: ../molecule/specs/plugins/builtin_plugin.py:218
-msgid "outer chroot hook failed"
-msgstr ""
-
-#: ../molecule/specs/plugins/builtin_plugin.py:238
-msgid "emptying dir"
-msgstr ""
-
-#: ../molecule/specs/plugins/builtin_plugin.py:259
-msgid "removing dir"
-msgstr ""
-
-#: ../molecule/specs/plugins/builtin_plugin.py:266
-msgid "removal failed for"
-msgstr ""
-
-#: ../molecule/specs/plugins/builtin_plugin.py:280
-msgid "release file creation failed, not a file"
-msgstr ""
-
-#: ../molecule/specs/plugins/builtin_plugin.py:297
-msgid "release file creation failed, system error"
-msgstr ""
-
-#: ../molecule/specs/plugins/builtin_plugin.py:317
-msgid "outer chroot hook (after inner) failed"
-msgstr ""
-
-#: ../molecule/specs/plugins/builtin_plugin.py:338
-#: ../molecule/specs/plugins/remaster_plugin.py:260
-msgid "hooks running"
-msgstr ""
-
-#: ../molecule/specs/plugins/builtin_plugin.py:353
-msgid "hooks completed succesfully"
-msgstr ""
-
-#: ../molecule/specs/plugins/builtin_plugin.py:387
-msgid "preparing environment"
-msgstr ""
-
-#: ../molecule/specs/plugins/builtin_plugin.py:415
-#: ../molecule/specs/plugins/tar_plugin.py:92
-msgid "compressing chroot"
-msgstr ""
-
-#: ../molecule/specs/plugins/builtin_plugin.py:435
-#: ../molecule/specs/plugins/tar_plugin.py:112
-msgid "chroot compression failed"
-msgstr ""
-
-#: ../molecule/specs/plugins/builtin_plugin.py:441
-msgid "chroot compressed successfully"
-msgstr "chroot compresso con successo"
-
-#: ../molecule/specs/plugins/builtin_plugin.py:451
-msgid "merging livecd root"
-msgstr ""
-
-#: ../molecule/specs/plugins/builtin_plugin.py:538
 #, fuzzy
-msgid "pre iso hook failed"
-msgstr "mount iso fallito"
+#~ msgid "pre iso hook failed"
+#~ msgstr "mount iso fallito"
 
-#: ../molecule/specs/plugins/builtin_plugin.py:567
 #, fuzzy
-msgid "post iso hook failed"
-msgstr "mount iso fallito"
+#~ msgid "post iso hook failed"
+#~ msgstr "mount iso fallito"
 
-#: ../molecule/specs/plugins/builtin_plugin.py:589
-msgid "building ISO image"
-msgstr "costruzione immagine ISO"
+#~ msgid "building ISO image"
+#~ msgstr "costruzione immagine ISO"
 
-#: ../molecule/specs/plugins/builtin_plugin.py:608
-msgid "ISO image build failed"
-msgstr "Costruzione immagine ISO fallita"
+#~ msgid "ISO image build failed"
+#~ msgstr "Costruzione immagine ISO fallita"
 
-#: ../molecule/specs/plugins/builtin_plugin.py:615
-msgid "built ISO image"
-msgstr "Immagine ISO costruita"
+#~ msgid "built ISO image"
+#~ msgstr "Immagine ISO costruita"
 
-#: ../molecule/specs/plugins/builtin_plugin.py:621
-#: ../molecule/specs/plugins/image_plugin.py:441
-#: ../molecule/specs/plugins/tar_plugin.py:118
-msgid "generating md5 for"
-msgstr "generazione md5 per"
+#~ msgid "generating md5 for"
+#~ msgstr "generazione md5 per"
 
-#: ../molecule/specs/plugins/image_plugin.py:67
-#: ../molecule/specs/plugins/image_plugin.py:77
-#: ../molecule/specs/plugins/image_plugin.py:89
 #, fuzzy
-msgid "setup hook failed"
-msgstr "mount iso fallito"
+#~ msgid "setup hook failed"
+#~ msgstr "mount iso fallito"
 
-#: ../molecule/specs/plugins/image_plugin.py:67
-msgid "cannot setup loop device"
-msgstr ""
-
-#: ../molecule/specs/plugins/image_plugin.py:77
-msgid "cannot create temporary file"
-msgstr ""
-
-#: ../molecule/specs/plugins/image_plugin.py:89
-msgid "cannot bind loop device"
-msgstr ""
-
-#: ../molecule/specs/plugins/image_plugin.py:128
 #, fuzzy
-msgid "pre image hook failed"
-msgstr "mount iso fallito"
+#~ msgid "pre image hook failed"
+#~ msgstr "mount iso fallito"
 
-#: ../molecule/specs/plugins/image_plugin.py:146
-msgid "generating random base image file"
-msgstr ""
-
-#: ../molecule/specs/plugins/image_plugin.py:153
-msgid "generating zeroed base image file"
-msgstr ""
-
-#: ../molecule/specs/plugins/image_plugin.py:189
 #, fuzzy
-msgid "image file resize failed"
-msgstr "Costruzione immagine ISO fallita"
+#~ msgid "image file resize failed"
+#~ msgstr "Costruzione immagine ISO fallita"
 
-#: ../molecule/specs/plugins/image_plugin.py:197
-#: ../molecule/specs/plugins/image_plugin.py:418
 #, fuzzy
-msgid "run hook called"
-msgstr "mount iso fallito"
+#~ msgid "run hook called"
+#~ msgstr "mount iso fallito"
 
-#: ../molecule/specs/plugins/image_plugin.py:209
 #, fuzzy
-msgid "image file generation failed"
-msgstr "Costruzione immagine ISO fallita"
+#~ msgid "image file generation failed"
+#~ msgstr "Costruzione immagine ISO fallita"
 
-#: ../molecule/specs/plugins/image_plugin.py:227
 #, fuzzy
-msgid "image formatter hook failed"
-msgstr "mount iso fallito"
+#~ msgid "image formatter hook failed"
+#~ msgstr "mount iso fallito"
 
-#: ../molecule/specs/plugins/image_plugin.py:245
 #, fuzzy
-msgid "image mount failed"
-msgstr "mount iso fallito"
+#~ msgid "image mount failed"
+#~ msgstr "mount iso fallito"
 
-#: ../molecule/specs/plugins/image_plugin.py:267
-msgid "unable to umount loop device"
-msgstr ""
+#~ msgid "iso unpacker running"
+#~ msgstr "spacchettamento iso"
 
-#: ../molecule/specs/plugins/image_plugin.py:286
-msgid "unable to kill loop device"
-msgstr ""
-
-#: ../molecule/specs/plugins/image_plugin.py:300
-msgid "unable to remove temp. loop device file"
-msgstr ""
-
-#: ../molecule/specs/plugins/image_plugin.py:314
-msgid "unable to close temp fd"
-msgstr ""
-
-#: ../molecule/specs/plugins/image_plugin.py:359
-#: ../molecule/specs/plugins/remaster_plugin.py:184
-#: ../molecule/specs/plugins/remaster_plugin.py:202
-#: ../molecule/specs/plugins/remaster_plugin.py:214
-msgid "unable to remove temp. dir"
-msgstr ""
-
-#: ../molecule/specs/plugins/image_plugin.py:418
 #, fuzzy
-msgid "moving image file to destination"
-msgstr "Costruzione immagine ISO fallita"
+#~ msgid "moving image file to destination"
+#~ msgstr "Costruzione immagine ISO fallita"
 
-#: ../molecule/specs/plugins/image_plugin.py:435
 #, fuzzy
-msgid "built image"
-msgstr "Immagine ISO costruita"
+#~ msgid "built image"
+#~ msgstr "Immagine ISO costruita"
 
-#: ../molecule/specs/plugins/image_plugin.py:468
 #, fuzzy
-msgid "post image hook failed"
-msgstr "mount iso fallito"
+#~ msgid "post image hook failed"
+#~ msgstr "mount iso fallito"
 
-#: ../molecule/specs/plugins/remaster_plugin.py:90
-msgid "iso mount failed"
-msgstr "mount iso fallito"
+#~ msgid "iso mount failed"
+#~ msgstr "mount iso fallito"
 
-#: ../molecule/specs/plugins/remaster_plugin.py:119
-msgid "squash mount failed"
-msgstr "montaggio squash fallito"
-
-#: ../molecule/specs/plugins/remaster_plugin.py:131
-msgid "iso unpacker running"
-msgstr "spacchettamento iso"
-
-#: ../molecule/specs/plugins/tar_plugin.py:82
-msgid "pre tar hook failed"
-msgstr ""
-
-#: ../molecule/specs/plugins/tar_plugin.py:153
-msgid "post tar hook failed"
-msgstr ""
+#~ msgid "squash mount failed"
+#~ msgstr "montaggio squash fallito"

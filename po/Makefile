@@ -8,7 +8,7 @@ MSGMERGE = intltool-update -x --gettext-package=$(NLSPACKAGE) --dist
 NLSPACKAGE = molecule
 CATALOGS = $(shell ls *.po)
 FMTCATALOGS = $(patsubst %.po,%.mo,$(CATALOGS))
-POTFILES = $(wildcard ../molecule/*.py) $(wildcard ../molecule/specs/*.py) $(wildcard ../molecule/specs/plugins/*.py) ../molecule.py
+POTFILES = $(wildcard ../molecule/*.py) $(wildcard ../molecule/specs/*.py) ../molecule.py
 all: $(NLSPACKAGE).pot $(FMTCATALOGS)
 
 POTFILES.in:
