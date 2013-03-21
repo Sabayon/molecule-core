@@ -7,11 +7,11 @@ import unittest
 sys.path.insert(0,'.')
 sys.path.insert(0,'..')
 
-from tests import version, utils, specs, parsers
+from tests import version, utils, specs
 rc = 0
 
 # Add to the list the module to test
-mods = [version, utils, specs, parsers]
+mods = [version, utils, specs]
 
 tests = []
 for mod in mods:
