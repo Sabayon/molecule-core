@@ -26,10 +26,14 @@ import molecule.utils
 class GenericSpecFunctions(object):
 
     def ne_string(self, x):
-        return x.strip()
+        if x:
+            return True
+        return False
 
     def ne_list(self, x):
-        return x
+        if x:
+            return True
+        return False
 
     def valid_integer(self, x):
         try:
