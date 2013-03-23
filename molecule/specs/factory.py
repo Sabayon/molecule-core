@@ -207,7 +207,6 @@ class PluginFactory:
             modpath = "%s.%s" % (pkg_modname, modname,)
             modules.append(modpath)
 
-
         plugin_modules = self._PLUGIN_MODULES
         if plugin_modules:
             modules.extend(plugin_modules.split(":"))

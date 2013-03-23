@@ -114,7 +114,7 @@ class GenericSpecFunctions(object):
             convert_to_unicode(x).split(",") if \
                 self.valid_path_string(y) and y.strip()]
 
-class GenericExecutionStep:
+class GenericExecutionStep(object):
 
     """
     This class implements a single Molecule Runner step (for example: something
@@ -130,13 +130,6 @@ class GenericExecutionStep:
         self.spec_path = spec_path
         self.metadata = metadata
         self.spec_name = os.path.basename(self.spec_path)
-        self._export_generic_info()
-
-    def _export_generic_info(self):
-        os.environ['RELEASE_STRING'] = self.metadata.get('release_string', '')
-        os.environ['RELEASE_VERSION'] = self.metadata.get('release_version', '')
-        os.environ['RELEASE_DESC'] = self.metadata.get('release_desc', '')
-        os.environ['PRECHROOT'] = ' '.join(self.metadata.get('prechroot', []))
 
     def setup(self):
         """
