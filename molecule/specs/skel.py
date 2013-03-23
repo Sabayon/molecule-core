@@ -26,7 +26,7 @@ import molecule.utils
 class GenericSpecFunctions(object):
 
     def ne_string(self, x):
-        return x, 'raw_unicode_escape'
+        return x.strip()
 
     def ne_list(self, x):
         return x
