@@ -25,7 +25,7 @@ class Runner(GenericExecutionStep):
 
     def __init__(self, spec_path, metadata):
         GenericExecutionStep.__init__(self, spec_path, metadata)
-        self.execution_order = metadata['__plugin__'].get_execution_steps()
+        self.execution_order = metadata['__plugin__'].execution_steps()
 
     def kill(self, success = True):
         return 0

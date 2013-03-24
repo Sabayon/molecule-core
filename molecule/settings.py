@@ -15,16 +15,18 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-
+import codecs
 import os
-import shlex
 import re
+import shlex
 
 from molecule.compat import get_stringtype, convert_to_unicode
 from molecule.exception import SpecFileError
 from molecule.specs.skel import GenericSpec
 from molecule.version import VERSION
+
 import molecule.utils
+
 
 class Constants(dict):
 
@@ -37,19 +39,19 @@ class Constants(dict):
         CONFIG_FILE_NAME = 'molecule.conf'
         TMP_DIR = os.getenv("MOLECULE_TMPDIR", "/var/tmp")
 
-        mysettings = {
+        settings = {
             'config_file': os.path.join(ETC_DIR, CONFIG_FILE_NAME),
             'tmp_dir': TMP_DIR,
         }
-
         self.clear()
-        self.update(mysettings)
+        self.update(settings)
+
 
 class Configuration(dict):
 
     def __init__(self):
         dict.__init__(self)
-        self.Constants = Constants()
+        self._constants = Constants()
         self.load()
 
     def load(self, mysettings = None):
@@ -58,7 +60,7 @@ class Configuration(dict):
 
         settings = {
             'version': VERSION,
-            'tmp_dir': self.Constants['tmp_dir'],
+            'tmp_dir': self._constants['tmp_dir'],
         }
 
         # convert everything to unicode in one pass
@@ -73,9 +75,10 @@ class Configuration(dict):
         self.update(mysettings)
 
 
-class SpecPreprocessor:
+class SpecPreprocessor(object):
 
     PREFIX = "%"
+
     class PreprocessorError(Exception):
         """ Error while preprocessing file """
 
@@ -94,8 +97,8 @@ class SpecPreprocessor:
         @param expand_callback: one argument callback that is used to expand
             given line (line is raw format). Line is already pre-parsed and
             contains a valid preprocessor statement that callback can handle.
-            Preprocessor callback should raise SpecPreprocessor.PreprocessorError
-            if line is malformed.
+            Preprocessor callback should raise PreprocessorError if line
+            is malformed.
         @type expander_callback: callable
         @raise KeyError: if expander is already available
         @return: a raw string (containing \n and whatever)
@@ -147,8 +150,8 @@ class SpecPreprocessor:
             raise SpecPreprocessor.PreprocessorError(
                 "invalid preprocessor line: %s" % (line,))
 
-        with open(path, "r") as spec_f:
-            lines = ''
+        with codecs.open(path, "r", encoding="UTF-8") as spec_f:
+            lines = convert_to_unicode("")
             for line in spec_f.readlines():
                 # call recursively
                 lines += self._builtin_recursive_expand(line)
@@ -183,7 +186,7 @@ class SpecPreprocessor:
     def parse(self):
 
         content = []
-        with open(self._spec_path, "r") as spec_f:
+        with codecs.open(self._spec_path, "r", encoding="UTF-8") as spec_f:
             for line in spec_f.readlines():
                 line = self._builtin_recursive_expand(line)
                 content.append(line)
@@ -197,12 +200,12 @@ class SpecPreprocessor:
                     line = expander(line)
             final_content.append(line)
 
-        final_content = (''.join(final_content)).split("\n")
+        final_content = ("".join(final_content)).split("\n")
 
         return final_content
 
 
-class SpecParser:
+class SpecParser(object):
 
     def __init__(self, filepath):
 
@@ -221,8 +224,7 @@ class SpecParser:
 
         self.__plugin = plugin()
         self.vital_parameters = self.__plugin.vital_parameters()
-        self.parser_data_path = self.__plugin.parser_data_path()
-
+        self.parameters = self.__plugin.parameters()
 
     def parse_execution_strategy(self):
         data = self._generic_parser()
@@ -255,7 +257,7 @@ class SpecParser:
             key = None
             value = None
             v_key, v_value = self.parse_line_statement(line)
-            check_dict = self.parser_data_path.get(v_key)
+            check_dict = self.parameters.get(v_key)
             if check_dict is not None:
                 key, value = v_key, v_value
                 old_key = key
@@ -265,11 +267,11 @@ class SpecParser:
                 if not value:
                     continue
             # gather again... key is changed
-            check_dict = self.parser_data_path.get(key)
+            check_dict = self.parameters.get(key)
             if not isinstance(check_dict, dict):
                 continue
-            value = check_dict['ve'](value)
-            if not check_dict['cb'](value):
+            value = check_dict['parser'](value)
+            if not check_dict['verifier'](value):
                 continue
             if key in mydict:
                 if isinstance(value, get_stringtype()):

@@ -48,8 +48,9 @@ def valid_exec_check(path):
     """
     Determine whethern give path is valid executable (by running it).
     """
-    tmp_fd, tmp_path = tempfile.mkstemp()
+    tmp_fd, tmp_path = None, None
     try:
+        tmp_fd, tmp_path = tempfile.mkstemp()
         p = subprocess.Popen([path], stdout = tmp_fd, stderr = tmp_fd)
         rc = p.wait()
         if rc == 127:
@@ -59,8 +60,10 @@ def valid_exec_check(path):
             raise
         raise EnvironmentError("EnvironmentError: %s not found" % (path,))
     finally:
-        os.close(tmp_fd)
-        os.remove(tmp_path)
+        if tmp_fd is not None:
+            os.close(tmp_fd)
+        if tmp_path is not None:
+            os.remove(tmp_path)
 
 def is_exec_available(exec_name):
     """
