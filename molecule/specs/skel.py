@@ -80,6 +80,15 @@ class GenericSpec(object):
     # Molecule Plugin factory support
     BASE_PLUGIN_API_VERSION = 1
 
+    def __init__(self, spec_file):
+        """
+        Object constructor.
+
+        @param spec_file: path to the spec file to be parsed
+        @type spec_file: string
+        """
+        self._spec_file = spec_file
+
     def _command_splitter(self, string):
         """
         Split a command string into list using shlex.

@@ -222,7 +222,7 @@ class SpecParser(object):
                 " not supported, strategy: %s" % (
                     self.filepath, execution_strategy,))
 
-        self.__plugin = plugin()
+        self.__plugin = plugin(filepath)
         self.vital_parameters = self.__plugin.vital_parameters()
         self.parameters = self.__plugin.parameters()
 
