@@ -60,9 +60,9 @@ def parse():
         if os.path.isfile(el) and os.access(el, os.R_OK):
             obj = SpecParser(el)
             el_data = obj.parse()
-            obj.output()
             del obj
             if el_data:
+                el_data['__plugin__'].output(el_data)
                 good = check_super_user(el_data)
                 if not good:
                     return None
