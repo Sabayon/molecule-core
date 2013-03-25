@@ -194,3 +194,9 @@ class GenericSpec(object):
         and executed by molecule.handlers.Runner
         """
         raise NotImplementedError()
+
+    def output(self, metadata):
+        """
+        Given the parsed metadata as input, execute any kind of logging or
+        stdout/stderr push. This method is a no-op.
+        """
