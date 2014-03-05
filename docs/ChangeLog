@@ -1,3 +1,69 @@
+commit 28292800301ce871836524b7b7e69526af770771
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Mon Mar 25 13:37:49 2013 +0000
+
+    [molecule.cmdline] call GenericSpec.output()
+
+commit 38ee5b4b09dffa2f059578dea6911b08cf45a2b1
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Mon Mar 25 13:34:24 2013 +0000
+
+    [molecule.specs.skel] Add GenericSpec.output() method
+
+commit 3046af38e90b3d7c3033dbf8afa5b45cd17b6ed7
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Mon Mar 25 11:58:33 2013 +0000
+
+    [molecule.specs] GenericSpec: store the .spec file path inside the class object
+
+commit 552e247dc2b6eecacb187419d03f87072c7e29a0
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sun Mar 24 14:52:41 2013 +0000
+
+    [molecule] refactor very old code, bump plugin API, save the world
+
+commit aea35c79e7b7f7e26a5d6c113fd266ce1cfcf8cf
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sat Mar 23 16:04:28 2013 +0000
+
+    [molecule.specs] remove molecule-plugins specific code from core
+
+commit 5be5b58729ab36806ccdb1bbe31c3daef6bbe7af
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sat Mar 23 07:22:17 2013 +0000
+
+    Make GenericSpecFunctions.ne_string and GenericSpecFunctions.ne_list return bool
+
+commit 6b74b21453858b9f2e9934cfb8d371857166dd09
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Sat Mar 23 07:17:30 2013 +0000
+
+    Fix GenericSpecFunctions.ne_string(), call x.strip() directly
+
+commit c85188f97e412a83cf1518acdc87a0979daf1541
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Fri Mar 22 14:54:58 2013 +0000
+
+    [molecule] chmod +x
+
+commit 8d3902ec326b84151895484353d811c7c1472d49
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Mar 21 19:17:38 2013 +0000
+
+    [molecule.settings] drop contants, they have been moved to molecule-plugins
+
+commit 39fd901e20667762a0d8428d8e874d3fc4d12a56
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Mar 21 14:20:14 2013 +0000
+
+    [molecule.settings] Drop pkgs_* from Configuration, moved to molecule-plugins
+
+commit 730046e116c39b374fdbd1dbc051cc517a778df2
+Author: Fabio Erculiani <lxnay@sabayon.org>
+Date:   Thu Mar 21 13:23:41 2013 +0000
+
+    Tagging Molecule Core version 1.0.1
+
 commit e7004302ca31edcdcc138f78498d8d52b68e384c
 Author: Fabio Erculiani <lxnay@sabayon.org>
 Date:   Thu Mar 21 13:13:36 2013 +0000
