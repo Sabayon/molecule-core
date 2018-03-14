@@ -180,7 +180,7 @@ class SpecPreprocessor(object):
             # call recursively
             new_split_line.append(new_arg)
 
-        new_line = " ".join(new_split_line) + "\n"
+        new_line = " ".join(map(bytes.decode, new_split_line)) + "\n"
         return self._builtin_recursive_expand(new_line)
 
     def parse(self):
